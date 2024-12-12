@@ -6,6 +6,7 @@ class UserDetails {
   late final String phonenumber;
   late final String email;
   late final String profile_image_url;
+  late final String role;
 
   UserDetails({
     required this.userid,
@@ -13,5 +14,6 @@ class UserDetails {
     required this.phonenumber,
     required this.email,
     required this.profile_image_url,
+    required this.role,
   });
 }

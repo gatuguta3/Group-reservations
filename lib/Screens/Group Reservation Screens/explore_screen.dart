@@ -67,7 +67,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset('icons/upload-line.png',width: 20, height: 20,            ),
+                            Image.asset('icons/diversity_3_FILL0_wght400_GRAD0_opsz48 2.png',width: 20, height: 20,            ),
                             
                             Text('Chamas' , style: TextStyle(fontSize: 11),),
                           ],
@@ -82,7 +82,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset('icons/upload-line.png',width: 20, height: 20,            ),
+                            Image.asset('icons/Group.png',width: 20, height: 20,            ),
                             
                             Text('Fundraisers' , style: TextStyle(fontSize: 11),),
                           ],
@@ -97,7 +97,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset('icons/upload-line.png',width: 20, height: 20,            ),
+                            Image.asset('icons/handshake.png',width: 20, height: 20,            ),
                             
                             Text('Experiences' , style: TextStyle(fontSize: 11),),
                           ],

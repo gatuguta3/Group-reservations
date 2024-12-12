@@ -14,6 +14,7 @@ class UserDetailsDemodata{
         phonenumber: '+254708908567',
         email: 'edwin@gmail.com',
         profile_image_url: 'images/edwin.jpeg',
+        role: 'Admin'
       )
     ];
       return userdetails_list;

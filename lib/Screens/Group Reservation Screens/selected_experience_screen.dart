@@ -1,9 +1,14 @@
 // ignore_for_file: use_key_in_widget_constructors, non_constant_identifier_names, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:group_reservations/Config/themes.dart';
+import 'package:group_reservations/Models/groups_model.dart';
 import 'package:group_reservations/Models/packages_model.dart';
+import 'package:group_reservations/Screens/Group%20Reservation%20Screens/members_screen.dart';
+import 'package:group_reservations/Services/Demo_data/groups_demodata.dart';
 import 'package:group_reservations/Services/Demo_data/packages_demodata.dart';
 import 'package:intl/intl.dart';
+
 
 class SelectedExperienceScreen extends StatefulWidget {
 
@@ -54,11 +59,21 @@ class SelectedExperienceScreen extends StatefulWidget {
 class _SelectedExperienceScreenState extends State<SelectedExperienceScreen> {
 
 final PackagesDemodata packages_demodata = PackagesDemodata();
+final GroupsDemodata groups_demodata = GroupsDemodata();
+final TextEditingController _dateController = TextEditingController();
+
+@override
+  void initState() {
+    super.initState();
+    
+    _dateController.text = "Select a date range";
+  }
+
 
 
 void openDialog(BuildContext context) {
     
-    String currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    
 
    
     showDialog(
@@ -67,8 +82,10 @@ void openDialog(BuildContext context) {
         return AlertDialog(
           title: Text('Please set Reservation Date', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400), ),
           content: TextField(
-            decoration: InputDecoration(
-              labelText: currentDate, 
+            controller: _dateController,
+            readOnly: true,
+            decoration: InputDecoration(             
+              
               prefixIcon: Icon(Icons.calendar_today), 
               border: OutlineInputBorder(),
             ),
@@ -83,7 +100,7 @@ void openDialog(BuildContext context) {
             ElevatedButton(
               onPressed: () {                
                 Navigator.of(context).pop();
-                datepickerDialog(context);
+                openCustomDateRangePicker(context);
               },
               child: Text("Proceed",style: TextStyle(color: Colors.white),),
               style: ElevatedButton.styleFrom(
@@ -98,21 +115,199 @@ void openDialog(BuildContext context) {
   }
 
 
-   void datepickerDialog (BuildContext context) async {
-        DateTime? pickedDate = await showDatePicker(
-          context: context,
-          initialDate: DateTime.now(), 
-          firstDate: DateTime.now(), 
-          lastDate: DateTime(2100), 
-        );
-        if (pickedDate != null) {
-          setState(() {
-            //_dateController.text = pickedDate.toString(); 
-          });
-        }      
-    }      
+ void openCustomDateRangePicker(BuildContext context) async {
+
+  String currentDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
+
+  DateTime startDate = DateFormat('dd-MM-yyyy').parse(widget.startdate);
+  DateTime endDate = DateFormat('dd-MM-yyyy').parse(widget.enddate);
+  DateTimeRange selectedRange = DateTimeRange(start: startDate, end: endDate);
+
+  await showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      
+      return AlertDialog(
+        title: Text(currentDate),
+        
+        content: Container(
+          width: 350,
+          height: 250, // Mimic the size of the DatePicker dialog
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Divider(thickness: 1,),
+              // Calendar with range picker
+              Expanded(
+                child: CalendarDatePicker(
+                  initialDate: startDate,
+                  firstDate: startDate,
+                  lastDate: endDate,
+                  onDateChanged: (DateTime selected) {
+                    // Update the start and end date dynamically
+                    setState(() {
+                      if (selected.isBefore(selectedRange.end)) {
+                        selectedRange = DateTimeRange(
+                          start: selected,
+                          end: selectedRange.end,
+                        );
+                      } else {
+                        selectedRange = DateTimeRange(
+                          start: selectedRange.start,
+                          end: selected,
+                        );
+                      }
+                    });
+                  },
+                  initialCalendarMode: DatePickerMode.day,
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          OutlinedButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog without changes
+            },
+            child: Text("Cancel"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                _dateController.text ="${DateFormat('dd-MM-yyyy').format(selectedRange.start)} to ${DateFormat('dd-MM-yyyy').format(selectedRange.end)}";
+              });
+              Navigator.of(context).pop();
+              openReservationTypeDialog(context); 
+
+            },
+            child: Text("Ok",style: TextStyle(color: Colors.white),),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color.fromARGB(255, 6, 94, 9),
+            ),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+
+void openReservationTypeDialog(BuildContext context) {   
     
-  
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Please set Reservation Date', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400), ),
+          content:Text('Is this plan for an individual or Chama ?', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
+          actions: [
+            OutlinedButton(
+              onPressed: () {
+                Navigator.of(context).pop(); 
+                openChamaOptionsDialog(context);
+              },
+              child: Text("Chama"),
+            ),
+            ElevatedButton(
+              onPressed: () {                
+                Navigator.of(context).pop();
+                
+              },
+              child: Text("Individual",style: TextStyle(color: Colors.white),),
+              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color.fromARGB(255, 6, 94, 9), 
+                                minimumSize: Size(90, 40), 
+                              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+int? selectedGroupId;
+
+void openChamaOptionsDialog(BuildContext context) async {   
+    
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Please select a chama below', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500), ),
+          content:Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              //Text('Is this plan for an individual or Chama ?', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
+              FutureBuilder<List<Groups>>(
+      future: groups_demodata.fetch_groups(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return Center(child: Text('No groups found.'));
+        }
+
+        final groups = snapshot.data!;
+         return Container(
+          height: 200, 
+          child: ListView.builder(
+          itemCount: groups.length,
+          itemBuilder: (context, index) {
+            final group = groups[index];
+
+            return ListTile(              
+              leading: CircleAvatar(child:  Image.asset('icons/Group.png', width: 24, height: 24),                 
+              ),
+              title: Text( group.groupname, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color:  Colors.black, ),  ),
+              trailing: Radio<int>(
+                value: group.groupid, 
+                groupValue: selectedGroupId,
+                onChanged: (int? value) {
+                  setState(() {
+                    selectedGroupId = value; // Update the selected group 
+                  });
+                  
+                },
+                activeColor: Colors.black,
+              ),
+              onTap: () {
+                setState(() {
+                  selectedGroupId = group.groupid; // Select the group on tap
+                });
+                Navigator.of(context).pop();
+                  openChamaOptionsDialog(context);
+              },
+            );
+          },
+         ));
+      },
+    )
+
+              ]
+          ),
+          actions: [
+           
+            ElevatedButton(
+              onPressed: () {                
+                Navigator.of(context).pop();
+                
+                
+              },
+              child: Text("Proceed",style: TextStyle(color: Colors.white),),
+              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color.fromARGB(255, 6, 94, 9), 
+                                minimumSize: Size(90, 40), 
+                              ),
+            ),
+          ],
+          );
+  }
+    );         
+  }
+   
 
   @override
   Widget build(BuildContext context) {

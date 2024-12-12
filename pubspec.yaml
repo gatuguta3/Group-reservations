@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   provider: ^6.0.5
   intl: ^0.18.0
+  flutter_date_pickers: ^0.7.1
+  syncfusion_flutter_datepicker: ^20.4.39
 
 dev_dependencies:
   flutter_test:
@@ -63,7 +65,11 @@ flutter:
     - icons/Vector2.png
     - icons/Vector3.png
     - icons/Vector4.png
+    - icons/diversity_3_FILL0_wght400_GRAD0_opsz48 2.png
     - icons/Home2.png
+    - icons/state-layer.png
+    - icons/Group.png
+    - icons/handshake.png
     - icons/Home21.png
     - icons/Home22.png
     - icons/Group.png
