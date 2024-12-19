@@ -7,6 +7,12 @@ const secondarycolor =Color(0xFF018749);
 
 const orangecolor = Color.fromARGB(255, 226, 161, 64);
 
+const cardcolor = Color.fromARGB(255, 235, 245, 243);
+
+const  greycardcolor = Color.fromARGB(134, 158, 158, 158);
+
+const whitecolor = Color.fromARGB(28, 221, 221, 221);
+
 
 class CustomButtonStyle {
   static ButtonStyle buttonStyle() {
@@ -20,11 +26,33 @@ class CustomButtonStyle {
 
   static ButtonStyle buttonStyle2() {
     return ElevatedButton.styleFrom(
-      foregroundColor: Colors.white, backgroundColor: Color.fromARGB(255, 212, 174, 4), 
+      foregroundColor: Colors.white, backgroundColor: primarycolor, 
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5), 
+        borderRadius: BorderRadius.circular(5),        
+
       ), 
-      minimumSize: Size(200, 50),
+      minimumSize: Size(290, 40),
+    );
+  }
+  static ButtonStyle buttonStyle3() {
+    return ElevatedButton.styleFrom(
+      foregroundColor: Colors.white, backgroundColor: primarycolor, 
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),        
+
+      ), 
+      minimumSize: Size(200, 30),
+    );
+  }
+
+  static ButtonStyle buttonStyle4() {
+    return ElevatedButton.styleFrom(
+      foregroundColor: Colors.white, backgroundColor: primarycolor, 
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),        
+
+      ), 
+      minimumSize: Size(80, 30),
     );
   }
 
@@ -33,11 +61,11 @@ class CustomButtonStyle {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5), 
       ),      
-      side: const BorderSide(color: Color.fromARGB(206, 255, 255, 255)), 
+      minimumSize: Size(80, 30),
+      side: const BorderSide(color: primarycolor), 
       textStyle: const TextStyle(
-        fontSize: 16, 
-        fontWeight: FontWeight.bold, 
-        color: Colors.white, 
+        fontSize: 16,         
+        color: primarycolor, 
       ),
     );
   }

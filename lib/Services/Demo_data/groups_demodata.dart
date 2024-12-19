@@ -7,7 +7,7 @@ class GroupsDemodata{
 
   Future<List<Groups>> fetch_groups () async {
 
-    await Future.delayed(Duration(seconds: 1));
+    //await Future.delayed(Duration(seconds: 1));
 
     List<Groups> groups_list = [
       Groups(

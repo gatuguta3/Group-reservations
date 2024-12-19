@@ -7,7 +7,7 @@ class GroupMembersDemodata{
 
   Future<List<GroupMembers>> fetch_groupmembers () async {
 
-    await Future.delayed(Duration(seconds: 1));
+  //  await Future.delayed(Duration(seconds: 1));
 
     List<GroupMembers> group_members_list =[
       GroupMembers(
@@ -21,7 +21,7 @@ class GroupMembersDemodata{
         groupid : 1,
         userid : 2,
         name : 'Del rimono',
-        phonenumber : '',
+        phonenumber : '+254708908567',
         profile_image_url: 'images/edwin.jpeg',
       ),
       GroupMembers(
@@ -34,7 +34,7 @@ class GroupMembersDemodata{
       GroupMembers(
         groupid : 2,
         userid : 4,
-        name : 'Be;',
+        name : 'Ben',
         phonenumber : '+254708908567',
         profile_image_url: 'images/edwin.jpeg',
       ),

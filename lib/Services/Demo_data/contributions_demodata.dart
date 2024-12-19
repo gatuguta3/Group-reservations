@@ -6,7 +6,7 @@ import 'package:group_reservations/Models/contributions_model.dart';
 class ContirbutionsDemodata {
 
   Future<List<Contributions>> fetch_contributions () async {
-    await Future.delayed(Duration(seconds: 1));
+    //await Future.delayed(Duration(seconds: 1));
 
     List<Contributions> contribution_list = [
       Contributions(

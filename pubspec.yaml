@@ -37,8 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   provider: ^6.0.5
   intl: ^0.18.0
-  flutter_date_pickers: ^0.7.1
-  syncfusion_flutter_datepicker: ^20.4.39
+  flutter_date_range_picker: ^0.1.1
+  
 
 dev_dependencies:
   flutter_test:
@@ -61,13 +61,15 @@ flutter:
     - images/beachview.jpeg
     - images/couple.jpeg
     - images/man.jpeg
+    - images/britaminsurance.png
+    - images/insurance2.jpeg
     - icons/Vector.png
     - icons/Vector2.png
     - icons/Vector3.png
     - icons/Vector4.png
+    - icons/Vector5.png   
     - icons/diversity_3_FILL0_wght400_GRAD0_opsz48 2.png
-    - icons/Home2.png
-    - icons/state-layer.png
+    - icons/Home2.png    
     - icons/Group.png
     - icons/handshake.png
     - icons/Home21.png

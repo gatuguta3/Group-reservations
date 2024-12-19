@@ -4,7 +4,7 @@ import 'package:group_reservations/Models/experiences_model.dart';
 class ExperiencesDemodata{
 
   Future<List<Experiences>> fetch_experiences () async {
-     await Future.delayed(Duration(seconds: 1));
+    // await Future.delayed(Duration(seconds: 1));
      List<Experiences> experiences_list =[
       Experiences(
         id: 1,

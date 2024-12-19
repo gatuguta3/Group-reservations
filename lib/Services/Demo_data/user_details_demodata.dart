@@ -5,7 +5,7 @@ import 'package:group_reservations/Models/user_details_model.dart';
 class UserDetailsDemodata{
 
   Future<List<UserDetails>> fetchuserdetails () async {
-    await Future.delayed(Duration(seconds: 1));
+  //  await Future.delayed(Duration(seconds: 1));
 
     List<UserDetails> userdetails_list = [
       UserDetails(

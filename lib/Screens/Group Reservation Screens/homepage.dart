@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:group_reservations/Config/themes.dart';
 import 'package:group_reservations/Screens/Group%20Reservation%20Screens/explore_screen.dart';
 import 'package:group_reservations/Screens/Group%20Reservation%20Screens/home_screen.dart';
+import 'package:group_reservations/Screens/Main%20Screeens/profile_screen.dart';
+import 'package:group_reservations/Screens/Main%20Screeens/wallet_screen.dart';
 
 
 class Homepage extends StatefulWidget {
@@ -20,7 +22,9 @@ class _HomepageState extends State<Homepage> {
   int _currentIndex = 0;
   final screens=[
     const HomeScreen(),
-    const ExploreScreen(),   
+    const ExploreScreen(),
+    const WalletScreen(),
+    const ProfileScreen()   
   ];
 
 
