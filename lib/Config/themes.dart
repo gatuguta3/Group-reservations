@@ -1,15 +1,17 @@
 
 import 'package:flutter/material.dart';
 
-const primarycolor = Color(0xFF00563B);
+//rgba(203, 213, 224, 1)   rgba(103, 80, 164, 0.08)
+
+const primarycolor = Color.fromRGBO(0, 102, 52, 1.0);
 
 const secondarycolor =Color(0xFF018749);
 
-const orangecolor = Color.fromARGB(255, 226, 161, 64);
+const orangecolor = Color.fromRGBO(255, 185, 89, 1.0);
 
 const cardcolor = Color.fromARGB(255, 235, 245, 243);
 
-const  greycardcolor = Color.fromARGB(134, 158, 158, 158);
+const  greycardcolor = Color.fromRGBO(160, 162, 161, 1.0);
 
 const whitecolor = Color.fromARGB(28, 221, 221, 221);
 

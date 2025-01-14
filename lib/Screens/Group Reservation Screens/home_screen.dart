@@ -60,9 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              SizedBox(width: 140,),              
+              SizedBox(width: 130,),              
                 Icon(
-                  size: 25.0,
+                  size: 23.0,
                   color: Color.fromARGB(150, 255, 255, 255),
                   Icons.notifications_active_outlined),
                 
@@ -187,12 +187,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                      ),
                    
-                   const SizedBox(height: 20,),
+                   const SizedBox(height: 10,),
                     ]
                   ),
                 ),
 
-               SizedBox(height: 30,),
+               SizedBox(height: 25,),
                     Row(
                     children: [
                       SizedBox(width: 10,),
@@ -220,12 +220,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index) {
                   final contribution = contributions[index];
                   return SizedBox(
-                    width: 240,
+                    width: 260,
                    
                     child: Card(
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(color: const Color.fromARGB(111, 0, 0, 0), width: 1),
-                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(color: Color.fromARGB(33, 0, 0, 0), width: 0.6),
+                      borderRadius: BorderRadius.circular(4 ),
+
                     ),
                     elevation: 0,
                     color: Colors.white,
@@ -318,11 +319,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index) {
                   final loan = loans[index];
                   return  SizedBox(
-                    width: 240,
+                    width: 250,
                     child: Card(
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(color:  Color.fromARGB(111, 0, 0, 0), width: 1),
-                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(color: Color.fromARGB(33, 0, 0, 0), width: 0.6),
+                      borderRadius: BorderRadius.circular(4 ),
                     ),
                     elevation: 0,
                     color: Colors.white,
@@ -342,7 +343,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Text('Next Installment : ${loan.upcomingdate}',style: TextStyle(fontSize: 11, color: Color.fromARGB(117, 0, 0, 0)),)
                                 ],
                               ),
-                              const SizedBox(width: 30,),
+                              const SizedBox(width: 24,),
                               GestureDetector(
                                 onDoubleTap: (){},
                                 child:Image.asset('icons/arrow-up-right.png', width: 24, height: 24), 
@@ -354,7 +355,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               const SizedBox(width: 3,),
                               Text('BAL : KES ${loan.balance}',style: TextStyle(fontSize: 13 , fontWeight: FontWeight.w300)),
-                             const SizedBox(width: 50,),
+                             const SizedBox(width: 44,),
                             Container(
                                 alignment: Alignment.center,
                                 width: 60,height: 20,

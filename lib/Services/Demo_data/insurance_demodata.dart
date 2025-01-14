@@ -18,7 +18,8 @@ final List <Insurance> get_insurance = [
         'price_per_person': 1200,
         'max_members': 10,
         'cost_to_cover': 50000,
-        'more_info': 'Condition cover on the fierst two death basis'
+        'more_info': 'Condition cover on the fierst two death basis',
+        'status':'Pending'
       },
       {
         'name': 'Basic',
@@ -26,7 +27,8 @@ final List <Insurance> get_insurance = [
         'price_per_person': 800,
         'max_members': 10,
         'cost_to_cover': 50000,
-        'more_info': 'Condition cover on the fierst two death basis'
+        'more_info': 'Condition cover on the fierst two death basis',
+        'status':'Pending'
       },
       {
         'name': 'Premium',
@@ -34,8 +36,25 @@ final List <Insurance> get_insurance = [
         'price_per_person': 1000,
         'max_members': 10,
         'cost_to_cover': 50000,
-        'more_info': 'Condition cover on the fierst two death basis'
+        'more_info': 'Condition cover on the fierst two death basis',
+        'status':'Pending'
       },
+    ],
+    payments: [
+      {
+        'Transaction_Ref':'SQWERTY67H',
+        'date:paid':24-08-12,
+        'amount':1000,
+        'status':'paid'        
+
+      },
+      {
+        'Transaction_Ref':'SQWERTY67H',
+        'date:paid':24-08-12,
+        'amount':1000,
+        'status':'paid'        
+
+      }
     ]
   ),
   Insurance(
@@ -52,7 +71,8 @@ final List <Insurance> get_insurance = [
         'price_per_person': 1200,
         'max_members': 10,
         'cost_to_cover': 50000,
-        'more_info': 'Condition cover on the fierst two death basis'
+        'more_info': 'Condition cover on the fierst two death basis',
+        'status':'Pending'
       },
       {
         'name': 'Basic',
@@ -60,7 +80,8 @@ final List <Insurance> get_insurance = [
         'price_per_person': 800,
         'max_members': 10,
         'cost_to_cover': 50000,
-        'more_info': 'Condition cover on the fierst two death basis'
+        'more_info': 'Condition cover on the fierst two death basis',
+        'status':'Pending'
       },
       {
         'name': 'Premium',
@@ -68,8 +89,25 @@ final List <Insurance> get_insurance = [
         'price_per_person': 1000,
         'max_members': 10,
         'cost_to_cover': 50000,
-        'more_info': 'Condition cover on the fierst two death basis'
+        'more_info': 'Condition cover on the fierst two death basis',
+        'status':'Pending'
       },
+    ],
+    payments: [
+      {
+        'Transaction_Ref':'SQWERTY67H',
+        'date:paid':24-08-12,
+        'amount':1000,
+        'status':'paid'
+        
+      },
+      {
+        'Transaction_Ref':'SQWERTY67H',
+        'date:paid':24-08-12,
+        'amount':1000,
+        'status':'paid'        
+
+      }
     ]
   ),
   Insurance(
@@ -86,7 +124,8 @@ final List <Insurance> get_insurance = [
         'price_per_person': 1200,
         'max_members': 10,
         'cost_to_cover': 50000,
-        'more_info': 'Condition cover on the fierst two death basis'
+        'more_info': 'Condition cover on the fierst two death basis',
+        'status':'Pending'
       },
       {
         'name': 'Basic',
@@ -94,7 +133,8 @@ final List <Insurance> get_insurance = [
         'price_per_person': 800,
         'max_members': 10,
         'cost_to_cover': 50000,
-        'more_info': 'Condition cover on the fierst two death basis'
+        'more_info': 'Condition cover on the fierst two death basis',
+        'status':'Pending'
       },
       {
         'name': 'Premium',
@@ -102,8 +142,24 @@ final List <Insurance> get_insurance = [
         'price_per_person': 1000,
         'max_members': 10,
         'cost_to_cover': 50000,
-        'more_info': 'Condition cover on the fierst two death basis'
+        'more_info': 'Condition cover on the fierst two death basis',
+        'status':'Pending'
       },
+    ],
+    payments: [
+      {
+        'Transaction_Ref':'SQWERTY67H',
+        'date:paid':24-08-12,
+        'amount':1000,
+        'status':'paid'        
+      },
+      {
+        'Transaction_Ref':'SQWERTY67H',
+        'date:paid':24-08-12,
+        'amount':1000,
+        'status':'paid'        
+
+      }
     ]
   )
 ];

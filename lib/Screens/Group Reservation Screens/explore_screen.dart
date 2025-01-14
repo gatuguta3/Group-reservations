@@ -315,6 +315,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                                 image : insurance.image_url,
                                                                 provider : insurance.provider,
                                                                 plans : insurance.plans,
+                                                                payments: insurance.payments,
                                                                
                                                               )
                                                             ),

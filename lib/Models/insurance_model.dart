@@ -9,6 +9,7 @@ class Insurance{
   final String provider;
   final String description;
   final List plans;
+  final List payments;
 
   Insurance({
     required this.id,
@@ -18,5 +19,6 @@ class Insurance{
     required this.provider,
     required this.description,
     required this.plans,
+    required this.payments
   });
 }
