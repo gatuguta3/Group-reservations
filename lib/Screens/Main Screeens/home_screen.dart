@@ -4,11 +4,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:group_reservations/Config/themes.dart';
-import 'package:group_reservations/Models/contributions_model.dart';
-import 'package:group_reservations/Models/loans_model.dart';
-import 'package:group_reservations/Services/Demo_data/contributions_demodata.dart';
-import 'package:group_reservations/Services/Demo_data/loans_demodata.dart';
+import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Models_demo/contributions_model.dart';
+import 'package:group_reservations/Models_demo/loans_model.dart';
+import 'package:group_reservations/Services_demo/contributions_demodata.dart';
+import 'package:group_reservations/Services_demo/loans_demodata.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -361,7 +361,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: 60,height: 20,
                                 decoration: BoxDecoration(
                                   color: const Color(0xFF00563B), 
-                                  borderRadius: BorderRadius.circular(12), // Set the border radius for rounded corners
+                                  borderRadius: BorderRadius.circular(5), // Set the border radius for rounded corners
                                 ),                                
                                 child:  SizedBox(                               
                               child: Text(loan.status,style: TextStyle(fontSize: 13,fontWeight: FontWeight.w100 ,color: Colors.white)),),

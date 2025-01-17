@@ -2,7 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_date_range_picker/flutter_date_range_picker.dart';
-import 'package:group_reservations/Config/themes.dart';
+import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Screens/experiences_screens/events_screens/all_reservations_screens.dart';
 
 class PaymentScreeen extends StatefulWidget {
   final int amount;
@@ -15,7 +16,7 @@ class PaymentScreeen extends StatefulWidget {
 
 class _PaymentScreeenState extends State<PaymentScreeen> {
 
-   String? _selectedOption;
+   String? _selectedOption = 'M-Pesa';
    late final TextEditingController _controller ;
 
   void _handleRadioValueChange(String? value) {
@@ -73,6 +74,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
             children: [
               Radio<String>(
                 value: 'M-Pesa',
+                activeColor: primarycolor,
                 groupValue: _selectedOption,
                 onChanged: _handleRadioValueChange,
               ),
@@ -83,6 +85,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
             children: [
               Radio<String>(
                 value: 'Wallet',
+                activeColor: primarycolor,
                 groupValue: _selectedOption,
                 onChanged: _handleRadioValueChange,
               ),
@@ -94,6 +97,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
             children: [
               Radio<String>(
                 value: 'Card',
+                activeColor: primarycolor,
                 groupValue: _selectedOption,
                 onChanged: _handleRadioValueChange,
               ),
@@ -128,7 +132,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
                             children: [
                              ElevatedButton(
                                 onPressed: () {
-                                  
+                                   Navigator.push(context, MaterialPageRoute( builder: (context) => AllReservationsScreens( ),), );                                  
                                 },
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center, 
@@ -146,10 +150,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
                                      
                                   ],
                                 ),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color.fromARGB(255, 6, 94, 9), 
-                                  minimumSize: Size(330, 40), 
-                                ),
+                                style:CustomButtonStyle.buttonStyle2(),
                               )       
                           
                           ],),

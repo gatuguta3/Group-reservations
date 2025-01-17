@@ -1,5 +1,5 @@
 
-import 'package:group_reservations/Models/experiences_model.dart';
+import 'package:group_reservations/Models_demo/experiences_model.dart';
 
 class ExperiencesDemodata{
 

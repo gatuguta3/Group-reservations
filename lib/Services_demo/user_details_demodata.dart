@@ -1,6 +1,6 @@
 // ignore_for_file: unused_local_variable, non_constant_identifier_names
 
-import 'package:group_reservations/Models/user_details_model.dart';
+import 'package:group_reservations/Models_demo/user_details_model.dart';
 
 class UserDetailsDemodata{
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 //rgba(203, 213, 224, 1)   rgba(103, 80, 164, 0.08)
 
-const primarycolor = Color.fromRGBO(0, 102, 52, 1.0);
+const primarycolor = Color(0xFF006634);
 
 const secondarycolor =Color(0xFF018749);
 
@@ -36,6 +36,7 @@ class CustomButtonStyle {
       minimumSize: Size(290, 40),
     );
   }
+
   static ButtonStyle buttonStyle3() {
     return ElevatedButton.styleFrom(
       foregroundColor: Colors.white, backgroundColor: primarycolor, 
@@ -54,7 +55,7 @@ class CustomButtonStyle {
         borderRadius: BorderRadius.circular(5),        
 
       ), 
-      minimumSize: Size(80, 30),
+      minimumSize: Size(80, 40),
     );
   }
 
@@ -63,7 +64,7 @@ class CustomButtonStyle {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5), 
       ),      
-      minimumSize: Size(80, 30),
+      minimumSize: Size(90, 40),
       side: const BorderSide(color: primarycolor), 
       textStyle: const TextStyle(
         fontSize: 16,         

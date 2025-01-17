@@ -1,7 +1,7 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:group_reservations/Models/insurance_model.dart';
+import 'package:group_reservations/Models_demo/insurance_model.dart';
 
 final List <Insurance> get_insurance = [
   Insurance(
@@ -43,14 +43,14 @@ final List <Insurance> get_insurance = [
     payments: [
       {
         'Transaction_Ref':'SQWERTY67H',
-        'date:paid':24-08-12,
+        'date:paid': '24-08-12',
         'amount':1000,
         'status':'paid'        
 
       },
       {
         'Transaction_Ref':'SQWERTY67H',
-        'date:paid':24-08-12,
+        'date:paid': '24-08-12',
         'amount':1000,
         'status':'paid'        
 
@@ -96,14 +96,14 @@ final List <Insurance> get_insurance = [
     payments: [
       {
         'Transaction_Ref':'SQWERTY67H',
-        'date:paid':24-08-12,
+        'date:paid':'24-08-12',
         'amount':1000,
         'status':'paid'
         
       },
       {
         'Transaction_Ref':'SQWERTY67H',
-        'date:paid':24-08-12,
+        'date:paid':'24-08-12',
         'amount':1000,
         'status':'paid'        
 
@@ -149,13 +149,13 @@ final List <Insurance> get_insurance = [
     payments: [
       {
         'Transaction_Ref':'SQWERTY67H',
-        'date:paid':24-08-12,
+        'date:paid':'24-08-12',
         'amount':1000,
         'status':'paid'        
       },
       {
         'Transaction_Ref':'SQWERTY67H',
-        'date:paid':24-08-12,
+        'date:paid':'24-08-12',
         'amount':1000,
         'status':'paid'        
 

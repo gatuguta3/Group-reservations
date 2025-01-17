@@ -1,8 +1,8 @@
 // ignore_for_file: use_key_in_widget_constructors, non_constant_identifier_names, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import 'package:group_reservations/Config/themes.dart';
-import 'package:group_reservations/Screens/Group%20Reservation%20Screens/payment_screeen.dart';
+import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Screens/experiences_screens/events_screens/payment_screeen.dart';
 
 class ReservationViewScreen extends StatefulWidget {
    final int reservation_id;  
@@ -143,6 +143,7 @@ class _ReservationViewScreenState extends State<ReservationViewScreen> {
                                                                
                               },
                               child: Text("Cancle Reservation" ,  style: TextStyle(color: Colors.black , fontWeight: FontWeight.w300),),
+                              style: CustomButtonStyle.outlinedButtonStyle(),
                             ),
                             ElevatedButton(
                               onPressed: () {   
@@ -150,16 +151,14 @@ class _ReservationViewScreenState extends State<ReservationViewScreen> {
                                 
                               },
                               child: Text("Make Payment",style: TextStyle(color: Colors.white),),
-                              style: ElevatedButton.styleFrom(
-                                                backgroundColor: const Color.fromARGB(255, 6, 94, 9), 
-                                                minimumSize: Size(90, 40), 
-                                              ),
+                              style: CustomButtonStyle.buttonStyle4(),
+                              
                             ),
                                       ],
                       )
                     :
 
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
 
                     Container(
                         width: 350,

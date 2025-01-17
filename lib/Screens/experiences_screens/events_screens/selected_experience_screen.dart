@@ -1,15 +1,15 @@
 // ignore_for_file: use_key_in_widget_constructors, non_constant_identifier_names, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, unnecessary_brace_in_string_interps, unused_import, unnecessary_string_interpolations, unused_local_variable, unused_element
 
 import 'package:flutter/material.dart';
-import 'package:group_reservations/Config/themes.dart';
-import 'package:group_reservations/Models/group_members_model.dart';
-import 'package:group_reservations/Models/groups_model.dart';
-import 'package:group_reservations/Models/packages_model.dart';
-import 'package:group_reservations/Screens/Group%20Reservation%20Screens/members_screen.dart';
-import 'package:group_reservations/Screens/Group%20Reservation%20Screens/payment_screeen.dart';
-import 'package:group_reservations/Screens/Group%20Reservation%20Screens/reservation_view_screen.dart';
-import 'package:group_reservations/Services/Demo_data/groups_demodata.dart';
-import 'package:group_reservations/Services/Demo_data/packages_demodata.dart';
+import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Models_demo/group_members_model.dart';
+import 'package:group_reservations/Models_demo/groups_model.dart';
+import 'package:group_reservations/Models_demo/packages_model.dart';
+import 'package:group_reservations/Screens/experiences_screens/events_screens/members_screen.dart';
+import 'package:group_reservations/Screens/experiences_screens/events_screens/payment_screeen.dart';
+import 'package:group_reservations/Screens/experiences_screens/events_screens/reservation_view_screen.dart';
+import 'package:group_reservations/Services_demo/groups_demodata.dart';
+import 'package:group_reservations/Services_demo/packages_demodata.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_date_range_picker/flutter_date_range_picker.dart';
 
@@ -64,12 +64,14 @@ class _SelectedExperienceScreenState extends State<SelectedExperienceScreen> {
 
 final PackagesDemodata packages_demodata = PackagesDemodata();
 final GroupsDemodata groups_demodata = GroupsDemodata();
+late Future<List<Groups>> _groupsFuture; 
 final TextEditingController _dateController = TextEditingController();
 String currentDate = DateFormat('EEE, MMM d').format(DateTime.now());
 
 @override
   void initState() {
-    super.initState();    
+    super.initState();  
+     _groupsFuture = groups_demodata.fetch_groups();  
     
   }
 
@@ -85,28 +87,30 @@ void openDialog() {
           'Please set Reservation Date',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
         ),
-        content: TextField(
+        content:GestureDetector(
+          onDoubleTap: (){
+            Navigator.of(context).pop(); // Close current dialog
+                openCustomDateRangePicker(); 
+          },
+          child:  TextField(
           controller: _dateController,
           
           readOnly: true, // Ensures user cannot type directly
           decoration: InputDecoration(
             labelText: 'Select a date',
-            prefixIcon: GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop(); // Close current dialog
-                openCustomDateRangePicker(); // Open date range picker
-              },
-              child: const Icon(Icons.calendar_today),
-            ),
+            prefixIcon: Icon(Icons.calendar_today),            
             border: const OutlineInputBorder(),
           ),
         ),
+        
+        ), 
         actions: [
           OutlinedButton(
             onPressed: () {
               Navigator.of(context).pop(); // Close the dialog
             },
             child: const Text("Cancel"),
+            style: CustomButtonStyle.outlinedButtonStyle(),
           ),
           ElevatedButton(
             onPressed: () {
@@ -123,10 +127,7 @@ void openDialog() {
                 openReservationTypeDialog(); // Proceed to the next dialog
               }
             },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 6, 94, 9),
-              minimumSize: const Size(90, 40),
-            ),
+            style: CustomButtonStyle.buttonStyle4(),
             child: const Text(
               "Proceed",
               style: TextStyle(color: Colors.white),
@@ -182,6 +183,7 @@ void openCustomDateRangePicker() async {
               Navigator.of(context).pop(); // Close the dialog without changes
             },
             child: const Text("Cancel"),
+            style: CustomButtonStyle.outlinedButtonStyle(),
           ),
           ElevatedButton(
             onPressed: () {
@@ -194,9 +196,7 @@ void openCustomDateRangePicker() async {
               Navigator.of(context).pop();
               openDialog(); // Trigger the next dialog or action
             },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: primarycolor,
-            ),
+           style: CustomButtonStyle.buttonStyle4(),
             child: const Text(
               "Ok",
               style: TextStyle(color: Colors.white),
@@ -224,6 +224,7 @@ void openReservationTypeDialog() {
                 openChamaOptionsDialog();
               },
               child: Text("Chama"),
+              style: CustomButtonStyle.outlinedButtonStyle(),
             ),
             ElevatedButton(
               onPressed: () {                
@@ -231,10 +232,7 @@ void openReservationTypeDialog() {
                 
               },
               child: Text("Individual",style: TextStyle(color: Colors.white),),
-              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color.fromARGB(255, 6, 94, 9), 
-                                minimumSize: Size(90, 40), 
-                              ),
+              style: CustomButtonStyle.buttonStyle4(),
             ),
           ],
         );
@@ -243,6 +241,8 @@ void openReservationTypeDialog() {
   }
 
 int? selectedGroupId;
+
+
 
 void openChamaOptionsDialog() async {   
     
@@ -255,8 +255,8 @@ void openChamaOptionsDialog() async {
             mainAxisSize: MainAxisSize.min,
             children: [
               //Text('Is this plan for an individual or Chama ?', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
-              FutureBuilder<List<Groups>>(
-      future: groups_demodata.fetch_groups(),
+             FutureBuilder<List<Groups>>(
+      future: _groupsFuture, // Use the cached future
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
@@ -267,38 +267,46 @@ void openChamaOptionsDialog() async {
         }
 
         final groups = snapshot.data!;
-         return Container(
-          height: 200, 
-          child: ListView.builder(
-          itemCount: groups.length,
-          itemBuilder: (context, index) {
-            final group = groups[index];
 
-            return ListTile(              
-              leading: CircleAvatar(child:  Image.asset('images/edwin.jpeg', width: 24, height: 24),                 
-              ),
-              title: Text( group.groupname, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color:  Colors.black, ),  ),
-              trailing: Radio<int>(
-                value: group.groupid, 
-                groupValue: selectedGroupId,
-                onChanged: (int? value) {
+        return Container(
+          height: 200,
+          child: ListView.builder(
+            itemCount: groups.length,
+            itemBuilder: (context, index) {
+              final group = groups[index];
+              return ListTile(
+                leading: CircleAvatar(
+                  child: Image.asset('images/edwin.jpeg', width: 24, height: 24),
+                ),
+                title: Text(
+                  group.groupname,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                ),
+                trailing: Radio<int>(
+                  value: group.groupid,
+                  groupValue: selectedGroupId,
+                  onChanged: (int? value) {
+                    setState(() {
+                      selectedGroupId = value; // Update the selected group
+                    });
+                  },
+                  activeColor: Colors.black,
+                ),
+                onTap: () {
                   setState(() {
-                    selectedGroupId = value; // Update the selected group 
+                    selectedGroupId = group.groupid; // Select the group on tap
                   });
-                  
+                  Navigator.of(context).pop();
+                  openChamaOptionsDialog();
                 },
-                activeColor: Colors.black,
-              ),
-              onTap: () {
-                setState(() {
-                  selectedGroupId = group.groupid; // Select the group on tap
-                });
-                Navigator.of(context).pop();
-                openChamaOptionsDialog();
-              },
-            );
-          },
-         )); 
+              );
+            },
+          ),
+        );
       },
     )
 
@@ -313,10 +321,7 @@ void openChamaOptionsDialog() async {
                 
               },
               child: Text("Proceed",style: TextStyle(color: Colors.white),),
-              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color.fromARGB(255, 6, 94, 9), 
-                                minimumSize: Size(90, 40), 
-                              ),
+              style: CustomButtonStyle.buttonStyle4(),
             ),
           ],
           );
@@ -557,6 +562,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: ActionChip(
+                            backgroundColor: Color.fromRGBO(89, 71, 80, 1.0),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -570,10 +576,18 @@ void openExperienceDetailsDialog(BuildContext context) async {
                                     fontWeight: FontWeight.w200,
                                   ),
                                 ),
-                                const Icon(
-                                  Icons.cancel_presentation_rounded,
-                                  size: 20,
-                                ),
+                                SizedBox(width: 5,),
+                                Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.black, 
+                                      shape: BoxShape.circle, 
+                                    ),
+                                    child: const Icon(
+                                      Icons.close,
+                                      color: Colors.white, 
+                                      size: 20, // Icon size
+                                    ),
+                                  )
                               ],
                             ),
                             onPressed: () {
@@ -622,10 +636,8 @@ void openExperienceDetailsDialog(BuildContext context) async {
                     openExperienceCompletionDialog();
                   }
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 6, 94, 9),
-                  minimumSize: const Size(250, 40),
-                ),
+                style:CustomButtonStyle.buttonStyle2(),
+                
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -657,7 +669,7 @@ void openExperienceCompletionDialog() async{
               Text('Pay', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500), ),
               GestureDetector(
                 onTap: (){},
-                child: Icon(Icons.cancel,size: 20,),
+                child: Icon(Icons.close,size: 30,),
               )
             ],
           ),
@@ -666,7 +678,7 @@ void openExperienceCompletionDialog() async{
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
-             Icon(Icons.check_circle, size: 40 , color: orangecolor),
+             Icon(Icons.check_circle, size: 60 , color: orangecolor),
               SizedBox(height: 10,),
               Text('Reserved Succesfully',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w400)  ),
               SizedBox(height: 5,),
@@ -707,10 +719,7 @@ void openExperienceCompletionDialog() async{
                 Text("Proceed to Pay",style: TextStyle(color: Colors.white),),
                 Icon(Icons.arrow_forward, color: Colors.white)
               ],),
-              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color.fromARGB(255, 6, 94, 9), 
-                                minimumSize: Size(250, 40), 
-                              ),
+              style: CustomButtonStyle.buttonStyle2()
             ),
             SizedBox(height: 10,),
             TextButton(onPressed: (){
@@ -792,7 +801,7 @@ void openExperienceCompletionDialog() async{
                   SizedBox(width: 5,),                 
                   Text('What to expect :', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),
                  ],),
-            Padding(padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            Padding(padding: const EdgeInsets.symmetric(horizontal: 0.0),
                     child:Text(widget.experience_description ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
@@ -800,7 +809,7 @@ void openExperienceCompletionDialog() async{
             Row(children: [ 
                   SizedBox(width: 5,),                 
                   Text('Package include:' ,
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w200),
+                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
                 ),
                  ],),
             Row(children: [ 
@@ -984,10 +993,7 @@ void openExperienceCompletionDialog() async{
                                    }                    
                               },
                               child: Text('Reserve',style: TextStyle(color: Colors.white),),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color.fromARGB(255, 6, 94, 9), 
-                                minimumSize: Size(290, 40), 
-                              ),
+                              style: CustomButtonStyle.buttonStyle2(),
                             ),                      
                           
                           ],)

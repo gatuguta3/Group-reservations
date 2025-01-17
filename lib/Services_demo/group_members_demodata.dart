@@ -1,7 +1,7 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:group_reservations/Models/group_members_model.dart';
+import 'package:group_reservations/Models_demo/group_members_model.dart';
 
 class GroupMembersDemodata{
 

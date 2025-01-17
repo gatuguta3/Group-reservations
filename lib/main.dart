@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:group_reservations/Screens/Group%20Reservation%20Screens/homepage.dart';
+import 'package:group_reservations/Screens/Main%20Screeens/homepage.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,5 +1,5 @@
 
-import 'package:group_reservations/Models/packages_model.dart';
+import 'package:group_reservations/Models_demo/packages_model.dart';
 
 class PackagesDemodata{
   Future<List<Packages>> fetchPackages() async {

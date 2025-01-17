@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:group_reservations/Components/scaffold_messenger.dart';
-import 'package:group_reservations/Config/themes.dart';
-import 'package:group_reservations/Models/policy_claims_model.dart';
-import 'package:group_reservations/Models/policy_members_model.dart';
+import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Models_demo/policy_claims_model.dart';
+import 'package:group_reservations/Models_demo/policy_members_model.dart';
 
 class SelectedInsuranceScreen extends StatefulWidget {
   final int id;
@@ -82,6 +83,7 @@ void select_reservation_type_Dialog() {
                 setState(() {
                   get_policy = true;
                   selected_plan_details = true;
+                  plans = false;
                 });
                 CustomSnackbar.show( context,
                 'Operation successful !',
@@ -332,7 +334,7 @@ void submit_evaluation_dialog () {
               child: Text("Cancel" ,style: TextStyle(color: primarycolor)),
               style: CustomButtonStyle.outlinedButtonStyle(),
             ),
-            SizedBox(width: 5,),
+            SizedBox(width: 25,),
             ElevatedButton(
               onPressed: () {     
                 Navigator.of(context).pop();     
@@ -360,7 +362,7 @@ void submit_evaluation_dialog () {
 
 }
 
-String? _selectedOption;
+String? _selectedOption = 'M-Pesa';
 
 void payment_options_dialog() {
   showDialog(
@@ -407,6 +409,7 @@ void payment_options_dialog() {
                         children: [
                           Radio<String>(
                             value: 'M-Pesa',
+                            activeColor: primarycolor,
                             groupValue: _dialogSelectedOption,
                             onChanged: _handleDialogRadioValueChange,
                           ),
@@ -417,6 +420,7 @@ void payment_options_dialog() {
                         children: [
                           Radio<String>(
                             value: 'Wallet',
+                            activeColor: primarycolor,
                             groupValue: _dialogSelectedOption,
                             onChanged: _handleDialogRadioValueChange,
                           ),
@@ -427,6 +431,7 @@ void payment_options_dialog() {
                         children: [
                           Radio<String>(
                             value: 'Bank',
+                            activeColor: primarycolor,
                             groupValue: _dialogSelectedOption,
                             onChanged: _handleDialogRadioValueChange,
                           ),
@@ -437,6 +442,7 @@ void payment_options_dialog() {
                         children: [
                           Radio<String>(
                             value: 'Card',
+                            activeColor: primarycolor,
                             groupValue: _dialogSelectedOption,
                             onChanged: _handleDialogRadioValueChange,
                           ),
@@ -464,6 +470,7 @@ void payment_options_dialog() {
                 ),
                 style: CustomButtonStyle.outlinedButtonStyle(),
               ),
+              SizedBox(width: 25,),
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
@@ -519,10 +526,12 @@ void make_claim_dialog () {
               child: Text("Cancel" ,style: TextStyle(color: primarycolor)),
               style: CustomButtonStyle.outlinedButtonStyle(),
             ),
+            SizedBox(width: 20,),
             ElevatedButton(
               onPressed: () {                
                 Navigator.of(context).pop();
                 setState(() {
+                  show_claimed_policy = true;
                 });
                 policy_claims.add(Policy_Claims(owner: 'Edwin Wafula' , daterequested: DateTime.now() , status : 'Requested'));
                 CustomSnackbar.show( context,
@@ -720,7 +729,7 @@ void clear_controllers () {
                                 ),                                  
                                   
                                   const SizedBox(height: 2),
-                                  Text(  'More info:', style: TextStyle(fontWeight: FontWeight.w400), ),
+                                  Text(  'Additional info:', style: TextStyle(fontWeight: FontWeight.w400), ),
                                   Text(plan['more_info'],style: TextStyle(fontSize: 13 , fontWeight: FontWeight.w300)),
                                   SizedBox(height: 2,),
                                   Row(
@@ -1088,7 +1097,9 @@ void clear_controllers () {
                       itemCount: policy_claims.length,
                       itemBuilder: (context, index) {
                         final claim = policy_claims[index];
-                        return Container(
+                        return GestureDetector(
+                          onTap:(){},
+                          child: Container(
                           width: 330.0, // Width for each card
                           margin: const EdgeInsets.all(8.0),
                           child: Card(
@@ -1147,6 +1158,7 @@ void clear_controllers () {
                               ),
                             ),
                           ),
+                        )
                         );
                       },
                     ),

@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:group_reservations/Config/themes.dart';
+import 'package:group_reservations/Components/themes.dart';
 
 class CustomSnackbar {
   /// Displays a reusable ScaffoldMessenger with a dismiss action.

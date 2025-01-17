@@ -1,5 +1,5 @@
 
-import 'package:group_reservations/Models/loans_model.dart';
+import 'package:group_reservations/Models_demo/loans_model.dart';
 
 class LoansDemodata{
 

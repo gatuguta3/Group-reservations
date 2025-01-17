@@ -1,13 +1,16 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:group_reservations/Config/themes.dart';
-import 'package:group_reservations/Models/experiences_model.dart';
-import 'package:group_reservations/Models/insurance_model.dart';
-import 'package:group_reservations/Screens/Group%20Reservation%20Screens/selected_experience_screen.dart';
-import 'package:group_reservations/Screens/Insurance%20Screens/selected_insurance_screen.dart';
-import 'package:group_reservations/Services/Demo_data/experiences_demodata.dart';
-import 'package:group_reservations/Services/Demo_data/insurance_demodata.dart';
+import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Models_demo/experiences_model.dart';
+import 'package:group_reservations/Models_demo/goods_model.dart';
+import 'package:group_reservations/Models_demo/insurance_model.dart';
+import 'package:group_reservations/Screens/experiences_screens/goods_screens/selected_goods_screen.dart';
+import 'package:group_reservations/Screens/experiences_screens/events_screens/selected_experience_screen.dart';
+import 'package:group_reservations/Screens/experiences_screens/insurance_screens/selected_insurance_screen.dart';
+import 'package:group_reservations/Services_demo/experiences_demodata.dart';
+import 'package:group_reservations/Services_demo/goods_demodata.dart';
+import 'package:group_reservations/Services_demo/insurance_demodata.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -20,6 +23,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   final ExperiencesDemodata experience_demodata = ExperiencesDemodata();
   final List<Insurance> insurances = get_insurance;
+  final List<Good> goods = get_goods;
 
   @override
   Widget build(BuildContext context) {
@@ -179,21 +183,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                       itemCount: experiences.length,
                                                       itemBuilder: (context, index) {
                                                       final experience = experiences[index];
-                                                      return Container(
-                                                      padding: const EdgeInsets.all(8),
-                                                      child: SizedBox(
-                                                      width: MediaQuery.of(context).size.width * 0.9,
-                                                      child: Card(
-                                                      color: Colors.white,
-                                                      child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: <Widget>[
-                                                      GestureDetector(
-                                                      onTap: () {
-                                                      // Add navigation or functionality here
-      
-
-                                                       Navigator.push(
+                                                      return GestureDetector(
+                                                        onTap: () {
+                                                        Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
                                                               builder: (context) => SelectedExperienceScreen(
@@ -217,9 +209,17 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                               )
                                                             ),
                                                           );
-
-                                                      },
-                                                      child: Container(
+                                                      }, 
+                                                      child:  Container(
+                                                      padding: const EdgeInsets.all(8),
+                                                      child: SizedBox(
+                                                      width: MediaQuery.of(context).size.width * 0.9,
+                                                      child: Card(
+                                                      color: Colors.white,
+                                                      child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: <Widget>[
+                                                      Container(
                                                       height: 140.0,
                                                       child: Stack(
                                                       children: <Widget>[
@@ -230,7 +230,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                       ),
                                                       ),
                                                       ],
-                                                      ),
                                                       ),
                                                       ),
                                                       const SizedBox(height: 5),
@@ -279,32 +278,27 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                       ],
                                                       ),
                                                       ),
-                                                      ),
+                                                      )
+                                                      )
                                                       );
-                                                      },
+                                                      
+                                                      
+                                                      
+                                                      
+                                                     },
                                                       );
                                                       },
                                                       ),                            
 
 
-                                    ListView.builder(
+                              ListView.builder(
                                         shrinkWrap: true,
                                         itemCount: insurances.length,                 
                                           itemBuilder: (context , index){
                                             final insurance = insurances[index];
-                                            return Container(
-                                                      padding: const EdgeInsets.all(8),
-                                                      child: SizedBox(
-                                                      width: MediaQuery.of(context).size.width * 0.9,
-                                                      child: Card(
-                                                      color: Colors.white,
-                                                      child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: <Widget>[
-                                                      GestureDetector(
-                                                      onTap: () {
-                                                      // Add navigation or functionality here
-                                                       Navigator.push(
+                                            return GestureDetector(
+                                              onTap:(){
+                                                  Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
                                                               builder: (context) => SelectedInsuranceScreen(
@@ -320,11 +314,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                               )
                                                             ),
                                                           );
-      
 
-                                                       
-                                                      },
-                                                      child: Container(
+                                              },
+                                              child: Container(
+                                                      padding: const EdgeInsets.all(8),
+                                                      child: SizedBox(
+                                                      width: MediaQuery.of(context).size.width * 0.9,
+                                                      child: Card(
+                                                      color: Colors.white,
+                                                      child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: <Widget>[
+                                                      Container(
                                                       height: 140.0,
                                                       child: Stack(
                                                       children: <Widget>[
@@ -333,7 +334,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                       insurance.image_url,
                                                       fit: BoxFit.cover,
                                                       ),                ),         ],          ),
-                                                      ),       ),
+                                                      ),
                                                       const SizedBox(height: 5),
                                                       Padding(
                                                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -381,13 +382,112 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                       ),
                                                       ),
                                                       ),
-                                                      );
-                                                      
+                                                      )
+                                                    
+                                            );  
                     
                   }
                   ),
             
-            Center(child: Text("Content for Goods")),
+                              ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: goods.length,                 
+                                          itemBuilder: (context , index){
+                                            final good = goods[index];
+                                            return GestureDetector(
+                                              onTap:(){
+                                                  Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder: (context) => SelectedGoodsScreen(
+                                                                id : good.id,
+                                                                name : good.name,
+                                                                subtitle : good.subtitle,
+                                                                description : good.description,
+                                                                image : good.image_url,                                                                
+                                                                sizes : good.sizes,
+                                                                enddate : good.end_date,
+                                                                startdate : good.start_date,
+                                                                venue : good.venue,                                                                
+                                                               
+                                                              )
+                                                            ),
+                                                          );
+
+                                              },
+                                              child: Container(
+                                                      padding: const EdgeInsets.all(8),
+                                                      child: SizedBox(
+                                                      width: MediaQuery.of(context).size.width * 0.9,
+                                                      child: Card(
+                                                      color: Colors.white,
+                                                      child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: <Widget>[
+                                                      Container(
+                                                      height: 140.0,
+                                                      child: Stack(
+                                                      children: <Widget>[
+                                                      Positioned.fill(
+                                                      child: Image.asset(
+                                                      good.image_url,
+                                                      fit: BoxFit.cover,
+                                                      ),                ),         ],          ),
+                                                      ),
+                                                      const SizedBox(height: 5),
+                                                      Padding(
+                                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                                      child: Text(good.name, style: TextStyle(fontWeight: FontWeight.bold)),
+                                                      ),
+                                                      const Divider(thickness: 1),
+                                                      Padding(
+                                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                                      child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      children: [
+                                                      Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                      Text('Subtitle'),
+                                                      Text(
+                                                      good.subtitle,
+                                                      style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),
+                                                      ),
+                                                      ],
+                                                      ),
+                                                      Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                      Text('Venue'),
+                                                      Text(
+                                                      good.venue,
+                                                      style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),
+                                                      ),
+                                                      ],
+                                                      ),
+                                                      ],
+                                                      ),
+                                                      ),
+                                                      const Divider(thickness: 1),
+                                                      Padding(
+                                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                                      child: Text(
+                                                      good.description,
+                                                      style: TextStyle(fontSize: 11),
+                                                      ),
+                                                      ),
+                                                      const SizedBox(height: 10),
+                                                      ],
+                                                      ),
+                                                      ),
+                                                      ),
+                                                      )
+                                                    
+                                            );  
+                    
+                  }
+                  ),
+            
                                                                                   ],
                                                                                 ),
                                                                               ),
