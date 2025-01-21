@@ -25,7 +25,7 @@ class _EventsListState extends State<EventsList> {
                                                         Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
-                                                              builder: (context) => SelectedExperienceScreen(
+                                                              builder: (context) => EventsDetailsScreen(
                                                                 experience_id : experience.id,
                                                                 image : experience.image_url,
                                                                 experience_title : experience.title,

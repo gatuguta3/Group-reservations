@@ -16,7 +16,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter_date_range_picker/flutter_date_range_picker.dart';
 
 
-class SelectedExperienceScreen extends StatefulWidget {
+class EventsDetailsScreen extends StatefulWidget {
 
   final int experience_id;
   final String image;
@@ -37,7 +37,7 @@ class SelectedExperienceScreen extends StatefulWidget {
   final int premiumMaxPeople;
 
 
-  const SelectedExperienceScreen(
+  const EventsDetailsScreen(
     { 
       required this.experience_id,
       required this.image,
@@ -59,10 +59,10 @@ class SelectedExperienceScreen extends StatefulWidget {
       });
 
   @override
-  State<SelectedExperienceScreen> createState() => _SelectedExperienceScreenState();
+  State<EventsDetailsScreen> createState() => _SelectedExperienceScreenState();
 }
 
-class _SelectedExperienceScreenState extends State<SelectedExperienceScreen> {
+class _SelectedExperienceScreenState extends State<EventsDetailsScreen> {
 
 final PackagesDemodata packages_demodata = PackagesDemodata();
 final GroupsDemodata groups_demodata = GroupsDemodata();

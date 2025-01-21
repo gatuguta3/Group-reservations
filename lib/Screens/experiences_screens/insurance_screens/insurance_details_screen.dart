@@ -9,7 +9,7 @@ import 'package:group_reservations/Constants/colors.dart';
 import 'package:group_reservations/Models_demo/policy_claims_model.dart';
 import 'package:group_reservations/Models_demo/policy_members_model.dart';
 
-class SelectedInsuranceScreen extends StatefulWidget {
+class InsuranceDetailsScreen extends StatefulWidget {
   final int id;
   final String title;
   final String subtitle;
@@ -19,7 +19,7 @@ class SelectedInsuranceScreen extends StatefulWidget {
   final List plans;
   final List payments;
   
-  const SelectedInsuranceScreen({
+  const InsuranceDetailsScreen({
     
     required this.id,
     required this.title,
@@ -33,10 +33,10 @@ class SelectedInsuranceScreen extends StatefulWidget {
   });
 
   @override
-  State<SelectedInsuranceScreen> createState() => _SelectedInsuranceScreenState();
+  State<InsuranceDetailsScreen> createState() => _SelectedInsuranceScreenState();
 }
 
-class _SelectedInsuranceScreenState extends State<SelectedInsuranceScreen> {
+class _SelectedInsuranceScreenState extends State<InsuranceDetailsScreen> {
 
    Map<String, dynamic>? selectedPlan;
 

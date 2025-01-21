@@ -27,7 +27,7 @@ onTap:(){
 Navigator.push(
 context,
 MaterialPageRoute(
-builder: (context) => SelectedGoodsScreen(
+builder: (context) => GoodsDetailsScreen(
 id : good.id,
 name : good.name,
 subtitle : good.subtitle,

@@ -8,7 +8,7 @@ import 'package:group_reservations/Screens/Main%20Screeens/payment_screeen.dart'
 import 'package:group_reservations/Screens/reservations_screens/reservation_view_screen.dart';
 import 'package:intl/intl.dart';
 
-class SelectedGoodsScreen extends StatefulWidget {
+class GoodsDetailsScreen extends StatefulWidget {
  final int id;
  final String name;
  final String subtitle;
@@ -19,7 +19,7 @@ class SelectedGoodsScreen extends StatefulWidget {
  final List sizes;
  final String image;
 
- const SelectedGoodsScreen({
+ const GoodsDetailsScreen({
 
   required this.id,
   required this.name,
@@ -33,10 +33,10 @@ class SelectedGoodsScreen extends StatefulWidget {
  });
 
   @override
-  State<SelectedGoodsScreen> createState() => _SelectedGoodsScreenState();
+  State<GoodsDetailsScreen> createState() => _SelectedGoodsScreenState();
 }
 
-class _SelectedGoodsScreenState extends State<SelectedGoodsScreen> {
+class _SelectedGoodsScreenState extends State<GoodsDetailsScreen> {
 
   DateTime? selected;
   final TextEditingController _dateController = TextEditingController();

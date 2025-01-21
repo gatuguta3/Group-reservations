@@ -26,7 +26,7 @@ onTap:(){
 Navigator.push(
 context,
 MaterialPageRoute(
-builder: (context) => SelectedInsuranceScreen(
+builder: (context) => InsuranceDetailsScreen(
 id : insurance.id,
 title : insurance.title,
 subtitle : insurance.subtitle,
