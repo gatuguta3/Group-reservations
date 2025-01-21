@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:group_reservations/Components/themes.dart';
+//import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Constants/colors.dart';
 import 'package:group_reservations/Screens/experiences_screens/events_screens/events_list.dart';
 import 'package:group_reservations/Screens/experiences_screens/goods_screens/goods_list.dart';
 import 'package:group_reservations/Screens/experiences_screens/insurance_screens/insurance_list.dart';
@@ -31,8 +32,8 @@ class _ExperienceUiScreenState extends State<ExperienceUiScreen> {
       Tab(text: "Insurance"),
       Tab(text: "Goods"),
       ],
-      indicatorColor: orangecolor,
-      labelColor: orangecolor,
+      indicatorColor: AppColors.orangecolor,
+      labelColor: AppColors.orangecolor,
       unselectedLabelColor: Colors.black,
       ),
       SizedBox(

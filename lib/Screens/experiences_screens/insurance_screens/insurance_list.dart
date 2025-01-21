@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:group_reservations/Models_demo/insurance_model.dart';
-import 'package:group_reservations/Screens/experiences_screens/insurance_screens/selected_insurance_screen.dart';
+import 'package:group_reservations/Screens/experiences_screens/insurance_screens/insurance_details_screen.dart';
 import 'package:group_reservations/Services_demo/insurance_demodata.dart';
 
 class InsuranceList extends StatefulWidget {

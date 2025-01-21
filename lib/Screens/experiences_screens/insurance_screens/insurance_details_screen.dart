@@ -1,9 +1,11 @@
 // ignore_for_file: use_key_in_widget_constructors, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:group_reservations/Components/custom_button_styles.dart';
 import 'package:group_reservations/Components/scaffold_messenger.dart';
 import 'package:group_reservations/Components/themes.dart';
 import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Constants/colors.dart';
 import 'package:group_reservations/Models_demo/policy_claims_model.dart';
 import 'package:group_reservations/Models_demo/policy_members_model.dart';
 
@@ -70,11 +72,11 @@ void select_reservation_type_Dialog() {
                 });
                  CustomSnackbar.show( context,
                 'Operation successful !',
-                backgroundColor: primarycolor, // Optional: Custom background color
+                backgroundColor: AppColors.primarycolor, // Optional: Custom background color
               );
                 
               },
-              child: Text("Chama" ,style: TextStyle(color: primarycolor)),
+              child: Text("Chama" ,style: TextStyle(color: AppColors.primarycolor)),
               style: CustomButtonStyle.outlinedButtonStyle(),
             ),
             ElevatedButton(
@@ -87,7 +89,7 @@ void select_reservation_type_Dialog() {
                 });
                 CustomSnackbar.show( context,
                 'Operation successful !',
-                backgroundColor: primarycolor, // Optional: Custom background color
+                backgroundColor: AppColors.primarycolor, // Optional: Custom background color
               );
                 
               },
@@ -170,7 +172,7 @@ void new_policy_member_dialog () {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5), // Rounded corners
-                  borderSide: BorderSide(color: primarycolor, width: 2), // Focused border color and width
+                  borderSide: BorderSide(color: AppColors.primarycolor, width: 2), // Focused border color and width
                 ),
               ),
               ),
@@ -237,13 +239,13 @@ void new_policy_member_dialog () {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5), // Rounded corners
-                  borderSide: BorderSide(color: primarycolor, width: 2), // Focused border color and width
+                  borderSide: BorderSide(color: AppColors.primarycolor, width: 2), // Focused border color and width
                 ),
               ),
               ),
 
               SizedBox(height: 15,),
-              Divider(thickness: 1, color: primarycolor,),
+              Divider(thickness: 1, color: AppColors.primarycolor,),
               SizedBox(height: 5,),             
             
 
@@ -259,7 +261,7 @@ void new_policy_member_dialog () {
                 Navigator.of(context).pop();                
                 
               },
-              child: Text("Cancel" ,style: TextStyle(color: primarycolor)),
+              child: Text("Cancel" ,style: TextStyle(color: AppColors.primarycolor)),
               style: CustomButtonStyle.outlinedButtonStyle(),
             ),
             SizedBox(width: 5,),
@@ -332,7 +334,7 @@ void submit_evaluation_dialog () {
                 Navigator.of(context).pop();                
                 
               },
-              child: Text("Cancel" ,style: TextStyle(color: primarycolor)),
+              child: Text("Cancel" ,style: TextStyle(color: AppColors.primarycolor)),
               style: CustomButtonStyle.outlinedButtonStyle(),
             ),
             SizedBox(width: 25,),
@@ -410,7 +412,7 @@ void payment_options_dialog() {
                         children: [
                           Radio<String>(
                             value: 'M-Pesa',
-                            activeColor: primarycolor,
+                            activeColor: AppColors.primarycolor,
                             groupValue: _dialogSelectedOption,
                             onChanged: _handleDialogRadioValueChange,
                           ),
@@ -421,7 +423,7 @@ void payment_options_dialog() {
                         children: [
                           Radio<String>(
                             value: 'Wallet',
-                            activeColor: primarycolor,
+                            activeColor: AppColors.primarycolor,
                             groupValue: _dialogSelectedOption,
                             onChanged: _handleDialogRadioValueChange,
                           ),
@@ -432,7 +434,7 @@ void payment_options_dialog() {
                         children: [
                           Radio<String>(
                             value: 'Bank',
-                            activeColor: primarycolor,
+                            activeColor: AppColors.primarycolor,
                             groupValue: _dialogSelectedOption,
                             onChanged: _handleDialogRadioValueChange,
                           ),
@@ -443,7 +445,7 @@ void payment_options_dialog() {
                         children: [
                           Radio<String>(
                             value: 'Card',
-                            activeColor: primarycolor,
+                            activeColor: AppColors.primarycolor,
                             groupValue: _dialogSelectedOption,
                             onChanged: _handleDialogRadioValueChange,
                           ),
@@ -462,12 +464,12 @@ void payment_options_dialog() {
                   CustomSnackbar.show(
                     context,
                     'Operation cancelled!',
-                    backgroundColor: primarycolor,
+                    backgroundColor: AppColors.primarycolor,
                   );
                 },
                 child: Text(
                   "Cancel",
-                  style: TextStyle(color: primarycolor),
+                  style: TextStyle(color: AppColors.primarycolor),
                 ),
                 style: CustomButtonStyle.outlinedButtonStyle(),
               ),
@@ -523,11 +525,11 @@ void make_claim_dialog () {
                 });
                  CustomSnackbar.show( context,
                 'Operation successful !',
-                backgroundColor: primarycolor, // Optional: Custom background color
+                backgroundColor: AppColors.primarycolor, // Optional: Custom background color
               );
                 
               },
-              child: Text("Cancel" ,style: TextStyle(color: primarycolor)),
+              child: Text("Cancel" ,style: TextStyle(color: AppColors.primarycolor)),
               style: CustomButtonStyle.outlinedButtonStyle(),
             ),
             
@@ -540,7 +542,7 @@ void make_claim_dialog () {
                 policy_claims.add(Policy_Claims(owner: 'Edwin Wafula' , daterequested: DateTime.now() , status : 'Requested'));
                 CustomSnackbar.show( context,
                 'Operation successful !',
-                backgroundColor: primarycolor, // Optional: Custom background color
+                backgroundColor: AppColors.primarycolor, // Optional: Custom background color
               );
                 
               },
@@ -792,7 +794,7 @@ void clear_controllers () {
                                 get_policy == false;
                               });
                             },
-                              child: Text("Cancel Policy" ,style: TextStyle(color: primarycolor)),
+                              child: Text("Cancel Policy" ,style: TextStyle(color: AppColors.primarycolor)),
                               style: CustomButtonStyle.outlinedButtonStyle(),
                             ),
 
@@ -801,7 +803,7 @@ void clear_controllers () {
                               width: 350,
                               height: 45,                                               
                               decoration: BoxDecoration(
-                              color: greycardcolor,
+                              color: AppColors.greycardcolor,
                               ),                        
                             child: Row(                              
                               
@@ -899,7 +901,7 @@ void clear_controllers () {
                               width: 350,
                               height: 45,                                               
                               decoration: BoxDecoration(
-                              color: greycardcolor,
+                              color: AppColors.greycardcolor,
                               ),                        
                             child: Row(                              
                               
@@ -980,7 +982,7 @@ void clear_controllers () {
                               width: 350,
                               height: 45,                                               
                               decoration: BoxDecoration(
-                              color: greycardcolor,
+                              color: AppColors.greycardcolor,
                               ),                        
                             child: Row(                              
                               
@@ -1088,7 +1090,7 @@ void clear_controllers () {
                               width: 350,
                               height: 45,                                               
                               decoration: BoxDecoration(
-                              color: greycardcolor,
+                              color: AppColors.greycardcolor,
                               ),                        
                             child: Row(                              
                               
@@ -1168,7 +1170,7 @@ void clear_controllers () {
                                     children: [
                                       Column(
                                         children: [
-                                           Text('Status', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10, color: orangecolor ), ),
+                                           Text('Status', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10, color: AppColors.orangecolor ), ),
                                           Text('  ${claim.status}', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 13, ), ),
 
                                         ],

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Constants/colors.dart';
 import 'package:group_reservations/Screens/Main%20Screeens/explore_screen.dart';
 import 'package:group_reservations/Screens/Main%20Screeens/home_screen.dart';
 import 'package:group_reservations/Screens/Main%20Screeens/profile_screen.dart';
@@ -79,7 +80,7 @@ class _HomepageState extends State<Homepage> {
                 'icons/Vector.png',
                 width: 24,
                 height: 24,
-                color: _currentIndex == 0 ? orangecolor : null,
+                color: _currentIndex == 0 ? AppColors.orangecolor : null,
               ),
               label: _currentIndex == 0 ? 'Home' : '',
             ),
@@ -88,7 +89,7 @@ class _HomepageState extends State<Homepage> {
                 'icons/Vector2.png',
                 width: 24,
                 height: 24,
-                color: _currentIndex == 1 ? orangecolor : null,
+                color: _currentIndex == 1 ? AppColors.orangecolor : null,
               ),
               label: _currentIndex == 1 ? 'Discover' : '',
             ),
@@ -97,7 +98,7 @@ class _HomepageState extends State<Homepage> {
                 'icons/Vector3.png',
                 width: 24,
                 height: 24,
-                color: _currentIndex == 2 ? orangecolor : null,
+                color: _currentIndex == 2 ? AppColors.orangecolor : null,
               ),
               label: _currentIndex == 2 ? 'Wallet' : '',
             ),
@@ -106,7 +107,7 @@ class _HomepageState extends State<Homepage> {
                 'icons/Vector4.png',
                 width: 24,
                 height: 24,
-                color: _currentIndex == 3 ? orangecolor : null,
+                color: _currentIndex == 3 ? AppColors.orangecolor : null,
               ),
               label: _currentIndex == 3 ? 'Profile' : '',
             ),

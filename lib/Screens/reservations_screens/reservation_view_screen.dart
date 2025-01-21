@@ -1,7 +1,9 @@
 // ignore_for_file: use_key_in_widget_constructors, non_constant_identifier_names, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:group_reservations/Components/custom_button_styles.dart';
 import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Constants/colors.dart';
 import 'package:group_reservations/Screens/Main%20Screeens/payment_screeen.dart';
 
 class ReservationViewScreen extends StatefulWidget {
@@ -37,7 +39,7 @@ class _ReservationViewScreenState extends State<ReservationViewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: primarycolor,
+        backgroundColor: AppColors.primarycolor,
       ),
 
       body: SingleChildScrollView(
@@ -51,7 +53,7 @@ class _ReservationViewScreenState extends State<ReservationViewScreen> {
                         width: 350, 
                         height: 300,                       
                         decoration: BoxDecoration(
-                        color: whitecolor,
+                        color: AppColors.whitecolor,
                         borderRadius: BorderRadius.circular(20),),                        
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -164,7 +166,7 @@ class _ReservationViewScreenState extends State<ReservationViewScreen> {
                         width: 350,
                         height: 30,                                               
                         decoration: BoxDecoration(
-                        color: greycardcolor,
+                        color: AppColors.greycardcolor,
                         ),                        
                       child: Row(children: [SizedBox(width: 10,), Text('Payments')],)),
                     SizedBox(height: 10),

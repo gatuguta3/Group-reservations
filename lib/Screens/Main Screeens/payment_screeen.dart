@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_date_range_picker/flutter_date_range_picker.dart';
+import 'package:group_reservations/Components/custom_button_styles.dart';
 import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Constants/colors.dart';
 import 'package:group_reservations/Screens/reservations_screens/all_reservations_screens.dart';
 
 class PaymentScreeen extends StatefulWidget {
@@ -44,7 +46,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: primarycolor,
+          backgroundColor: AppColors.primarycolor,
           title: Row(
             children: [
              // GestureDetector(        onTap: () {},    child: Image.asset('icons/Frame36.png', width: 40, height: 40),     ),
@@ -74,7 +76,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
             children: [
               Radio<String>(
                 value: 'M-Pesa',
-                activeColor: primarycolor,
+                activeColor: AppColors.primarycolor,
                 groupValue: _selectedOption,
                 onChanged: _handleRadioValueChange,
               ),
@@ -85,7 +87,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
             children: [
               Radio<String>(
                 value: 'Wallet',
-                activeColor: primarycolor,
+                activeColor: AppColors.primarycolor,
                 groupValue: _selectedOption,
                 onChanged: _handleRadioValueChange,
               ),
@@ -97,7 +99,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
             children: [
               Radio<String>(
                 value: 'Card',
-                activeColor: primarycolor,
+                activeColor: AppColors.primarycolor,
                 groupValue: _selectedOption,
                 onChanged: _handleRadioValueChange,
               ),

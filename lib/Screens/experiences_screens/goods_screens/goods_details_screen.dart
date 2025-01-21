@@ -1,7 +1,9 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, sort_child_properties_last, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
+import 'package:group_reservations/Components/custom_button_styles.dart';
 import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Constants/colors.dart';
 import 'package:group_reservations/Screens/Main%20Screeens/payment_screeen.dart';
 import 'package:group_reservations/Screens/reservations_screens/reservation_view_screen.dart';
 import 'package:intl/intl.dart';
@@ -91,7 +93,7 @@ void openDialog() {
                 // Show a snackbar if no date is selected
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    backgroundColor: primarycolor,
+                    backgroundColor: AppColors.primarycolor,
                     content: const Text('No date selected'),
                   ),
                 );
@@ -238,7 +240,7 @@ void openExperienceCompletionDialog() async{
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
-             Icon(Icons.check_circle, size: 60 , color: orangecolor),
+             Icon(Icons.check_circle, size: 60 , color: AppColors.orangecolor),
               SizedBox(height: 10,),
               Text('Reserved Succesfully',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w400)  ),
               SizedBox(height: 5,),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:group_reservations/Models_demo/goods_model.dart';
-import 'package:group_reservations/Screens/experiences_screens/goods_screens/selected_goods_screen.dart';
+import 'package:group_reservations/Screens/experiences_screens/goods_screens/goods_details_screen.dart';
 import 'package:group_reservations/Services_demo/goods_demodata.dart';
 
 class GoodsList extends StatefulWidget {

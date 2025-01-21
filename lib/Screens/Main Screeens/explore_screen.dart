@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Constants/colors.dart';
 import 'package:group_reservations/Screens/chamas_screens/chama_ui_screen.dart';
 import 'package:group_reservations/Screens/experiences_screens/experience_ui_screen.dart';
 import 'package:group_reservations/Screens/fundraisers_screens/fundraisers_ui_screen.dart';
@@ -20,7 +21,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return DefaultTabController(length: 4, 
     child: Scaffold(
       appBar: AppBar(
-backgroundColor: primarycolor,
+backgroundColor: AppColors.primarycolor,
 title: Row(
 children: [
 GestureDetector(
@@ -37,14 +38,14 @@ style: TextStyle(fontSize: 21, color: Colors.white),
 bottom: PreferredSize(
 preferredSize: Size.fromHeight(90.0),
 child: Container(
-color: orangecolor,
+color: AppColors.orangecolor,
 height: 80,
 child: TabBar(
 isScrollable: true,
 tabs: [
 Tab(
 child: Container(
-color: orangecolor,
+color: AppColors.orangecolor,
 height: 80,
 width: 80, // Increase height here if needed
 child: Column(
@@ -59,7 +60,7 @@ Text('Membership' , style: TextStyle(fontSize: 11),),
 ),
 Tab(
 child: Container(
-color: orangecolor,
+color: AppColors.orangecolor,
 height: 80,
 width: 80, // Increase height here if needed
 child: Column(
@@ -74,7 +75,7 @@ Text('Chamas' , style: TextStyle(fontSize: 11),),
 ),
 Tab(
 child: Container(
-color: orangecolor,
+color: AppColors.orangecolor,
 height: 80,
 width: 80, // Increase height here if needed
 child: Column(
@@ -89,7 +90,7 @@ Text('Fundraisers' , style: TextStyle(fontSize: 11),),
 ),
 Tab(
 child: Container(
-color: orangecolor,
+color: AppColors.orangecolor,
 height: 80,
 width: 80, // Increase height here if needed
 child: Column(

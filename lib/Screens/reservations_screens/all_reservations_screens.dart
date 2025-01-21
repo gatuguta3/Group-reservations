@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Constants/colors.dart';
 import 'package:group_reservations/Screens/Main%20Screeens/homepage.dart';
 
 class AllReservationsScreens extends StatefulWidget {
@@ -18,7 +19,7 @@ class _AllReservationsScreensState extends State<AllReservationsScreens> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: primarycolor,
+          backgroundColor: AppColors.primarycolor,
           automaticallyImplyLeading: false,
           title: Row(
             children: [

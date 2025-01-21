@@ -4,7 +4,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:group_reservations/Components/custom_button_styles.dart';
 import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Constants/colors.dart';
 import 'package:group_reservations/Models_demo/contributions_model.dart';
 import 'package:group_reservations/Models_demo/loans_model.dart';
 import 'package:group_reservations/Services_demo/contributions_demodata.dart';
@@ -42,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
 
       appBar: AppBar(
-        backgroundColor: primarycolor, 
+        backgroundColor: AppColors.primarycolor, 
           title:  Row(            
             children: [
               CircleAvatar(
@@ -77,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(                      
                   width: double.infinity, 
                   
-                  color: secondarycolor, 
+                  color: AppColors.secondarycolor, 
                   child:  Column(                  
                     children: [ 
                      const SizedBox(height: 20,),
@@ -86,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 310,
                         
                         decoration: BoxDecoration(
-                        color: primarycolor,
+                        color: AppColors.primarycolor,
                         borderRadius: BorderRadius.circular(20),),                        
                       child:Column(
                         children: [
@@ -238,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Row(
                             children: [
                               CircleAvatar(
-                                backgroundColor: orangecolor,
+                                backgroundColor: AppColors.orangecolor,
                                 child: Image.asset('icons/Group.png', width: 24, height: 24), 
                               ),                                                           
                               

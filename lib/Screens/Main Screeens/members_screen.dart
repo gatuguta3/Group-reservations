@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Constants/colors.dart';
 import 'package:group_reservations/Models_demo/group_members_model.dart';
 import 'package:group_reservations/Services_demo/group_members_demodata.dart';
 
@@ -58,7 +59,7 @@ class _MembersScreenState extends State<MembersScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: primarycolor,
+        backgroundColor: AppColors.primarycolor,
         title: Text(
           'Members',
           style: TextStyle(fontSize: 21, color: Colors.white),
@@ -122,7 +123,7 @@ class _MembersScreenState extends State<MembersScreen> {
                               ),
                               trailing: Checkbox(
                                 value: isSelected,
-                                activeColor: primarycolor,
+                                activeColor: AppColors.primarycolor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
                                 ),
@@ -152,7 +153,7 @@ class _MembersScreenState extends State<MembersScreen> {
           if (selectedMembers.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                backgroundColor: primarycolor,
+                backgroundColor: AppColors.primarycolor,
                 content: Text('No members selected.'),
               ),
             );
@@ -160,7 +161,7 @@ class _MembersScreenState extends State<MembersScreen> {
             Navigator.pop(context, selectedMembers);
           }
         },
-        backgroundColor: primarycolor,
+        backgroundColor: AppColors.primarycolor,
         child: Icon(Icons.arrow_right_alt_outlined),
         tooltip: 'Confirm Selection',
       ),

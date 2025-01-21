@@ -1,6 +1,9 @@
 
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Constants/colors.dart';
 
 class CustomSnackbar {
   /// Displays a reusable ScaffoldMessenger with a dismiss action.
@@ -11,7 +14,7 @@ class CustomSnackbar {
         backgroundColor: backgroundColor,
         action: SnackBarAction(
           label: 'Dismiss',
-          textColor: orangecolor,
+          textColor: AppColors.orangecolor,
           onPressed: () {
             ScaffoldMessenger.of(context).hideCurrentSnackBar(); // Dismiss the snackbar
           },

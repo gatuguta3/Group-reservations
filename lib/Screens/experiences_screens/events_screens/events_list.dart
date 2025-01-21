@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:group_reservations/Models_demo/events_model.dart';
-import 'package:group_reservations/Screens/experiences_screens/events_screens/selected_experience_screen.dart';
+import 'package:group_reservations/Screens/experiences_screens/events_screens/events_details_screens.dart';
 import 'package:group_reservations/Services_demo/events_demodata.dart';
 
 class EventsList extends StatefulWidget {

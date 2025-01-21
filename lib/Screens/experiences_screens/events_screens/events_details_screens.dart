@@ -1,7 +1,9 @@
 // ignore_for_file: use_key_in_widget_constructors, non_constant_identifier_names, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, unnecessary_brace_in_string_interps, unused_import, unnecessary_string_interpolations, unused_local_variable, unused_element, unnecessary_null_comparison
 
 import 'package:flutter/material.dart';
+import 'package:group_reservations/Components/custom_button_styles.dart';
 import 'package:group_reservations/Components/themes.dart';
+import 'package:group_reservations/Constants/colors.dart';
 import 'package:group_reservations/Models_demo/group_members_model.dart';
 import 'package:group_reservations/Models_demo/groups_model.dart';
 import 'package:group_reservations/Models_demo/packages_model.dart';
@@ -509,7 +511,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
       borderRadius: BorderRadius.circular(10),
     ),
     elevation: 0,
-    color: cardcolor,
+    color: AppColors.cardcolor,
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -609,7 +611,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
                   Row(
                     children: [
                       Checkbox(
-                        activeColor: primarycolor,
+                        activeColor: AppColors.primarycolor,
                         value: make_collective_payment,
                         onChanged: (bool? value) {
                           setState(() {
@@ -632,7 +634,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
                   if (selectedMembers.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        backgroundColor: primarycolor,
+                        backgroundColor: AppColors.primarycolor,
                         content: const Text('No members selected.'),
                       ),
                     );
@@ -683,7 +685,7 @@ void openExperienceCompletionDialog() async{
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
-             Icon(Icons.check_circle, size: 60 , color: orangecolor),
+             Icon(Icons.check_circle, size: 60 , color: AppColors.orangecolor),
               SizedBox(height: 10,),
               Text('Reserved Succesfully',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w400)  ),
               SizedBox(height: 5,),
