@@ -1,12 +1,14 @@
 
-import 'package:group_reservations/Models_demo/experiences_model.dart';
+// ignore_for_file: non_constant_identifier_names
 
-class ExperiencesDemodata{
+import 'package:group_reservations/Models_demo/events_model.dart';
 
-  Future<List<Experiences>> fetch_experiences () async {
-    // await Future.delayed(Duration(seconds: 1));
-     List<Experiences> experiences_list =[
-      Experiences(
+
+
+List <Events> get_events () {
+  return [
+
+     Events(
         id: 1,
         image_url: 'images/beachview.jpeg',
         title: 'Beach Getaway',
@@ -25,7 +27,7 @@ class ExperiencesDemodata{
         premium_status: 'Active',
         premium_max_people: 20,
       ),
-      Experiences(
+      Events(
         id: 2,
         image_url: 'images/beach2.jpeg',
         title: 'Beach Getaway',
@@ -44,7 +46,7 @@ class ExperiencesDemodata{
         premium_status: 'Active',
         premium_max_people: 20,
       ),
-      Experiences(
+      Events(
         id: 3,
         image_url: 'images/beach3.jpeg',
         title: 'Beach Getaway',
@@ -63,7 +65,7 @@ class ExperiencesDemodata{
         premium_status: 'Active',
         premium_max_people: 20,
       ),
-      Experiences(
+      Events(
         id: 4,
         image_url: 'images/beach4.jpeg',
         title: '5 start hotel Experience',
@@ -82,7 +84,7 @@ class ExperiencesDemodata{
         premium_status: 'Active',
         premium_max_people: 20,
       ),
-      Experiences(
+      Events(
         id: 5,
         image_url: 'images/beachview.jpeg',
         title: 'Christmas re - incarnation',
@@ -102,8 +104,7 @@ class ExperiencesDemodata{
         premium_max_people: 20,
       ),
       
-     ];
-     return experiences_list;
-  }
+
+  ];
 }
 

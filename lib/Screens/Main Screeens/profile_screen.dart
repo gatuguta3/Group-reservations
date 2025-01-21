@@ -25,7 +25,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         backgroundColor: primarycolor,
       ),
-      body: Column(
+      body: SingleChildScrollView(
+        child: Column(
         
         crossAxisAlignment: CrossAxisAlignment.center,
         
@@ -63,10 +64,92 @@ class _ProfileScreenState extends State<ProfileScreen> {
            ),
            SizedBox(height: 10,),
            Divider(thickness: 1,),
+           SizedBox(height: 20,),
+
+           ListTile(
+            leading: Container(
+              width: 50, // Set width
+              height: 50, // Set height (equal to width for a circle)
+              decoration: BoxDecoration(
+                color: orangecolor, // Background color
+                shape: BoxShape.circle, // Circular shape
+              ),
+            ),
+           ),
+
            SizedBox(height: 10,),
+
+           ListTile(
+            leading: Container(
+              width: 50, // Set width
+              height: 50, // Set height (equal to width for a circle)
+              decoration: BoxDecoration(
+                color: orangecolor, // Background color
+                shape: BoxShape.circle, // Circular shape
+              ),
+            ),
+           ),
+
+           SizedBox(height: 10,),
+
+           ListTile(
+            leading: Container(
+              width: 50, // Set width
+              height: 50, // Set height (equal to width for a circle)
+              decoration: BoxDecoration(
+                color: orangecolor, // Background color
+                shape: BoxShape.circle, // Circular shape
+              ),
+            ),
+           ),
+
+           SizedBox(height: 10,),
+
+           ListTile(
+            leading: Container(
+              width: 50, // Set width
+              height: 50, // Set height (equal to width for a circle)
+              decoration: BoxDecoration(
+                color: orangecolor, // Background color
+                shape: BoxShape.circle, // Circular shape
+              ),
+            ),
+           ),
+
+
+           SizedBox(height: 10,),
+
+           ListTile(
+            leading: Container(
+              width: 50, // Set width
+              height: 50, // Set height (equal to width for a circle)
+              decoration: BoxDecoration(
+                color: orangecolor, // Background color
+                shape: BoxShape.circle, // Circular shape
+              ),
+            ),
+           ),
+
+
+           SizedBox(height: 10,),
+
+           ListTile(
+            leading: Container(
+              width: 50, // Set width
+              height: 50, // Set height (equal to width for a circle)
+              decoration: BoxDecoration(
+                color: orangecolor, // Background color
+                shape: BoxShape.circle, // Circular shape
+              ),
+              child: Icon(Icons.abc),
+            ),
+           ),
+
+
 
         ],
       ),
-    );
+    
+      ));
   }
 }

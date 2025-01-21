@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:group_reservations/Components/themes.dart';
-import 'package:group_reservations/Screens/experiences_screens/events_screens/payment_screeen.dart';
-import 'package:group_reservations/Screens/experiences_screens/events_screens/reservation_view_screen.dart';
+import 'package:group_reservations/Screens/Main%20Screeens/payment_screeen.dart';
+import 'package:group_reservations/Screens/reservations_screens/reservation_view_screen.dart';
 import 'package:intl/intl.dart';
 
 class SelectedGoodsScreen extends StatefulWidget {

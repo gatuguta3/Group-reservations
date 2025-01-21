@@ -1,13 +1,13 @@
-// ignore_for_file: use_key_in_widget_constructors, non_constant_identifier_names, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, unnecessary_brace_in_string_interps, unused_import, unnecessary_string_interpolations, unused_local_variable, unused_element
+// ignore_for_file: use_key_in_widget_constructors, non_constant_identifier_names, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, unnecessary_brace_in_string_interps, unused_import, unnecessary_string_interpolations, unused_local_variable, unused_element, unnecessary_null_comparison
 
 import 'package:flutter/material.dart';
 import 'package:group_reservations/Components/themes.dart';
 import 'package:group_reservations/Models_demo/group_members_model.dart';
 import 'package:group_reservations/Models_demo/groups_model.dart';
 import 'package:group_reservations/Models_demo/packages_model.dart';
-import 'package:group_reservations/Screens/experiences_screens/events_screens/members_screen.dart';
-import 'package:group_reservations/Screens/experiences_screens/events_screens/payment_screeen.dart';
-import 'package:group_reservations/Screens/experiences_screens/events_screens/reservation_view_screen.dart';
+import 'package:group_reservations/Screens/Main%20Screeens/members_screen.dart';
+import 'package:group_reservations/Screens/Main%20Screeens/payment_screeen.dart';
+import 'package:group_reservations/Screens/reservations_screens/reservation_view_screen.dart';
 import 'package:group_reservations/Services_demo/groups_demodata.dart';
 import 'package:group_reservations/Services_demo/packages_demodata.dart';
 import 'package:intl/intl.dart';
@@ -114,18 +114,8 @@ void openDialog() {
           ),
           ElevatedButton(
             onPressed: () {
-              if (_dateController =="") {
-                // Show a snackbar if no date is selected
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: primarycolor,
-                    content: const Text('No date selected'),
-                  ),
-                );
-              } else {
-                Navigator.of(context).pop(); // Close the dialog
-                openReservationTypeDialog(); // Proceed to the next dialog
-              }
+              Navigator.of(context).pop(); // Close the dialog
+                openReservationTypeDialog();
             },
             style: CustomButtonStyle.buttonStyle4(),
             child: const Text(
@@ -316,8 +306,22 @@ void openChamaOptionsDialog() async {
            
             ElevatedButton(
               onPressed: () {                
-                Navigator.of(context).pop();
-                openExperienceDetailsDialog(context);               
+                if(selectedGroupId == null){
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: Colors.red,
+                    content: const Text(
+                      'Please select a group before proceeding.',
+                      style: TextStyle(fontSize: 13, color: Colors.white),
+                    ),
+                  ),
+                );
+
+                }else{
+                  Navigator.of(context).pop();
+                  openExperienceDetailsDialog(context);
+                }            
                 
               },
               child: Text("Proceed",style: TextStyle(color: Colors.white),),
@@ -533,7 +537,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    backgroundColor: primarycolor,
+                    backgroundColor: Colors.red,
                     content: const Text(
                       'Please select a group before proceeding.',
                       style: TextStyle(fontSize: 13, color: Colors.white),
@@ -605,6 +609,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
                   Row(
                     children: [
                       Checkbox(
+                        activeColor: primarycolor,
                         value: make_collective_payment,
                         onChanged: (bool? value) {
                           setState(() {

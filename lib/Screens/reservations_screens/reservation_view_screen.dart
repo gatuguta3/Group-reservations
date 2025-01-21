@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:group_reservations/Components/themes.dart';
-import 'package:group_reservations/Screens/experiences_screens/events_screens/payment_screeen.dart';
+import 'package:group_reservations/Screens/Main%20Screeens/payment_screeen.dart';
 
 class ReservationViewScreen extends StatefulWidget {
    final int reservation_id;  

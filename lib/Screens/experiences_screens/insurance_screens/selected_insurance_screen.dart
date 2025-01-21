@@ -265,18 +265,19 @@ void new_policy_member_dialog () {
             SizedBox(width: 5,),
             ElevatedButton(
               onPressed: () {                
-                if (Name_controller.text.isNotEmpty   ) {
+                if (Name_controller.text.isNotEmpty  && National_id_controller.text.isNotEmpty &&  selected_relationship!= null ) {
                   Navigator.of(context).pop();
                   setState(() {
                     // Add the member to the list
                     selected_policy_members.add(Member(name: Name_controller.text));
                     clear_controllers ();// Clear the TextField
+                    selected_relationship = null;
                   });
                 } else {
                   // Show a snackbar if the TextField is empty
                   CustomSnackbar.show( context,
                 'Missing fields',
-                backgroundColor: secondarycolor, // Optional: Custom background color
+                backgroundColor: Colors.red, // Optional: Custom background color
               );
                  
                 }
@@ -511,7 +512,10 @@ void make_claim_dialog () {
           ),
           content: Text('Are you sure you want to make claim on this policy ?', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),           
           actions: [
-            OutlinedButton(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                OutlinedButton(
               onPressed: () {
                 Navigator.of(context).pop(); 
                 setState(() {
@@ -526,7 +530,7 @@ void make_claim_dialog () {
               child: Text("Cancel" ,style: TextStyle(color: primarycolor)),
               style: CustomButtonStyle.outlinedButtonStyle(),
             ),
-            SizedBox(width: 20,),
+            
             ElevatedButton(
               onPressed: () {                
                 Navigator.of(context).pop();
@@ -542,6 +546,8 @@ void make_claim_dialog () {
               },
               child: Text("Proceed",style: TextStyle(color: Colors.white),),
               style: CustomButtonStyle.buttonStyle4(),
+            ),
+              ],
             ),
           ],
         );
@@ -762,13 +768,31 @@ void clear_controllers () {
 
                         ? Column(children: [
                           ElevatedButton( 
-                              onPressed: () { submit_evaluation_dialog ();  },
+                              onPressed: () { 
+                                if(selected_policy_members.isEmpty){
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      backgroundColor: Colors.red,
+                                      content: const Text(
+                                        'Please select a beneficiaries before proceeding.',
+                                        style: TextStyle(fontSize: 13, color: Colors.white),
+                                      ),
+                                    ),
+                                  );
+                                }else{
+                                  submit_evaluation_dialog (); 
+                                }
+                                 },
                               child: Text('Submit for Evaluation',style: TextStyle(color: Colors.white),),
                               style: CustomButtonStyle.buttonStyle3(),
                           ),   
                           OutlinedButton(
-                            onPressed: () { },
-                              child: Text("Cancle Policy" ,style: TextStyle(color: primarycolor)),
+                            onPressed: () { 
+                              setState(() {
+                                get_policy == false;
+                              });
+                            },
+                              child: Text("Cancel Policy" ,style: TextStyle(color: primarycolor)),
                               style: CustomButtonStyle.outlinedButtonStyle(),
                             ),
 

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_date_range_picker/flutter_date_range_picker.dart';
 import 'package:group_reservations/Components/themes.dart';
-import 'package:group_reservations/Screens/experiences_screens/events_screens/all_reservations_screens.dart';
+import 'package:group_reservations/Screens/reservations_screens/all_reservations_screens.dart';
 
 class PaymentScreeen extends StatefulWidget {
   final int amount;

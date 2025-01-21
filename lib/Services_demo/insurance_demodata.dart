@@ -3,8 +3,11 @@
 
 import 'package:group_reservations/Models_demo/insurance_model.dart';
 
-final List <Insurance> get_insurance = [
-  Insurance(
+
+List<Insurance> get_insurance (){
+  return[
+
+    Insurance(
     id: 1,
     title: 'Britam Last expense',
     image_url: 'images/britaminsurance.png',
@@ -162,4 +165,11 @@ final List <Insurance> get_insurance = [
       }
     ]
   )
-];
+
+
+  ];
+}
+
+
+
+

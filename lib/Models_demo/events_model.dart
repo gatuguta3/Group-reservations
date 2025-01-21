@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-class Experiences{
+class Events{
   late final int id;
   late final String image_url;
   late final String title;
@@ -19,7 +19,7 @@ class Experiences{
   late final int standard_max_people;
   late final int premium_max_people;
 
-  Experiences( {
+  Events( {
     required this.id,
     required this.image_url,
     required this.title,
