@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:group_reservations/components/custom_button_styles.dart';
 import 'package:group_reservations/components/themes.dart';
 import 'package:group_reservations/constants/colors.dart';
+import 'package:group_reservations/models_demo/events_model.dart';
 import 'package:group_reservations/models_demo/group_members_model.dart';
 import 'package:group_reservations/models_demo/groups_model.dart';
 import 'package:group_reservations/models_demo/packages_model.dart';
@@ -18,44 +19,12 @@ import 'package:flutter_date_range_picker/flutter_date_range_picker.dart';
 
 class EventsDetailsScreen extends StatefulWidget {
 
-  final int experience_id;
-  final String image;
-  final String experience_title;
-  final String experience_description;
-  final String experience_activities;
-  final String experience_location;
-  final String experience_occation;
-  final String experience_subtitle;
-  final String experience_venue;
-  final String startdate;
-  final String enddate;
-  final int standardPrice;
-  final String standardStatus;
-  final int standardMaxPeople;
-  final int premiumPrice;
-  final String premiumStatus;
-  final int premiumMaxPeople;
+  final Events events;
 
 
   const EventsDetailsScreen(
     { 
-      required this.experience_id,
-      required this.image,
-      required this.experience_title, 
-      required this.experience_description, 
-      required this.experience_location, 
-      required this.experience_venue,
-      required this.experience_occation, 
-      required this.experience_subtitle, 
-      required this.experience_activities,
-      required this.enddate,
-      required this.startdate,
-      required this.standardPrice,
-      required this.standardStatus,
-      required this.standardMaxPeople,      
-      required this.premiumPrice,
-      required this.premiumStatus,
-      required this.premiumMaxPeople
+      required this.events
       });
 
   @override
@@ -134,8 +103,8 @@ void openDialog() {
 
 void openCustomDateRangePicker() async {
   // Parse start and end dates
-  DateTime startDate = DateFormat('dd-MM-yyyy').parse(widget.startdate);
-  DateTime endDate = DateFormat('dd-MM-yyyy').parse(widget.enddate);
+  DateTime startDate = DateFormat('dd-MM-yyyy').parse(widget.events.start_date);
+  DateTime endDate = DateFormat('dd-MM-yyyy').parse(widget.events.end_date);
   String currentDate = DateFormat('EEE, MMM d').format(DateTime.now());
 
   // Ensure selected has an initial value
@@ -349,17 +318,17 @@ int getTotal(){
               
               if (make_collective_payment == true ) {
                     if( selected_experience_type == "Standard"){
-                      totalamount = selectedMembers.length * widget.standardPrice; 
+                      totalamount = selectedMembers.length * widget.events.standard_price; 
                     }else{
-                      totalamount = selectedMembers.length * widget.premiumPrice; 
+                      totalamount = selectedMembers.length * widget.events.premium_price; 
                     }
                 
               } else {
 
                 if( selected_experience_type == "Standard"){
-                      totalamount = widget.standardPrice; 
+                      totalamount = widget.events.standard_price; 
                     }else{
-                      totalamount = widget.premiumPrice; 
+                      totalamount = widget.events.premium_price; 
                     }
                 
               }
@@ -415,7 +384,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
                           ),
                           const SizedBox(width: 3),
                           Text(
-                          'Cost per person KES ${widget.standardPrice}',
+                          'Cost per person KES ${widget.events.standard_price}',
                           style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -439,7 +408,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
                           ),
                           const SizedBox(width: 3),
                           Text(
-                          'Cover up to ${widget.standardMaxPeople} people',
+                          'Cover up to ${widget.events.standard_max_people} people',
                           style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -467,7 +436,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
                           ),
                           const SizedBox(width: 3),
                           Text(
-                          'Cost per person KES ${widget.premiumPrice}',
+                          'Cost per person KES ${widget.events.premium_price}',
                           style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -491,7 +460,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
                           ),
                           const SizedBox(width: 3),
                           Text(
-                          'Cover up to ${widget.premiumMaxPeople} people',
+                          'Cover up to ${widget.events.premium_max_people} people',
                           style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -701,17 +670,17 @@ void openExperienceCompletionDialog() async{
 
               if (make_collective_payment == true ) {
                     if( selected_experience_type == "Standard"){
-                      totalamount = selectedMembers.length * widget.standardPrice; 
+                      totalamount = selectedMembers.length * widget.events.standard_price; 
                     }else{
-                      totalamount = selectedMembers.length * widget.premiumPrice; 
+                      totalamount = selectedMembers.length * widget.events.premium_price; 
                     }
                 
               } else {
 
                 if( selected_experience_type == "Standard"){
-                      totalamount = widget.standardPrice; 
+                      totalamount = widget.events.standard_price; 
                     }else{
-                      totalamount = widget.premiumPrice; 
+                      totalamount = widget.events.premium_price; 
                     }
                 
               }
@@ -734,14 +703,14 @@ void openExperienceCompletionDialog() async{
 
                Navigator.push( context, MaterialPageRoute( builder: (context) => ReservationViewScreen(
                                                                reservation_id : counter, 
-                                                               title: widget.experience_title,
-                                                                description: widget.experience_description,
+                                                               title: widget.events.title,
+                                                                description: widget.events.description,
                                                                 package_type: get_experience_type(),
                                                                 price: getTotal(),
                                                                 payment_status: 'Not paid',
                                                                 reservation_status: 'Expired',
                                                                 date_created: currentDate,
-                                                                reservation_date: widget.enddate,
+                                                                reservation_date: widget.events.end_date,
                                                                                                                               
                                                               )
                                                             ),
@@ -773,7 +742,7 @@ void openExperienceCompletionDialog() async{
               width: MediaQuery.of(context).size.width, 
               height: 300.0,
               child: Image.asset(
-                widget.image,
+                widget.events.image_url,
                 fit: BoxFit.cover,
               ),
             ),
@@ -781,23 +750,23 @@ void openExperienceCompletionDialog() async{
 
             Row(children: [ 
                   SizedBox(width: 5,),                 
-                  Text(widget.experience_title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),
+                  Text(widget.events.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),
                  ],),
              Row(children: [ 
                   SizedBox(width: 5,),                 
-                  Text(widget.experience_subtitle  ,
+                  Text(widget.events.subtitle  ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
                  ],),
             Row(children: [ 
                   SizedBox(width: 5,),                 
-                  Text('Venue: ${widget.experience_venue}' ,
+                  Text('Venue: ${widget.events.venue}' ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
                  ],),
             Row(children: [ 
                   SizedBox(width: 5,),                 
-                  Text('Date: ${widget.startdate} - ${widget.enddate}' ,
+                  Text('Date: ${widget.events.start_date} - ${widget.events.end_date}' ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
                  ],),
@@ -809,7 +778,7 @@ void openExperienceCompletionDialog() async{
                   Text('What to expect :', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),
                  ],),
             Padding(padding: const EdgeInsets.symmetric(horizontal: 0.0),
-                    child:Text(widget.experience_description ,
+                    child:Text(widget.events.description ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
                  ),
@@ -821,7 +790,7 @@ void openExperienceCompletionDialog() async{
                  ],),
             Row(children: [ 
                   SizedBox(width: 5,),                 
-                  Text(widget.experience_activities ,
+                  Text(widget.events.package_activities ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
                  ],),
@@ -882,7 +851,7 @@ void openExperienceCompletionDialog() async{
                                   child: Image.asset('icons/Home2.png', fit: BoxFit.cover),
                                 ),
                              const SizedBox(width: 3,),
-                             Text('KES ${widget.standardPrice}/Person',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
+                             Text('KES ${widget.events.standard_price}/Person',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
                           ],
                           ),
                           SizedBox(height: 5,),
@@ -896,7 +865,7 @@ void openExperienceCompletionDialog() async{
                                   child: Image.asset('icons/Home21.png', fit: BoxFit.cover),
                                 ),
                              const SizedBox(width: 3,),
-                             Text('Up to ${widget.standardMaxPeople} people',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
+                             Text('Up to ${widget.events.standard_max_people} people',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
                           ],
                           ),
                           SizedBox(height: 5,),
@@ -904,7 +873,7 @@ void openExperienceCompletionDialog() async{
                           
                             Row(
                             children: [
-                              widget.standardStatus == 'Active'
+                              widget.events.standard_status == 'Active'
                               ? Container(
                                   width: 30.0,
                                   height: 30.0,
@@ -913,7 +882,7 @@ void openExperienceCompletionDialog() async{
                                 )
                               : Icon(size:40 ,color: Colors.red,Icons.cancel_outlined),                               
                              const SizedBox(width: 3,),
-                             Text(widget.standardStatus,style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
+                             Text(widget.events.standard_status,style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
                           ],
                           ), 
 
@@ -923,7 +892,7 @@ void openExperienceCompletionDialog() async{
                             children: [
                              ElevatedButton(
                               onPressed: () { 
-                                   if(widget.standardStatus == 'Active'){
+                                   if(widget.events.standard_status == 'Active'){
                                     openDialog();
                                     setState(() {
                                       selected_experience_type = package.type; // Update the selected group 
@@ -949,7 +918,7 @@ void openExperienceCompletionDialog() async{
                                   child: Image.asset('icons/Home2.png', fit: BoxFit.cover),
                                 ),
                              const SizedBox(width: 3,),
-                             Text('KES ${widget.premiumPrice}/Person',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
+                             Text('KES ${widget.events.premium_price}/Person',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
                           ],
                           ),
                           SizedBox(height: 5,),
@@ -963,7 +932,7 @@ void openExperienceCompletionDialog() async{
                                   child: Image.asset('icons/Home21.png', fit: BoxFit.cover),
                                 ),
                              const SizedBox(width: 3,),
-                             Text('Up to ${widget.premiumMaxPeople} people',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
+                             Text('Up to ${widget.events.premium_max_people} people',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
                           ],
                           ),
                           SizedBox(height: 5,),
@@ -971,7 +940,7 @@ void openExperienceCompletionDialog() async{
                           
                             Row(
                             children: [
-                              widget.premiumStatus == 'Active'
+                              widget.events.premium_status == 'Active'
                               ? Container(
                                   width: 30.0,
                                   height: 30.0,
@@ -980,7 +949,7 @@ void openExperienceCompletionDialog() async{
                                 )
                               : Icon(size:30 ,color: Colors.red,Icons.cancel_outlined),                               
                              const SizedBox(width: 3,),
-                             Text(widget.premiumStatus,style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
+                             Text(widget.events.premium_status,style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
                           ],
                           ), 
 
@@ -990,7 +959,7 @@ void openExperienceCompletionDialog() async{
                             children: [
                              ElevatedButton(
                               onPressed: () { 
-                                   if(widget.premiumStatus == 'Active'){
+                                   if(widget.events.premium_status == 'Active'){
                                     openDialog();
                                     setState(() {
                                       selected_experience_type = package.type; // Update the selected group 

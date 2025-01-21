@@ -27,14 +27,7 @@ Navigator.push(
 context,
 MaterialPageRoute(
 builder: (context) => InsuranceDetailsScreen(
-id : insurance.id,
-title : insurance.title,
-subtitle : insurance.subtitle,
-description : insurance.description,
-image : insurance.image_url,
-provider : insurance.provider,
-plans : insurance.plans,
-payments: insurance.payments,
+insurances: insurance,
 
 )
 ),

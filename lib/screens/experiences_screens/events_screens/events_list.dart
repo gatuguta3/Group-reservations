@@ -19,30 +19,14 @@ class _EventsListState extends State<EventsList> {
     return ListView.builder(
                                                       itemCount: events.length,
                                                       itemBuilder: (context, index) {
-                                                      final experience = events[index];
+                                                      final event = events[index];
                                                       return GestureDetector(
                                                         onTap: () {
                                                         Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
                                                               builder: (context) => EventsDetailsScreen(
-                                                                experience_id : experience.id,
-                                                                image : experience.image_url,
-                                                                experience_title : experience.title,
-                                                                experience_description : experience.description,
-                                                                experience_location : experience.location,
-                                                                experience_venue : experience.venue,
-                                                                experience_occation : experience.occasion,
-                                                                experience_subtitle : experience.subtitle,
-                                                                experience_activities : experience.package_activities,
-                                                                startdate:experience.start_date,
-                                                                enddate: experience.end_date,
-                                                                standardPrice: experience.standard_price,
-                                                                standardStatus : experience.standard_status,
-                                                                standardMaxPeople : experience.standard_max_people,
-                                                                premiumPrice : experience.premium_price,
-                                                                premiumStatus : experience.premium_status,
-                                                                premiumMaxPeople : experience.premium_max_people,
+                                                                events : event ,
                                                               )
                                                             ),
                                                           );
@@ -62,7 +46,7 @@ class _EventsListState extends State<EventsList> {
                                                       children: <Widget>[
                                                       Positioned.fill(
                                                       child: Image.asset(
-                                                      experience.image_url,
+                                                      event.image_url,
                                                       fit: BoxFit.cover,
                                                       ),
                                                       ),
@@ -72,7 +56,7 @@ class _EventsListState extends State<EventsList> {
                                                       const SizedBox(height: 5),
                                                       Padding(
                                                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                                      child: Text(experience.title, style: TextStyle(fontWeight: FontWeight.bold)),
+                                                      child: Text(event.title, style: TextStyle(fontWeight: FontWeight.bold)),
                                                       ),
                                                       const Divider(thickness: 1),
                                                       Padding(
@@ -85,7 +69,7 @@ class _EventsListState extends State<EventsList> {
                                                       children: [
                                                       Text('Subtitle'),
                                                       Text(
-                                                      experience.subtitle,
+                                                      event.subtitle,
                                                       style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),
                                                       ),
                                                       ],
@@ -95,7 +79,7 @@ class _EventsListState extends State<EventsList> {
                                                       children: [
                                                       Text('Venue'),
                                                       Text(
-                                                      experience.location,
+                                                      event.location,
                                                       style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),
                                                       ),
                                                       ],
@@ -107,7 +91,7 @@ class _EventsListState extends State<EventsList> {
                                                       Padding(
                                                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                                       child: Text(
-                                                      experience.description,
+                                                      event.description,
                                                       style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),
                                                       ),
                                                       ),

@@ -6,29 +6,15 @@ import 'package:group_reservations/components/scaffold_messenger.dart';
 import 'package:group_reservations/components/themes.dart';
 import 'package:group_reservations/components/themes.dart';
 import 'package:group_reservations/constants/colors.dart';
+import 'package:group_reservations/models_demo/insurance_model.dart';
 import 'package:group_reservations/models_demo/policy_claims_model.dart';
 import 'package:group_reservations/models_demo/policy_members_model.dart';
 
 class InsuranceDetailsScreen extends StatefulWidget {
-  final int id;
-  final String title;
-  final String subtitle;
-  final String image;
-  final String description;
-  final String provider;
-  final List plans;
-  final List payments;
+  final Insurance insurances;
   
-  const InsuranceDetailsScreen({
-    
-    required this.id,
-    required this.title,
-    required this.subtitle,
-    required this.image,
-    required this.description,
-    required this.provider,
-    required this.plans,
-    required this.payments,
+  const InsuranceDetailsScreen({    
+    required this.insurances, 
     
   });
 
@@ -576,7 +562,7 @@ void clear_controllers () {
               width: MediaQuery.of(context).size.width, 
               height: 300.0,
               child: Image.asset(
-                widget.image,
+                widget.insurances.image_url,
                 fit: BoxFit.cover,
               ),
             ),
@@ -585,7 +571,7 @@ void clear_controllers () {
                    child: Column(
                     children: [
                       Row(children: [
-                        Text(widget.title, style: TextStyle(fontWeight: FontWeight.w400 , fontSize: 18)),
+                        Text(widget.insurances.title, style: TextStyle(fontWeight: FontWeight.w400 , fontSize: 18)),
                       ],),
                       SizedBox(height: 5),
                       
@@ -600,10 +586,10 @@ void clear_controllers () {
                              Column(crossAxisAlignment: CrossAxisAlignment.start,
                                      children: [
                                        Text('Subtitle'),
-                                       Text(  widget.subtitle, style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),  ),        ],  ),
+                                       Text(  widget.insurances.subtitle, style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),  ),        ],  ),
                              Column( crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [ Text('Provider'),
-                                                 Text( widget.provider, style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),
+                                                 Text( widget.insurances.provider, style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),
                                                       ), ],),
                                                       
                                                       
@@ -611,7 +597,7 @@ void clear_controllers () {
 
                         const Divider(thickness: 1),
 
-                        Text( widget.description, style: TextStyle(fontSize: 11),),
+                        Text( widget.insurances.description, style: TextStyle(fontSize: 11),),
                         const Divider(thickness: 1),
                         const SizedBox(height: 10),
                         ],
@@ -623,7 +609,7 @@ void clear_controllers () {
                            children: [
                              Column(crossAxisAlignment: CrossAxisAlignment.start,
                                      children: [
-                                      Text(  widget.provider, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),  ),
+                                      Text(  widget.insurances.provider, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),  ),
                                       Text('Providers' , style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),),        ],  ),
                                        
                                        
@@ -660,7 +646,7 @@ void clear_controllers () {
                         
                         Divider(thickness: 1),
 
-                        Text( widget.description, style: TextStyle(fontSize: 11),),
+                        Text( widget.insurances.description, style: TextStyle(fontSize: 11),),
                         const Divider(thickness: 1),
                         const SizedBox(height: 10),
                         ],
@@ -679,9 +665,9 @@ void clear_controllers () {
                     height: 250.0, // Adjust height as needed
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal, // Horizontal scrolling
-                      itemCount: widget.plans.length,
+                      itemCount: widget.insurances.plans.length,
                       itemBuilder: (context, index) {
-                        final plan = widget.plans[index];
+                        final plan = widget.insurances.plans[index];
                         return Container(
                           width: 250.0, // Width for each card
                           margin: const EdgeInsets.all(8.0),
@@ -997,9 +983,9 @@ void clear_controllers () {
                     height: 250.0, // Adjust height as needed
                     child: ListView.builder(
                       scrollDirection: Axis.vertical, // Horizontal scrolling
-                      itemCount: widget.payments.length,
+                      itemCount: widget.insurances.payments.length,
                       itemBuilder: (context, index) {
-                        final payment = widget.payments[index];
+                        final payment = widget.insurances.payments[index];
                         return Container(
                           width: 250.0, // Width for each card
                           margin: const EdgeInsets.all(8.0),

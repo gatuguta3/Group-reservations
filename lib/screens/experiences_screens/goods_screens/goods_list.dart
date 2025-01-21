@@ -28,15 +28,7 @@ Navigator.push(
 context,
 MaterialPageRoute(
 builder: (context) => GoodsDetailsScreen(
-id : good.id,
-name : good.name,
-subtitle : good.subtitle,
-description : good.description,
-image : good.image_url,
-sizes : good.sizes,
-enddate : good.end_date,
-startdate : good.start_date,
-venue : good.venue,
+goods: good,
 
 )
 ),

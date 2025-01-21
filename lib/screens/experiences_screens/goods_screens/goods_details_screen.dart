@@ -4,32 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:group_reservations/components/custom_button_styles.dart';
 import 'package:group_reservations/components/themes.dart';
 import 'package:group_reservations/constants/colors.dart';
+import 'package:group_reservations/models_demo/goods_model.dart';
 import 'package:group_reservations/screens/Main%20Screeens/payment_screeen.dart';
 import 'package:group_reservations/screens/reservations_screens/reservation_view_screen.dart';
 import 'package:intl/intl.dart';
 
 class GoodsDetailsScreen extends StatefulWidget {
- final int id;
- final String name;
- final String subtitle;
- final String venue;
- final String enddate;
- final String startdate;
- final String description;
- final List sizes;
- final String image;
+ final Good goods;
 
  const GoodsDetailsScreen({
 
-  required this.id,
-  required this.name,
-  required this.subtitle,
-  required this.venue,
-  required this.enddate,
-  required this.startdate,
-  required this.description,
-  required this.sizes,
-  required this.image,
+  required this.goods
  });
 
   @override
@@ -116,8 +101,8 @@ void openDialog() {
 
 void openCustomDateRangePicker() async {
   // Parse start and end dates
-  DateTime startDate = DateFormat('dd-MM-yyyy').parse(widget.startdate);
-  DateTime endDate = DateFormat('dd-MM-yyyy').parse(widget.enddate);
+  DateTime startDate = DateFormat('dd-MM-yyyy').parse(widget.goods.start_date);
+  DateTime endDate = DateFormat('dd-MM-yyyy').parse(widget.goods.end_date);
   String currentDate = DateFormat('EEE, MMM d').format(DateTime.now());
 
   // Ensure selected has an initial value
@@ -271,14 +256,14 @@ void openExperienceCompletionDialog() async{
 
                Navigator.push( context, MaterialPageRoute( builder: (context) => ReservationViewScreen(
                                                                reservation_id : counter, 
-                                                               title: widget.name,
-                                                                description: widget.description,
+                                                               title: widget.goods.name,
+                                                                description: widget.goods.description,
                                                                 package_type: selectedSize!['size'],
                                                                 price: selectedSize!['price_per_person'],
                                                                 payment_status: 'Not paid',
                                                                 reservation_status: 'Expired',
                                                                 date_created: currentDate,
-                                                                reservation_date: widget.enddate,
+                                                                reservation_date: widget.goods.end_date,
                                                                                                                               
                                                               )
                                                             ),
@@ -310,7 +295,7 @@ void openExperienceCompletionDialog() async{
               width: MediaQuery.of(context).size.width, 
               height: 300.0,
               child: Image.asset(
-                widget.image,
+                widget.goods.image_url,
                 fit: BoxFit.cover,
               ),
             ),
@@ -318,23 +303,23 @@ void openExperienceCompletionDialog() async{
 
             Row(children: [ 
                   SizedBox(width: 5,),                 
-                  Text(widget.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),
+                  Text(widget.goods.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),
                  ],),
              Row(children: [ 
                   SizedBox(width: 5,),                 
-                  Text(widget.subtitle  ,
+                  Text(widget.goods.subtitle  ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
                  ],),
             Row(children: [ 
                   SizedBox(width: 5,),                 
-                  Text('Venue: ${widget.venue}' ,
+                  Text('Venue: ${widget.goods.venue}' ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
                 ),
                  ],),
             Row(children: [ 
                   SizedBox(width: 5,),                 
-                  Text('Date: ${widget.startdate} - ${widget.enddate}' ,
+                  Text('Date: ${widget.goods.start_date} - ${widget.goods.end_date}' ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
                 ),
                  ],),
@@ -346,7 +331,7 @@ void openExperienceCompletionDialog() async{
                   Text('What to expect :', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),
                  ],),
             Padding(padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child:Text(widget.description ,
+                    child:Text(widget.goods.description ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
                  ),
@@ -364,9 +349,9 @@ void openExperienceCompletionDialog() async{
                     height: 250.0, // Adjust height as needed
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal, // Horizontal scrolling
-                      itemCount: widget.sizes.length,
+                      itemCount: widget.goods.sizes.length,
                       itemBuilder: (context, index) {
-                        final size = widget.sizes[index];
+                        final size = widget.goods.sizes[index];
                         return Container(
                           width: 250.0, // Width for each card
                           margin: const EdgeInsets.all(8.0),
