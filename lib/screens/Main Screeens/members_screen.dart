@@ -52,6 +52,8 @@ class _MembersScreenState extends State<MembersScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    // code to filter members when the user uses the search bar
      final filteredMembers = allMembers
         .where((member) =>
             member.name.toLowerCase().contains(searchQuery.toLowerCase()))
@@ -59,7 +61,7 @@ class _MembersScreenState extends State<MembersScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.primarycolor,
+        backgroundColor: AppColors.primary,
         title: Text(
           'Members',
           style: TextStyle(fontSize: 21, color: Colors.white),
@@ -123,7 +125,7 @@ class _MembersScreenState extends State<MembersScreen> {
                               ),
                               trailing: Checkbox(
                                 value: isSelected,
-                                activeColor: AppColors.primarycolor,
+                                activeColor: AppColors.primary,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50),
                                 ),
@@ -153,7 +155,7 @@ class _MembersScreenState extends State<MembersScreen> {
           if (selectedMembers.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                backgroundColor: AppColors.primarycolor,
+                backgroundColor: AppColors.primary,
                 content: Text('No members selected.'),
               ),
             );
@@ -161,7 +163,7 @@ class _MembersScreenState extends State<MembersScreen> {
             Navigator.pop(context, selectedMembers);
           }
         },
-        backgroundColor: AppColors.primarycolor,
+        backgroundColor: AppColors.primary,
         child: Icon(Icons.arrow_right_alt_outlined),
         tooltip: 'Confirm Selection',
       ),

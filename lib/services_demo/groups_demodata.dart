@@ -3,14 +3,12 @@
 
 import 'package:group_reservations/models_demo/groups_model.dart';
 
-class GroupsDemodata{
 
-  Future<List<Groups>> fetch_groups () async {
 
-    //await Future.delayed(Duration(seconds: 1));
+List <Groups> fetch_groups (){
+  return[
 
-    List<Groups> groups_list = [
-      Groups(
+    Groups(
         groupid: 1,
         groupname: 'ELITE GROUP',
       ),
@@ -27,10 +25,6 @@ class GroupsDemodata{
         groupname: 'ALIFA GROUP',
       ),
 
-    ];
 
-    return groups_list;
-
-    
-  }
+  ];
 }

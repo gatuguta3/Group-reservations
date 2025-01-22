@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
 
       appBar: AppBar(
-        backgroundColor: AppColors.primarycolor, 
+        backgroundColor: AppColors.primary, 
           title:  Row(            
             children: [
               CircleAvatar(
@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(                      
                   width: double.infinity, 
                   
-                  color: AppColors.secondarycolor, 
+                  color: AppColors.primary, 
                   child:  Column(                  
                     children: [ 
                      const SizedBox(height: 20,),
@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 310,
                         
                         decoration: BoxDecoration(
-                        color: AppColors.primarycolor,
+                        color: AppColors.primary,
                         borderRadius: BorderRadius.circular(20),),                        
                       child:Column(
                         children: [
@@ -240,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Row(
                             children: [
                               CircleAvatar(
-                                backgroundColor: AppColors.orangecolor,
+                                backgroundColor: AppColors.secondary,
                                 child: Image.asset('icons/Group.png', width: 24, height: 24), 
                               ),                                                           
                               

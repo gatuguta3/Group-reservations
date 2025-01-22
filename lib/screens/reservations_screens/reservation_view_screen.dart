@@ -39,7 +39,7 @@ class _ReservationViewScreenState extends State<ReservationViewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.primarycolor,
+        backgroundColor: AppColors.primary,
       ),
 
       body: SingleChildScrollView(
@@ -71,7 +71,7 @@ class _ReservationViewScreenState extends State<ReservationViewScreen> {
                               Column(
                                 children: [
                                   Text('Package', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w200),),
-                                  Text(widget.package_type , style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),)
+                                  Text(widget.package_type as String , style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),)
                                 ],
                               ),
                               Column(

@@ -14,7 +14,7 @@ class CustomSnackbar {
         backgroundColor: backgroundColor,
         action: SnackBarAction(
           label: 'Dismiss',
-          textColor: AppColors.orangecolor,
+          textColor: AppColors.secondary,
           onPressed: () {
             ScaffoldMessenger.of(context).hideCurrentSnackBar(); // Dismiss the snackbar
           },

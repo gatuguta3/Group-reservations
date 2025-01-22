@@ -21,7 +21,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return DefaultTabController(length: 4, 
     child: Scaffold(
       appBar: AppBar(
-backgroundColor: AppColors.primarycolor,
+backgroundColor: AppColors.primary,
 title: Row(
 children: [
 GestureDetector(
@@ -38,14 +38,14 @@ style: TextStyle(fontSize: 21, color: Colors.white),
 bottom: PreferredSize(
 preferredSize: Size.fromHeight(90.0),
 child: Container(
-color: AppColors.orangecolor,
+color: AppColors.secondary,
 height: 80,
 child: TabBar(
 isScrollable: true,
 tabs: [
 Tab(
 child: Container(
-color: AppColors.orangecolor,
+color: AppColors.secondary,
 height: 80,
 width: 80, // Increase height here if needed
 child: Column(
@@ -60,7 +60,7 @@ Text('Membership' , style: TextStyle(fontSize: 11),),
 ),
 Tab(
 child: Container(
-color: AppColors.orangecolor,
+color: AppColors.secondary,
 height: 80,
 width: 80, // Increase height here if needed
 child: Column(
@@ -75,7 +75,7 @@ Text('Chamas' , style: TextStyle(fontSize: 11),),
 ),
 Tab(
 child: Container(
-color: AppColors.orangecolor,
+color: AppColors.secondary,
 height: 80,
 width: 80, // Increase height here if needed
 child: Column(
@@ -90,7 +90,7 @@ Text('Fundraisers' , style: TextStyle(fontSize: 11),),
 ),
 Tab(
 child: Container(
-color: AppColors.orangecolor,
+color: AppColors.secondary,
 height: 80,
 width: 80, // Increase height here if needed
 child: Column(

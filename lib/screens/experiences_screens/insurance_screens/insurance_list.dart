@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:group_reservations/models_demo/insurance_model.dart';
 import 'package:group_reservations/screens/experiences_screens/insurance_screens/insurance_details_screen.dart';
-import 'package:group_reservations/services_demo/insurance_demodata.dart';
 
-class InsuranceList extends StatefulWidget {
-  const InsuranceList({super.key});
-
-  @override
-  State<InsuranceList> createState() => _InsuranceListState();
-}
-
-class _InsuranceListState extends State<InsuranceList> {
-
-  final List <Insurance> insurances = get_insurance();
+class InsuranceList extends StatelessWidget {
+  const InsuranceList({super.key , required this.insurances});
+  final List <Insurance> insurances;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return 
+     ListView.builder(
 shrinkWrap: true,
 itemCount: insurances.length,
 itemBuilder: (context , index){
@@ -106,6 +99,6 @@ const SizedBox(height: 10),
 
 }
 );
-
+     
   }
 }

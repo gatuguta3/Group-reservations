@@ -46,7 +46,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: AppColors.primarycolor,
+          backgroundColor: AppColors.primary,
           title: Row(
             children: [
              // GestureDetector(        onTap: () {},    child: Image.asset('icons/Frame36.png', width: 40, height: 40),     ),
@@ -76,7 +76,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
             children: [
               Radio<String>(
                 value: 'M-Pesa',
-                activeColor: AppColors.primarycolor,
+                activeColor: AppColors.primary,
                 groupValue: _selectedOption,
                 onChanged: _handleRadioValueChange,
               ),
@@ -87,7 +87,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
             children: [
               Radio<String>(
                 value: 'Wallet',
-                activeColor: AppColors.primarycolor,
+                activeColor: AppColors.primary,
                 groupValue: _selectedOption,
                 onChanged: _handleRadioValueChange,
               ),
@@ -99,7 +99,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
             children: [
               Radio<String>(
                 value: 'Card',
-                activeColor: AppColors.primarycolor,
+                activeColor: AppColors.primary,
                 groupValue: _selectedOption,
                 onChanged: _handleRadioValueChange,
               ),

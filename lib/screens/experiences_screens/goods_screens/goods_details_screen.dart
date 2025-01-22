@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:group_reservations/components/custom_button_styles.dart';
+import 'package:group_reservations/components/custom_text_form_field.dart';
 import 'package:group_reservations/components/themes.dart';
 import 'package:group_reservations/constants/colors.dart';
 import 'package:group_reservations/models_demo/goods_model.dart';
@@ -37,70 +38,14 @@ class _SelectedGoodsScreenState extends State<GoodsDetailsScreen> {
 
 
 
-void openDialog() {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text(
-          'Please set Reservation Date',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-        ),
-        content:GestureDetector(
-          onDoubleTap: (){
-            Navigator.of(context).pop(); // Close current dialog
-                openCustomDateRangePicker(); 
-          },
-          child:  Container(
-            child: TextField(
-          controller: _dateController,          
-          readOnly: true, // Ensures user cannot type directly
-          decoration: InputDecoration(
-            labelText: 'Select a date',
-            suffixIcon: Icon(Icons.calendar_today),            
-            border: const OutlineInputBorder(),
-          ),
-        ),
-          )
-        
-        ), 
-        actions: [
-          OutlinedButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Close the dialog
-            },
-            child: const Text("Cancel"),
-            style: CustomButtonStyle.outlinedButtonStyle(),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (_dateController =="") {
-                // Show a snackbar if no date is selected
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: AppColors.primarycolor,
-                    content: const Text('No date selected'),
-                  ),
-                );
-              } else {
-                Navigator.of(context).pop(); // Close the dialog
-                openReservationTypeDialog(); // Proceed to the next dialog
-              }
-            },
-            style: CustomButtonStyle.buttonStyle4(),
-            child: const Text(
-              "Proceed",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ],
-      );
-    },
-  );
-}
 
-void openCustomDateRangePicker() async {
-  // Parse start and end dates
+final TextEditingController reservationDateController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+
+//! Select Reservation Date
+  void _reserveDate(BuildContext context, Map<String, dynamic> size) {
+    // Parse start and end dates
   DateTime startDate = DateFormat('dd-MM-yyyy').parse(widget.goods.start_date);
   DateTime endDate = DateFormat('dd-MM-yyyy').parse(widget.goods.end_date);
   String currentDate = DateFormat('EEE, MMM d').format(DateTime.now());
@@ -108,68 +53,104 @@ void openCustomDateRangePicker() async {
   // Ensure selected has an initial value
   DateTime? selected = startDate;
 
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(currentDate),
-        content: SizedBox(
-          width: 350,
-          height: 350, // Adjusted height for better usability
-          child: Column(
-            children: [
-              const Divider(thickness: 1),
-              Expanded(
-                child: CalendarDatePicker(
-                  initialDate: selected ?? startDate,
-                  firstDate: startDate,
-                  lastDate: endDate,
-                  onDateChanged: (DateTime newSelectedDate) {
-                    // Update the selected date
-                    setState(() {
-                      selected = newSelectedDate;
-                    });
-                  },
-                  initialCalendarMode: DatePickerMode.day,
-                ),
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Center(
+            child: Text(
+              'Please set Reservation Date',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
               ),
-            ],
-          ),
-        ),
-        actions: [
-          OutlinedButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Close the dialog without changes
-            },
-            child: const Text("Cancel"),
-            style: CustomButtonStyle.outlinedButtonStyle(),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (selected != null) {
-                setState(() {
-                  // Update the controller text with the selected date
-                  _dateController.text = DateFormat('dd-MM-yyyy').format(selected!);
-                });
-              }
-              Navigator.of(context).pop();
-              openDialog(); // Trigger the next dialog or action
-            },
-           style: CustomButtonStyle.buttonStyle4(),
-            child: const Text(
-              "Ok",
-              style: TextStyle(color: Colors.white),
             ),
           ),
-        ],
-      );
-    },
-  );
-}
+          content: SizedBox(
+            height: 180,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Form(
+                  key: _formKey,
+                  child: CustomTextFormField(
+                    textEditingController: reservationDateController,
+                    label: 'Reservation Date',
+                    hintText: 'dd-mm-yyyy',
+                    failedValidationText: 'Please select a reservation date',
+                    readOnly: true,
+                    onTap: () async {
+                      DateTime? selectedDate = await showDatePicker(
+                        context: context,
+                        initialDate: selected,
+                        firstDate: startDate,
+                        lastDate: endDate,
+                      );
+                      if (selectedDate != null) {
+                        // Format the date to dd/mm/yyyy
+                        String formattedDate = "${selectedDate.year}-${selectedDate.month}-${selectedDate.day}";
+                        reservationDateController.text = formattedDate;
+                      }
+                    },
+                    suffixIcon: Icon(
+                      Icons.calendar_month,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'Cancel',
+                        style: TextStyle(
+                          color: AppColors.primary,
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                        child: Text(
+                          'Proceed',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            Navigator.pop(context);
+                            openReservationTypeDialog(context, size);
+
+                            
+                          }
+                        }),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+//
 
 
 
-void openReservationTypeDialog() {   
+void openReservationTypeDialog(BuildContext context, Map<String, dynamic> size) {   
     
     showDialog(
       context: context,
@@ -181,7 +162,7 @@ void openReservationTypeDialog() {
             OutlinedButton(
               onPressed: () {
                 Navigator.of(context).pop(); 
-                openExperienceCompletionDialog();
+                openExperienceCompletionDialog(context , size);
               },
               child: Text("Chama"),
               style: CustomButtonStyle.outlinedButtonStyle(),
@@ -189,7 +170,7 @@ void openReservationTypeDialog() {
             ElevatedButton(
               onPressed: () {                
                 Navigator.of(context).pop();
-                openExperienceCompletionDialog();
+                openExperienceCompletionDialog(context, size);
                 
               },
               child: Text("Individual",style: TextStyle(color: Colors.white),),
@@ -204,7 +185,7 @@ void openReservationTypeDialog() {
 
 int counter = 0;
 
-void openExperienceCompletionDialog() async{   
+void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> size) async{   
     
     await showDialog(
       context: context,
@@ -225,7 +206,7 @@ void openExperienceCompletionDialog() async{
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
-             Icon(Icons.check_circle, size: 60 , color: AppColors.orangecolor),
+             Icon(Icons.check_circle, size: 60 , color: AppColors.secondary),
               SizedBox(height: 10,),
               Text('Reserved Succesfully',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w400)  ),
               SizedBox(height: 5,),
@@ -420,8 +401,9 @@ void openExperienceCompletionDialog() async{
                              ElevatedButton(
                               onPressed: () { 
                                    if(size['status'] == 'Active'){
-                                    openDialog();
-                                    selectSize(size);
+                                    //openDialog();
+                                    //selectSize(size);
+                                    _reserveDate(context, size);
                                     
                                    }else{
 

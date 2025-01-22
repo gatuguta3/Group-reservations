@@ -15,7 +15,7 @@ class CustomButtonStyle {
 
   static ButtonStyle buttonStyle2() {
     return ElevatedButton.styleFrom(
-      foregroundColor: Colors.white, backgroundColor: AppColors.primarycolor, 
+      foregroundColor: Colors.white, backgroundColor: AppColors.primary, 
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),        
 
@@ -26,7 +26,7 @@ class CustomButtonStyle {
 
   static ButtonStyle buttonStyle3() {
     return ElevatedButton.styleFrom(
-      foregroundColor: Colors.white, backgroundColor: AppColors.primarycolor, 
+      foregroundColor: Colors.white, backgroundColor: AppColors.primary, 
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),        
 
@@ -37,7 +37,7 @@ class CustomButtonStyle {
 
   static ButtonStyle buttonStyle4() {
     return ElevatedButton.styleFrom(
-      foregroundColor: Colors.white, backgroundColor: AppColors.primarycolor, 
+      foregroundColor: Colors.white, backgroundColor: AppColors.primary, 
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),        
 
@@ -52,10 +52,10 @@ class CustomButtonStyle {
         borderRadius: BorderRadius.circular(5), 
       ),      
       minimumSize: Size(90, 40),
-      side: const BorderSide(color: AppColors.primarycolor), 
+      side: const BorderSide(color: AppColors.primary), 
       textStyle: const TextStyle(
         fontSize: 16,         
-        color: AppColors.primarycolor, 
+        color: AppColors.primary, 
       ),
     );
   }

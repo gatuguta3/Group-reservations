@@ -2,17 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:group_reservations/components/custom_button_styles.dart';
+import 'package:group_reservations/components/custom_text_form_field.dart';
 import 'package:group_reservations/components/themes.dart';
 import 'package:group_reservations/constants/colors.dart';
 import 'package:group_reservations/models_demo/events_model.dart';
 import 'package:group_reservations/models_demo/group_members_model.dart';
 import 'package:group_reservations/models_demo/groups_model.dart';
-import 'package:group_reservations/models_demo/packages_model.dart';
 import 'package:group_reservations/screens/Main%20Screeens/members_screen.dart';
 import 'package:group_reservations/screens/Main%20Screeens/payment_screeen.dart';
 import 'package:group_reservations/screens/reservations_screens/reservation_view_screen.dart';
 import 'package:group_reservations/services_demo/groups_demodata.dart';
-import 'package:group_reservations/services_demo/packages_demodata.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_date_range_picker/flutter_date_range_picker.dart';
 
@@ -33,76 +32,28 @@ class EventsDetailsScreen extends StatefulWidget {
 
 class _SelectedExperienceScreenState extends State<EventsDetailsScreen> {
 
-final PackagesDemodata packages_demodata = PackagesDemodata();
-final GroupsDemodata groups_demodata = GroupsDemodata();
-late Future<List<Groups>> _groupsFuture; 
-final TextEditingController _dateController = TextEditingController();
+
+
+final List <Groups> groups = fetch_groups(); 
 String currentDate = DateFormat('EEE, MMM d').format(DateTime.now());
 
 @override
   void initState() {
     super.initState();  
-     _groupsFuture = groups_demodata.fetch_groups();  
+     
     
   }
 
   String ? selected_experience_type ;
   DateTime? selected;
 
-void openDialog() {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text(
-          'Please set Reservation Date',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-        ),
-        content:GestureDetector(
-          onDoubleTap: (){
-            Navigator.of(context).pop(); // Close current dialog
-                openCustomDateRangePicker(); 
-          },
-          child:  TextField(
-          controller: _dateController,
-          
-          readOnly: true, // Ensures user cannot type directly
-          decoration: InputDecoration(
-            labelText: 'Select a date',
-            prefixIcon: Icon(Icons.calendar_today),            
-            border: const OutlineInputBorder(),
-          ),
-        ),
-        
-        ), 
-        actions: [
-          OutlinedButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Close the dialog
-            },
-            child: const Text("Cancel"),
-            style: CustomButtonStyle.outlinedButtonStyle(),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Close the dialog
-                openReservationTypeDialog();
-            },
-            style: CustomButtonStyle.buttonStyle4(),
-            child: const Text(
-              "Proceed",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ],
-      );
-    },
-  );
-}
+final TextEditingController reservationDateController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
 
-void openCustomDateRangePicker() async {
-  // Parse start and end dates
+//! Select Reservation Date
+  void _reserveDate(BuildContext context, Map<String, dynamic> package) {
+    // Parse start and end dates
   DateTime startDate = DateFormat('dd-MM-yyyy').parse(widget.events.start_date);
   DateTime endDate = DateFormat('dd-MM-yyyy').parse(widget.events.end_date);
   String currentDate = DateFormat('EEE, MMM d').format(DateTime.now());
@@ -110,67 +61,106 @@ void openCustomDateRangePicker() async {
   // Ensure selected has an initial value
   DateTime? selected = startDate;
 
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(currentDate),
-        content: SizedBox(
-          width: 350,
-          height: 350, // Adjusted height for better usability
-          child: Column(
-            children: [
-              const Divider(thickness: 1),
-              Expanded(
-                child: CalendarDatePicker(
-                  initialDate: selected ?? startDate,
-                  firstDate: startDate,
-                  lastDate: endDate,
-                  onDateChanged: (DateTime newSelectedDate) {
-                    // Update the selected date
-                    setState(() {
-                      selected = newSelectedDate;
-                    });
-                  },
-                  initialCalendarMode: DatePickerMode.day,
-                ),
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Center(
+            child: Text(
+              'Please set Reservation Date',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
               ),
-            ],
-          ),
-        ),
-        actions: [
-          OutlinedButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Close the dialog without changes
-            },
-            child: const Text("Cancel"),
-            style: CustomButtonStyle.outlinedButtonStyle(),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (selected != null) {
-                setState(() {
-                  // Update the controller text with the selected date
-                  _dateController.text = DateFormat('dd-MM-yyyy').format(selected!);
-                });
-              }
-              Navigator.of(context).pop();
-              openDialog(); // Trigger the next dialog or action
-            },
-           style: CustomButtonStyle.buttonStyle4(),
-            child: const Text(
-              "Ok",
-              style: TextStyle(color: Colors.white),
             ),
           ),
-        ],
-      );
-    },
-  );
-}
+          content: SizedBox(
+            height: 180,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Form(
+                  key: _formKey,
+                  child: CustomTextFormField(
+                    textEditingController: reservationDateController,
+                    label: 'Reservation Date',
+                    hintText: 'dd-mm-yyyy',
+                    failedValidationText: 'Please select a reservation date',
+                    readOnly: true,
+                    onTap: () async {
+                      DateTime? selectedDate = await showDatePicker(
+                        context: context,
+                        initialDate: selected,
+                        firstDate: startDate,
+                        lastDate: endDate,
+                      );
+                      if (selectedDate != null) {
+                        // Format the date to dd/mm/yyyy
+                        String formattedDate = "${selectedDate.year}-${selectedDate.month}-${selectedDate.day}";
+                        reservationDateController.text = formattedDate;
+                      }
+                    },
+                    suffixIcon: Icon(
+                      Icons.calendar_month,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'Cancel',
+                        style: TextStyle(
+                          color: AppColors.primary,
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                        child: Text(
+                          'Proceed',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            Navigator.pop(context);
+                            openReservationTypeDialog(context, package);
+
+                            
+                          }
+                        }),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+//
 
 
-void openReservationTypeDialog() {   
+
+// select the type of reservation this is bettween chama and individual
+
+void openReservationTypeDialog(BuildContext context, Map<String, dynamic> package) {   
     
     showDialog(
       context: context,
@@ -182,7 +172,7 @@ void openReservationTypeDialog() {
             OutlinedButton(
               onPressed: () {
                 Navigator.of(context).pop(); 
-                openChamaOptionsDialog();
+                openChamaOptionsDialog(context , package);
               },
               child: Text("Chama"),
               style: CustomButtonStyle.outlinedButtonStyle(),
@@ -190,7 +180,7 @@ void openReservationTypeDialog() {
             ElevatedButton(
               onPressed: () {                
                 Navigator.of(context).pop();
-                
+                openExperienceCompletionDialog(context , package);                
               },
               child: Text("Individual",style: TextStyle(color: Colors.white),),
               style: CustomButtonStyle.buttonStyle4(),
@@ -201,11 +191,11 @@ void openReservationTypeDialog() {
     );
   }
 
+//the below group id is used in the members screen to filter the list of members that will be diaplayed
 int? selectedGroupId;
 
-
-
-void openChamaOptionsDialog() async {   
+// the dialog below opens a show dialog to select the group that  members will be picked from
+void openChamaOptionsDialog(BuildContext context, Map<String, dynamic> package) async {   
     
     showDialog(
       context: context,
@@ -216,20 +206,8 @@ void openChamaOptionsDialog() async {
             mainAxisSize: MainAxisSize.min,
             children: [
               //Text('Is this plan for an individual or Chama ?', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
-             FutureBuilder<List<Groups>>(
-      future: _groupsFuture, // Use the cached future
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Center(child: Text('No groups found.'));
-        }
 
-        final groups = snapshot.data!;
-
-        return Container(
+              Container(
           height: 200,
           child: ListView.builder(
             itemCount: groups.length,
@@ -255,22 +233,20 @@ void openChamaOptionsDialog() async {
                       selectedGroupId = value; // Update the selected group
                     });
                   },
-                  activeColor: Colors.black,
+                  activeColor: AppColors.primary,
                 ),
                 onTap: () {
                   setState(() {
                     selectedGroupId = group.groupid; // Select the group on tap
                   });
                   Navigator.of(context).pop();
-                  openChamaOptionsDialog();
+                  openChamaOptionsDialog(context , package);
                 },
               );
             },
           ),
-        );
-      },
-    )
-
+        )
+            
               ]
           ),
           actions: [
@@ -291,7 +267,7 @@ void openChamaOptionsDialog() async {
 
                 }else{
                   Navigator.of(context).pop();
-                  openExperienceDetailsDialog(context);
+                  openExperienceDetailsDialog(context , package);
                 }            
                 
               },
@@ -304,7 +280,7 @@ void openChamaOptionsDialog() async {
     );         
   }
    
-
+// the counter variable is used to submit a demo group id to the reservation view page 
 int counter = 0;
 
 int generateSequentialId() {
@@ -312,46 +288,17 @@ int generateSequentialId() {
   return counter;
 }
 
-int getTotal(){
-   int totalamount = 0; 
 
-              
-              if (make_collective_payment == true ) {
-                    if( selected_experience_type == "Standard"){
-                      totalamount = selectedMembers.length * widget.events.standard_price; 
-                    }else{
-                      totalamount = selectedMembers.length * widget.events.premium_price; 
-                    }
-                
-              } else {
 
-                if( selected_experience_type == "Standard"){
-                      totalamount = widget.events.standard_price; 
-                    }else{
-                      totalamount = widget.events.premium_price; 
-                    }
-                
-              }
 
-              return totalamount;
-}
-
-String get_experience_type(){
-  String experience_type = "";
-
-   if( selected_experience_type == "Standard"){
-      experience_type =  "Standard";
-        }else{
-      experience_type =  "Premium";
-      }
-      return experience_type;
-
-}
 
 bool make_collective_payment =false;
+
+// selection of members  from the group selected above 
+// the selectedMembers List stores the selected members
 List<GroupMembers> selectedMembers = [];
 
-void openExperienceDetailsDialog(BuildContext context) async {
+void openExperienceDetailsDialog(BuildContext context, Map<String, dynamic> package) async {
   await showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -359,15 +306,15 @@ void openExperienceDetailsDialog(BuildContext context) async {
         builder: (context, setState) {
           return AlertDialog(
             title: Text(
-              'Experience Details ($selected_experience_type) - ${selectedMembers.length} members selected',
+              'Experience Details (${package['type']}) - ${selectedMembers.length} members selected',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             content: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  selected_experience_type == 'Standard'
-                  ? Column(
+
+                  Column(
                           children: [
                           Row(
                           children: [
@@ -384,7 +331,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
                           ),
                           const SizedBox(width: 3),
                           Text(
-                          'Cost per person KES ${widget.events.standard_price}',
+                          'Cost per person KES ${package['price']}',
                           style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -408,59 +355,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
                           ),
                           const SizedBox(width: 3),
                           Text(
-                          'Cover up to ${widget.events.standard_max_people} people',
-                          style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          ),
-                          ),
-                          ],
-                          ),
-                          SizedBox(height: 5),
-                          ],
-                          )
-                          : Column(
-                          children: [
-                          Row(
-                          children: [
-                          Container(
-                          width: 20.0,
-                          height: 20.0,
-                          decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          ),
-                          child: Image.asset(
-                          'icons/Home2.png',
-                          fit: BoxFit.cover,
-                          ),
-                          ),
-                          const SizedBox(width: 3),
-                          Text(
-                          'Cost per person KES ${widget.events.premium_price}',
-                          style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          ),
-                          ),
-                          ],
-                          ),
-                          SizedBox(height: 5),
-                          Row(
-                          children: [
-                          Container(
-                          width: 20.0,
-                          height: 20.0,
-                          decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          ),
-                          child: Image.asset(
-                          'icons/Home21.png',
-                          fit: BoxFit.cover,
-                          ),
-                          ),
-                          const SizedBox(width: 3),
-                          Text(
-                          'Cover up to ${widget.events.premium_max_people} people',
+                          'Cover up to ${package['max_people']} people',
                           style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -472,6 +367,8 @@ void openExperienceDetailsDialog(BuildContext context) async {
                           ],
                           ),
 
+
+           
 
                   const SizedBox(height: 10),
 
@@ -580,7 +477,7 @@ void openExperienceDetailsDialog(BuildContext context) async {
                   Row(
                     children: [
                       Checkbox(
-                        activeColor: AppColors.primarycolor,
+                        activeColor: AppColors.primary,
                         value: make_collective_payment,
                         onChanged: (bool? value) {
                           setState(() {
@@ -603,13 +500,13 @@ void openExperienceDetailsDialog(BuildContext context) async {
                   if (selectedMembers.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        backgroundColor: AppColors.primarycolor,
+                        backgroundColor: AppColors.primary,
                         content: const Text('No members selected.'),
                       ),
                     );
                   } else {
                     Navigator.of(context).pop();
-                    openExperienceCompletionDialog();
+                    openExperienceCompletionDialog(context, package);
                   }
                 },
                 style:CustomButtonStyle.buttonStyle2(),
@@ -633,7 +530,10 @@ void openExperienceDetailsDialog(BuildContext context) async {
   );
 }
 
-void openExperienceCompletionDialog() async{   
+
+// the experience completion dialog that completes the processes in the events details  screen  that proceeds either to the payments  screen or the reserved view  events
+
+void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> package) async{   
     
     await showDialog(
       context: context,
@@ -654,11 +554,11 @@ void openExperienceCompletionDialog() async{
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
-             Icon(Icons.check_circle, size: 60 , color: AppColors.orangecolor),
+             Icon(Icons.check_circle, size: 60 , color: AppColors.secondary),
               SizedBox(height: 10,),
               Text('Reserved Succesfully',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w400)  ),
               SizedBox(height: 5,),
-               Text('Reservation for ${selected_experience_type} Package has been accepted ',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200)  ),
+               Text('Reservation for ${package['type']} Package has been accepted ',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200)  ),
                SizedBox(height: 5,),
                Text('Kindly proceed and Pay',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200)  ),
                SizedBox(height: 10,),
@@ -666,22 +566,16 @@ void openExperienceCompletionDialog() async{
               onPressed: () {                
                 Navigator.of(context).pop();
 
-             int totalamount = 0; 
+                // get total function calculates the total cost , just in case the user selects make collective payment it calculates the total of all  users selected
 
-              if (make_collective_payment == true ) {
-                    if( selected_experience_type == "Standard"){
-                      totalamount = selectedMembers.length * widget.events.standard_price; 
-                    }else{
-                      totalamount = selectedMembers.length * widget.events.premium_price; 
-                    }
+             int totalamount = 0; 
+             int price = package['price'];
+
+              if (make_collective_payment == true ) { 
+                totalamount = selectedMembers.length * price;                   
                 
               } else {
-
-                if( selected_experience_type == "Standard"){
-                      totalamount = widget.events.standard_price; 
-                    }else{
-                      totalamount = widget.events.premium_price; 
-                    }
+                totalamount = price;
                 
               }
 
@@ -699,14 +593,27 @@ void openExperienceCompletionDialog() async{
             ),
             SizedBox(height: 10,),
             TextButton(onPressed: (){
-              Navigator.of(context).pop();             
+              Navigator.of(context).pop();    
+              
+                // get total function calculates the total cost , just in case the user selects make collective payment it calculates the total of all  users selected
+
+             int totalamount = 0; 
+             int price = package['price'];
+
+              if (make_collective_payment == true ) { 
+                totalamount = selectedMembers.length * price;                   
+                
+              } else {
+                totalamount = price;
+                
+              }         
 
                Navigator.push( context, MaterialPageRoute( builder: (context) => ReservationViewScreen(
                                                                reservation_id : counter, 
                                                                title: widget.events.title,
                                                                 description: widget.events.description,
-                                                                package_type: get_experience_type(),
-                                                                price: getTotal(),
+                                                                package_type: package['type'],
+                                                                price: totalamount,
                                                                 payment_status: 'Not paid',
                                                                 reservation_status: 'Expired',
                                                                 date_created: currentDate,
@@ -729,6 +636,7 @@ void openExperienceCompletionDialog() async{
         );
       },
     );
+  
   }
   
 
@@ -803,77 +711,63 @@ void openExperienceCompletionDialog() async{
                   Text('Packages', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),
                  ],),
 
+      
 
+            // updated method of loading my packages
+               SizedBox(
+                    height: 250.0, // Adjust height as needed
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal, // Horizontal scrolling
+                      itemCount: widget.events.packages.length,
+                      itemBuilder: (context, index) {
+                        final package = widget.events.packages[index];
+                        return Container(
+                          width: 350.0, // Width for each card
+                          margin: const EdgeInsets.all(8.0),
+                          child: Card(
+                            color: Color.fromRGBO(245, 245, 245, 1.0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('${package['type']}',style: TextStyle(fontSize: 18 , fontWeight: FontWeight.w500)),
+                                  SizedBox(height: 5,),
+                                  Row(
+                                    children: [
 
-        FutureBuilder<List<Packages>>(
-        future: packages_demodata.fetchPackages(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No packages found.'));
-          }
-
-          final packages = snapshot.data!;
-
-          return SingleChildScrollView( 
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: packages.map((package) {
-                return 
-                  SizedBox(
-                    width: 320,
-                    child: Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Color.fromARGB(34, 0, 0, 0), width: 1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 0,
-                    color: Colors.white,
-                    child:   Padding(
-                      padding:  EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(package.type,style: TextStyle(fontSize: 18 , fontWeight: FontWeight.bold)),
-                          
-                          package.type =='Standard'
-                          ? Column(children: [
-
-                          Row(
-                            children: [
-                             Container(
+                                      Container(
                                   width: 30.0,
                                   height: 30.0,
                                   decoration: BoxDecoration(shape: BoxShape.circle,),
                                   child: Image.asset('icons/Home2.png', fit: BoxFit.cover),
                                 ),
-                             const SizedBox(width: 3,),
-                             Text('KES ${widget.events.standard_price}/Person',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
-                          ],
-                          ),
-                          SizedBox(height: 5,),
+                                const SizedBox(width: 3,),
+                                Text('KES ${package['price']}/Person',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
 
-                          Row(
-                            children: [
-                             Container(
+                                    ],
+                                  ),
+
+                                  SizedBox(height: 5,),
+                                  Row(
+                                    children: [
+                                      Container(
                                   width: 30.0,
                                   height: 30.0,
                                   decoration: BoxDecoration(shape: BoxShape.circle,),
                                   child: Image.asset('icons/Home21.png', fit: BoxFit.cover),
                                 ),
-                             const SizedBox(width: 3,),
-                             Text('Up to ${widget.events.standard_max_people} people',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
-                          ],
-                          ),
-                          SizedBox(height: 5,),
+                                const SizedBox(width: 3,),
+                                Text('Up to ${package['max_people']} people',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
+                                          
+                                    ],
+                                  ),
 
-                          
-                            Row(
-                            children: [
-                              widget.events.standard_status == 'Active'
+                                  SizedBox(height: 5,),
+                                  Row(
+                                    children: [
+
+                                      package['status'] == 'Active'
                               ? Container(
                                   width: 30.0,
                                   height: 30.0,
@@ -882,116 +776,42 @@ void openExperienceCompletionDialog() async{
                                 )
                               : Icon(size:40 ,color: Colors.red,Icons.cancel_outlined),                               
                              const SizedBox(width: 3,),
-                             Text(widget.events.standard_status,style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
-                          ],
-                          ), 
+                             Text(package['status'],style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
+                                      
+                                    ],
+                                  ),
 
-                          SizedBox(height: 5,),
-                           Row(
+                                  SizedBox(height: 10,),
+
+                                   Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                              ElevatedButton(
                               onPressed: () { 
-                                   if(widget.events.standard_status == 'Active'){
-                                    openDialog();
-                                    setState(() {
-                                      selected_experience_type = package.type; // Update the selected group 
-                                    }); 
+                                   if(package['status'] == 'Active'){
+                                    //openDialog();
+                                    //selectSize(size);
+                                    _reserveDate(context, package);
+                                    
                                    }else{
 
                                    }                    
                               },
                               child: Text('Reserve',style: TextStyle(color: Colors.white),),
-                              style: CustomButtonStyle.buttonStyle2(),
+                              style: CustomButtonStyle.buttonStyle3(),
                             ),                      
                           
                           ],)
-                          ],)
-                          : Column(children: [
 
-                          Row(
-                            children: [
-                             Container(
-                                  width: 30.0,
-                                  height: 30.0,
-                                  decoration: BoxDecoration(shape: BoxShape.circle,),
-                                  child: Image.asset('icons/Home2.png', fit: BoxFit.cover),
-                                ),
-                             const SizedBox(width: 3,),
-                             Text('KES ${widget.events.premium_price}/Person',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
-                          ],
+                                ],
+                              ),
+                            ),
                           ),
-                          SizedBox(height: 5,),
-
-                          Row(
-                            children: [
-                             Container(
-                                  width: 30.0,
-                                  height: 30.0,
-                                  decoration: BoxDecoration(shape: BoxShape.circle,),
-                                  child: Image.asset('icons/Home21.png', fit: BoxFit.cover),
-                                ),
-                             const SizedBox(width: 3,),
-                             Text('Up to ${widget.events.premium_max_people} people',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
-                          ],
-                          ),
-                          SizedBox(height: 5,),
-
-                          
-                            Row(
-                            children: [
-                              widget.events.premium_status == 'Active'
-                              ? Container(
-                                  width: 30.0,
-                                  height: 30.0,
-                                  decoration: BoxDecoration(shape: BoxShape.circle,),
-                                  child: Image.asset('icons/Home22.png', fit: BoxFit.cover),
-                                )
-                              : Icon(size:30 ,color: Colors.red,Icons.cancel_outlined),                               
-                             const SizedBox(width: 3,),
-                             Text(widget.events.premium_status,style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
-                          ],
-                          ), 
-
-                          SizedBox(height: 5,),
-                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                             ElevatedButton(
-                              onPressed: () { 
-                                   if(widget.events.premium_status == 'Active'){
-                                    openDialog();
-                                    setState(() {
-                                      selected_experience_type = package.type; // Update the selected group 
-                                    }); 
-                                   }else{
-
-                                   }                    
-                              },
-                              child: Text('Reserve',style: TextStyle(color: Colors.white),),
-                              style: CustomButtonStyle.buttonStyle2(),
-                            ),                      
-                          
-                          ],)
-                          ]),      
-                          
-                          
-
-                          
-                          
-                        ],
-                      ),
+                        );
+                      },
                     ),
-                  ),
-                  );
+                  )
 
- 
-                
-                }).toList(),
-            ),
-          );
-        },
-      ),
 
 
 

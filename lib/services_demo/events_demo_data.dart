@@ -8,7 +8,7 @@ import 'package:group_reservations/models_demo/events_model.dart';
 List <Events> get_events () {
   return [
 
-     Events(
+    Events(
         id: 1,
         image_url: 'images/beachview.jpeg',
         title: 'Beach Getaway',
@@ -20,14 +20,27 @@ List <Events> get_events () {
         package_activities: 'Swimming, Surfing, Beach Volleyball',
         start_date: '10-12-2024',
         end_date:   '21-12-2024',
-        standard_price: 4500,
-        standard_status: 'Active',
-        standard_max_people: 15,
-        premium_price: 6000,
-        premium_status: 'Active',
-        premium_max_people: 20,
+        packages :[
+          {
+            'type':'Standard',
+            'price': 4500,
+            'max_people': 15,
+            'status': 'Active'
+
+          },
+          {
+            'type':'Premium',
+            'price': 7500,
+            'max_people': 25,
+            'status': 'Active'
+
+          }
+        ],
+       
       ),
-      Events(
+    
+    
+    Events(
         id: 2,
         image_url: 'images/beach2.jpeg',
         title: 'Beach Getaway',
@@ -39,14 +52,30 @@ List <Events> get_events () {
         package_activities: 'Swimming, Surfing, Beach Volleyball',
         start_date: '10-12-2024',
         end_date: '20-12-2024',
-        standard_price: 4500,
-        standard_status: 'Active',
-        standard_max_people: 15,
-        premium_price: 6000,
-        premium_status: 'Active',
-        premium_max_people: 20,
+
+        packages :[
+          {
+            'type':'Standard',
+            'price': 4500,
+            'max_people': 15,
+            'status': 'Active'
+
+          },
+          {
+            'type':'Premium',
+            'price': 7500,
+            'max_people': 25,
+            'status': 'Active'
+
+          }
+        ],
+
+
+     
       ),
-      Events(
+    
+    
+    Events(
         id: 3,
         image_url: 'images/beach3.jpeg',
         title: 'Beach Getaway',
@@ -58,14 +87,30 @@ List <Events> get_events () {
         package_activities: 'Swimming, Surfing, Beach Volleyball',
         start_date: '10-12-2024',
         end_date: '19-12-2024',
-        standard_price: 5500,
-        standard_status: 'Active',
-        standard_max_people: 15,
-        premium_price: 7800,
-        premium_status: 'Active',
-        premium_max_people: 20,
+
+        packages :[
+          {
+            'type':'Standard',
+            'price': 4500,
+            'max_people': 15,
+            'status': 'Active'
+
+          },
+          {
+            'type':'Premium',
+            'price': 7500,
+            'max_people': 25,
+            'status': 'Active'
+
+          }
+        ],
+
+
+     
       ),
-      Events(
+    
+    
+    Events(
         id: 4,
         image_url: 'images/beach4.jpeg',
         title: '5 start hotel Experience',
@@ -77,14 +122,29 @@ List <Events> get_events () {
         package_activities: 'Swimming, Surfing, Beach Volleyball',
         start_date: '10-12-2024',
         end_date: '19-12-2024',
-        standard_price: 3500,
-        standard_status: 'Active',
-        standard_max_people: 15,
-        premium_price: 7000,
-        premium_status: 'Active',
-        premium_max_people: 20,
+
+        packages :[
+          {
+            'type':'Standard',
+            'price': 4500,
+            'max_people': 15,
+            'status': 'Active'
+
+          },
+          {
+            'type':'Premium',
+            'price': 7500,
+            'max_people': 25,
+            'status': 'Active'
+
+          }
+        ],
+
+
       ),
-      Events(
+    
+    
+    Events(
         id: 5,
         image_url: 'images/beachview.jpeg',
         title: 'Christmas re - incarnation',
@@ -96,12 +156,25 @@ List <Events> get_events () {
         package_activities: 'Swimming, Surfing, Beach Volleyball',
         start_date: '10-12-2024',
         end_date: '19-12-2024',
-        standard_price: 7500,
-        standard_status: 'Active',
-        standard_max_people: 15,
-        premium_price: 10000,
-        premium_status: 'Inactive',
-        premium_max_people: 20,
+
+        packages :[
+          {
+            'type':'Standard',
+            'price': 4500,
+            'max_people': 15,
+            'status': 'Active'
+
+          },
+          {
+            'type':'Premium',
+            'price': 7500,
+            'max_people': 25,
+            'status': 'Active'
+
+          }
+        ],
+
+
       ),
       
 

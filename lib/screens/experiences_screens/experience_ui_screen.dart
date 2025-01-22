@@ -3,9 +3,15 @@
 import 'package:flutter/material.dart';
 //import 'package:group_reservations/Components/themes.dart';
 import 'package:group_reservations/constants/colors.dart';
+import 'package:group_reservations/models_demo/events_model.dart';
+import 'package:group_reservations/models_demo/goods_model.dart';
+import 'package:group_reservations/models_demo/insurance_model.dart';
 import 'package:group_reservations/screens/experiences_screens/events_screens/events_list.dart';
 import 'package:group_reservations/screens/experiences_screens/goods_screens/goods_list.dart';
 import 'package:group_reservations/screens/experiences_screens/insurance_screens/insurance_list.dart';
+import 'package:group_reservations/services_demo/events_demo_data.dart';
+import 'package:group_reservations/services_demo/goods_demo_data.dart';
+import 'package:group_reservations/services_demo/insurance_demo_data.dart';
 
 class ExperienceUiScreen extends StatefulWidget {
   const ExperienceUiScreen({super.key});
@@ -15,6 +21,11 @@ class ExperienceUiScreen extends StatefulWidget {
 }
 
 class _ExperienceUiScreenState extends State<ExperienceUiScreen> {
+
+  final List <Insurance> insurances = get_insurance();
+  final List<Good> goods = get_goods();
+  final List<Events> events = get_events();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -32,8 +43,8 @@ class _ExperienceUiScreenState extends State<ExperienceUiScreen> {
       Tab(text: "Insurance"),
       Tab(text: "Goods"),
       ],
-      indicatorColor: AppColors.orangecolor,
-      labelColor: AppColors.orangecolor,
+      indicatorColor: AppColors.secondary,
+      labelColor: AppColors.secondary,
       unselectedLabelColor: Colors.black,
       ),
       SizedBox(
@@ -41,9 +52,9 @@ class _ExperienceUiScreenState extends State<ExperienceUiScreen> {
       child: TabBarView(
       children: [
 
-        EventsList(),
-        InsuranceList(),
-        GoodsList(),
+        EventsList(events: events),
+        InsuranceList(insurances : insurances),
+        GoodsList(goods : goods),
       ],
       ),
       ),

@@ -19,7 +19,7 @@ class _AllReservationsScreensState extends State<AllReservationsScreens> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: AppColors.primarycolor,
+          backgroundColor: AppColors.primary,
           automaticallyImplyLeading: false,
           title: Row(
             children: [

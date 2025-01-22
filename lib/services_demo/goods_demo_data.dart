@@ -4,7 +4,12 @@
 
 import 'package:group_reservations/models_demo/goods_model.dart';
 
-final List <Good> get_goods = [
+
+
+List <Good> get_goods (){
+  return[
+
+
   Good(
     id: 1,
     name:'Gormahia T-Shirts - Black',
@@ -42,6 +47,8 @@ final List <Good> get_goods = [
     ], 
 
   ),
+  
+  
   Good(
     id: 2,
     name:'Gormahia T-shirts - Green',
@@ -79,7 +86,9 @@ final List <Good> get_goods = [
     ], 
 
   ),
-   Good(
+  
+  
+  Good(
     id: 2,
     name:'Gormahia T-shirts -   Blue',
     subtitle: 'Sirkal',
@@ -116,4 +125,8 @@ final List <Good> get_goods = [
     ], 
 
   ),
-];
+
+
+
+  ];
+}

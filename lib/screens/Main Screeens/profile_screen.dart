@@ -24,7 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.primarycolor,
+        backgroundColor: AppColors.primary,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -72,7 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               width: 50, // Set width
               height: 50, // Set height (equal to width for a circle)
               decoration: BoxDecoration(
-                color: AppColors.orangecolor, // Background color
+                color: AppColors.secondary, // Background color
                 shape: BoxShape.circle, // Circular shape
               ),
             ),
@@ -85,7 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               width: 50, // Set width
               height: 50, // Set height (equal to width for a circle)
               decoration: BoxDecoration(
-                color: AppColors.orangecolor, // Background color
+                color: AppColors.secondary, // Background color
                 shape: BoxShape.circle, // Circular shape
               ),
             ),
@@ -98,7 +98,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               width: 50, // Set width
               height: 50, // Set height (equal to width for a circle)
               decoration: BoxDecoration(
-                color: AppColors.orangecolor, // Background color
+                color: AppColors.secondary, // Background color
                 shape: BoxShape.circle, // Circular shape
               ),
             ),
@@ -111,21 +111,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               width: 50, // Set width
               height: 50, // Set height (equal to width for a circle)
               decoration: BoxDecoration(
-                color: AppColors.orangecolor, // Background color
-                shape: BoxShape.circle, // Circular shape
-              ),
-            ),
-           ),
-
-
-           SizedBox(height: 10,),
-
-           ListTile(
-            leading: Container(
-              width: 50, // Set width
-              height: 50, // Set height (equal to width for a circle)
-              decoration: BoxDecoration(
-                color: AppColors.orangecolor, // Background color
+                color: AppColors.secondary, // Background color
                 shape: BoxShape.circle, // Circular shape
               ),
             ),
@@ -139,7 +125,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
               width: 50, // Set width
               height: 50, // Set height (equal to width for a circle)
               decoration: BoxDecoration(
-                color: AppColors.orangecolor, // Background color
+                color: AppColors.secondary, // Background color
+                shape: BoxShape.circle, // Circular shape
+              ),
+            ),
+           ),
+
+
+           SizedBox(height: 10,),
+
+           ListTile(
+            leading: Container(
+              width: 50, // Set width
+              height: 50, // Set height (equal to width for a circle)
+              decoration: BoxDecoration(
+                color: AppColors.secondary, // Background color
                 shape: BoxShape.circle, // Circular shape
               ),
               child: Icon(Icons.abc),

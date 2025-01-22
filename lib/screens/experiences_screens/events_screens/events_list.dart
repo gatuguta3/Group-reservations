@@ -1,22 +1,16 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:group_reservations/models_demo/events_model.dart';
 import 'package:group_reservations/screens/experiences_screens/events_screens/events_details_screens.dart';
-import 'package:group_reservations/services_demo/events_demodata.dart';
 
-class EventsList extends StatefulWidget {
-  const EventsList({super.key});
-
-  @override
-  State<EventsList> createState() => _EventsListState();
-}
-
-class _EventsListState extends State<EventsList> {
-
-  final List<Events> events = get_events();
+class EventsList extends StatelessWidget {
+  const EventsList({super.key, required this.events});
+  final List <Events> events;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return  ListView.builder(
                                                       itemCount: events.length,
                                                       itemBuilder: (context, index) {
                                                       final event = events[index];
@@ -101,5 +95,6 @@ class _EventsListState extends State<EventsList> {
                                                       ),
                                                       )
                                                       )
-  );}); }
+  );});
+  }
 }
