@@ -3,14 +3,12 @@
 
 import 'package:group_reservations/models_demo/reservations_model.dart';
 
-class ReservationsDemodata{
-
-  Future<List<Reservations>> fetch_reservations () async {
-   // await Future.delayed(Duration(seconds: 1));
 
 
-    List<Reservations> reservations_list =[
-      Reservations(
+List <Reservations> get_reservations () {
+  return [
+
+    Reservations(
         reservation_id: 1,
         userid: 1,
         groupid: 1,
@@ -38,8 +36,7 @@ class ReservationsDemodata{
         reservation_date: "2022-01-01",
 
       ),
-    ];
-    return reservations_list;
     
-  }
+
+  ];
 }

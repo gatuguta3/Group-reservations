@@ -655,7 +655,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
                   Text(widget.events.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),               
                   
                  ],),
-             Row(children: [ 
+            Row(children: [ 
                 SizedBox(width: 5,), 
                 Text(widget.events.subtitle  ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
@@ -666,13 +666,13 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
             Row(children: [ 
                   SizedBox(width: 5,),                 
                   Text('Venue: ${widget.events.venue}' ,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
                 ),
                  ],),
             Row(children: [ 
                   SizedBox(width: 5,),                 
                   Text('Date: ${widget.events.start_date} - ${widget.events.end_date}' ,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
                 ),
                  ],),
             SizedBox(height: 10),
@@ -711,7 +711,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
 
             // updated method of loading my packages
                SizedBox(
-                    height: 250.0, // Adjust height as needed
+                    height: 200.0, // Adjust height as needed
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal, // Horizontal scrolling
                       itemCount: widget.events.packages.length,
@@ -761,23 +761,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
                                     ],
                                   ),
 
-                                  SizedBox(height: 5,),
-                                  Row(
-                                    children: [
-
-                                      package['status'] == 'Active'
-                              ? Container(
-                                  width: 30.0,
-                                  height: 30.0,
-                                  decoration: BoxDecoration(shape: BoxShape.circle,),
-                                  child: Image.asset('icons/Home22.png', fit: BoxFit.cover),
-                                )
-                              : Icon(size:40 ,color: Colors.red,Icons.cancel_outlined),                               
-                             const SizedBox(width: 3,),
-                             Text(package['status'],style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
-                                      
-                                    ],
-                                  ),
+                                
 
                                   SizedBox(height: 10,),
 

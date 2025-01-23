@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(                      
                   width: double.infinity, 
                   
-                  color: AppColors.primary, 
+                  color: const Color.fromARGB(255, 3, 138, 72), 
                   child:  Column(                  
                     children: [ 
                      const SizedBox(height: 20,),
@@ -189,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                      ),
                    
-                   const SizedBox(height: 10,),
+                   const SizedBox(height: 30,),
                     ]
                   ),
                 ),
