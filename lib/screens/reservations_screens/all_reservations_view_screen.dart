@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:group_reservations/models_demo/reservations_model.dart';
 
 class AllReservationsViewScreen extends StatefulWidget {
-  const AllReservationsViewScreen({super.key});
+  final Reservations reservation;
+  const AllReservationsViewScreen({super.key  , required this.reservation});
 
   @override
   State<AllReservationsViewScreen> createState() => _AllReservationsViewScreenState();

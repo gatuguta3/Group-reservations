@@ -4,6 +4,7 @@ import 'package:group_reservations/constants/colors.dart';
 import 'package:group_reservations/models_demo/reservation_model.dart';
 import 'package:group_reservations/models_demo/reservations_model.dart';
 import 'package:group_reservations/screens/Main%20Screeens/homepage.dart';
+import 'package:group_reservations/screens/reservations_screens/all_reservations_view_screen.dart';
 import 'package:group_reservations/services_demo/reservations_demodata.dart';
 
 class AllReservationsScreens extends StatefulWidget {
@@ -65,7 +66,13 @@ final List<Reservations> reservations = get_reservations();// Get demo data
             itemCount: reservations.length,
             itemBuilder: (context, index) {
               final reservation = reservations[index];              
-              return Padding(
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(context,MaterialPageRoute(
+                    builder: (context) => AllReservationsViewScreen(
+                    reservation : reservation,       )  ),  );
+                },
+                child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Card(
                   child: Padding(
@@ -179,8 +186,9 @@ final List<Reservations> reservations = get_reservations();// Get demo data
                     ),
                   ),
                 ),
-              );
-            })
+              ),
+            
+              );})
     );
   }
 }

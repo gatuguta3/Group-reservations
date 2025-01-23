@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:group_reservations/components/themes.dart';
 import 'package:group_reservations/constants/colors.dart';
+import 'package:group_reservations/screens/reservations_screens/all_reservations_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -80,7 +81,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
            SizedBox(height: 10,),
 
-           ListTile(
+           GestureDetector(
+            onTap: () {
+
+            },
+            child: ListTile(
             leading: Container(
               width: 50, // Set width
               height: 50, // Set height (equal to width for a circle)
@@ -89,38 +94,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 shape: BoxShape.circle, // Circular shape
               ),
             ),
+            title: Text('Reset Pin'),
+            trailing: Icon(Icons.keyboard_arrow_right_sharp , color: AppColors.secondary,),
            ),
-
-           SizedBox(height: 10,),
-
-           ListTile(
-            leading: Container(
-              width: 50, // Set width
-              height: 50, // Set height (equal to width for a circle)
-              decoration: BoxDecoration(
-                color: AppColors.secondary, // Background color
-                shape: BoxShape.circle, // Circular shape
-              ),
-            ),
-           ),
-
-           SizedBox(height: 10,),
-
-           ListTile(
-            leading: Container(
-              width: 50, // Set width
-              height: 50, // Set height (equal to width for a circle)
-              decoration: BoxDecoration(
-                color: AppColors.secondary, // Background color
-                shape: BoxShape.circle, // Circular shape
-              ),
-            ),
            ),
 
 
            SizedBox(height: 10,),
 
-           ListTile(
+           GestureDetector(
+            onTap: () {
+
+              // navigation to all reservations screen
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AllReservationsScreens()),
+            );
+
+            },
+            child: ListTile(
             leading: Container(
               width: 50, // Set width
               height: 50, // Set height (equal to width for a circle)
@@ -129,12 +121,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 shape: BoxShape.circle, // Circular shape
               ),
             ),
+            title: Text('Reservations'),
+            trailing: Icon(Icons.keyboard_arrow_right_sharp , color: AppColors.secondary,),
            ),
+           ),
+
+           SizedBox(height: 10,),
+
+            GestureDetector(
+            onTap: () {
+
+            },
+            child: ListTile(
+            leading: Container(
+              width: 50, // Set width
+              height: 50, // Set height (equal to width for a circle)
+              decoration: BoxDecoration(
+                color: AppColors.secondary, // Background color
+                shape: BoxShape.circle, // Circular shape
+              ),
+            ),
+            title: Text('Policies'),
+            trailing: Icon(Icons.keyboard_arrow_right_sharp , color: AppColors.secondary,),
+           ),
+           ),
+
 
 
            SizedBox(height: 10,),
 
-           ListTile(
+            GestureDetector(
+            onTap: () {
+
+            },
+            child: ListTile(
             leading: Container(
               width: 50, // Set width
               height: 50, // Set height (equal to width for a circle)
@@ -142,9 +162,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 color: AppColors.secondary, // Background color
                 shape: BoxShape.circle, // Circular shape
               ),
-              child: Icon(Icons.abc),
             ),
+            title: Text('Contact Support'),
+            trailing: Icon(Icons.keyboard_arrow_right_sharp , color: AppColors.secondary,),
            ),
+           ),
+
+
+
+           SizedBox(height: 10,),
+
+           GestureDetector(
+            onTap: () {
+
+            },
+            child: ListTile(
+            leading: Container(
+              width: 50, // Set width
+              height: 50, // Set height (equal to width for a circle)
+              decoration: BoxDecoration(
+                color: AppColors.secondary, // Background color
+                shape: BoxShape.circle, // Circular shape
+              ),
+            ),
+            title: Text('Logout'),
+            trailing: Icon(Icons.keyboard_arrow_right_sharp , color: AppColors.secondary,),
+           ),
+           ),
+
 
 
 
