@@ -27,14 +27,9 @@ class _SelectedGoodsScreenState extends State<GoodsDetailsScreen> {
   DateTime? selected;
   final TextEditingController _dateController = TextEditingController();
   String currentDate = DateFormat('EEE, MMM d').format(DateTime.now());
+  String? formattedDate;
 
-  Map<String, dynamic>? selectedSize;
-
-  void selectSize(Map<String, dynamic> size) {
-    setState(() {
-      selectedSize = size; // Update the selected size
-    });
-  }
+ 
 
 
 
@@ -210,7 +205,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> s
               SizedBox(height: 10,),
               Text('Reserved Succesfully',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w400)  ),
               SizedBox(height: 5,),
-               Text('Reservation for ${selectedSize!['size']} Package has been accepted ',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200)  ),
+               Text('Reservation for ${size['size']} Package has been accepted ',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200)  ),
                SizedBox(height: 5,),
                Text('Kindly proceed and Pay',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200)  ),
                SizedBox(height: 10,),
@@ -219,7 +214,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> s
                 Navigator.of(context).pop();
              
 
-              Navigator.push(context, MaterialPageRoute( builder: (context) => PaymentScreeen( amount: selectedSize!['price_per_person'] ),), );
+              Navigator.push(context, MaterialPageRoute( builder: (context) => PaymentScreeen( amount: size['price_per_person'] ),), );
                                 
               },
               child: Row(
@@ -236,15 +231,9 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> s
               Navigator.of(context).pop();             
 
                Navigator.push( context, MaterialPageRoute( builder: (context) => ReservationViewScreen(
-                                                               reservation_id : counter, 
-                                                               title: widget.goods.name,
-                                                                description: widget.goods.description,
-                                                                package_type: selectedSize!['size'],
-                                                                price: selectedSize!['price_per_person'],
-                                                                payment_status: 'Not paid',
-                                                                reservation_status: 'Expired',
-                                                                date_created: currentDate,
-                                                                reservation_date: widget.goods.end_date,
+                                                               //goods : widget.goods,
+                                                               //size : size,
+                                                                
                                                                                                                               
                                                               )
                                                             ),

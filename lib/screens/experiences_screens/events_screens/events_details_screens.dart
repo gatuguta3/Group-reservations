@@ -44,8 +44,7 @@ String currentDate = DateFormat('EEE, MMM d').format(DateTime.now());
     
   }
 
-  String ? selected_experience_type ;
-  DateTime? selected;
+  String? formattedDate;
 
 final TextEditingController reservationDateController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -306,7 +305,7 @@ void openExperienceDetailsDialog(BuildContext context, Map<String, dynamic> pack
         builder: (context, setState) {
           return AlertDialog(
             title: Text(
-              'Experience Details (${package['type']}) - ${selectedMembers.length} members selected',
+              'Experience Details (${package['type']}) ',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             content: SingleChildScrollView(
@@ -609,15 +608,9 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
               }         
 
                Navigator.push( context, MaterialPageRoute( builder: (context) => ReservationViewScreen(
-                                                               reservation_id : counter, 
-                                                               title: widget.events.title,
-                                                                description: widget.events.description,
-                                                                package_type: package['type'],
-                                                                price: totalamount,
-                                                                payment_status: 'Not paid',
-                                                                reservation_status: 'Expired',
-                                                                date_created: currentDate,
-                                                                reservation_date: widget.events.end_date,
+                                                              // events : widget.events,
+                                                                //package: package,
+                                                                
                                                                                                                               
                                                               )
                                                             ),
@@ -654,17 +647,21 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 5),             
+
 
             Row(children: [ 
-                  SizedBox(width: 5,),                 
-                  Text(widget.events.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),
+                  SizedBox(width: 5,),  
+                  Text(widget.events.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),               
+                  
                  ],),
              Row(children: [ 
-                  SizedBox(width: 5,),                 
-                  Text(widget.events.subtitle  ,
+                SizedBox(width: 5,), 
+                Text(widget.events.subtitle  ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
+                                
+                  
                  ],),
             Row(children: [ 
                   SizedBox(width: 5,),                 
@@ -685,7 +682,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
                   SizedBox(width: 5,),                 
                   Text('What to expect :', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),
                  ],),
-            Padding(padding: const EdgeInsets.symmetric(horizontal: 0.0),
+            Padding(padding: const EdgeInsets.symmetric(horizontal: 4.0),
                     child:Text(widget.events.description ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
@@ -696,19 +693,18 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
                 ),
                  ],),
-            Row(children: [ 
-                  SizedBox(width: 5,),                 
-                  Text(widget.events.package_activities ,
+             Padding(padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    child:Text(widget.events.package_activities ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
-                 ],),
+                 ),
             SizedBox(height: 10),
             Divider(thickness: 1,),
             SizedBox(height: 10),
 
              Row(children: [ 
                   SizedBox(width: 5,),                 
-                  Text('Packages', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),
+                  Text('Packages', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400), ),
                  ],),
 
       
@@ -722,16 +718,18 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
                       itemBuilder: (context, index) {
                         final package = widget.events.packages[index];
                         return Container(
-                          width: 350.0, // Width for each card
-                          margin: const EdgeInsets.all(8.0),
+                          width: MediaQuery.of(context).size.width * 0.9,
+                            padding: EdgeInsets.all(8),
+                          
                           child: Card(
-                            color: Color.fromRGBO(245, 245, 245, 1.0),
+                            elevation: 4,
+                            
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start, 
                                 children: [
-                                  Text('${package['type']}',style: TextStyle(fontSize: 18 , fontWeight: FontWeight.w500)),
+                                  Text('${package['type']}',style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w500)),
                                   SizedBox(height: 5,),
                                   Row(
                                     children: [
@@ -798,7 +796,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
                                    }                    
                               },
                               child: Text('Reserve',style: TextStyle(color: Colors.white),),
-                              style: CustomButtonStyle.buttonStyle3(),
+                              style: CustomButtonStyle.buttonStyle2(),
                             ),                      
                           
                           ],)

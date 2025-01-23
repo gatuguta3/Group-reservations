@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:group_reservations/components/themes.dart';
 import 'package:group_reservations/constants/colors.dart';
+import 'package:group_reservations/models_demo/reservation_model.dart';
 import 'package:group_reservations/screens/Main%20Screeens/homepage.dart';
 
 class AllReservationsScreens extends StatefulWidget {
@@ -17,6 +18,7 @@ class _AllReservationsScreensState extends State<AllReservationsScreens> {
 
   @override
   Widget build(BuildContext context) {
+    //final List<Reservation> reservations = getDemoReservations(); // Get demo data
     return Scaffold(
       appBar: AppBar(
           backgroundColor: AppColors.primary,

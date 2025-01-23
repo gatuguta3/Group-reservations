@@ -6,6 +6,7 @@ class Events{
    final String title;
    final String description;
    final String location;
+   final String company;
    final String venue;
    final String occasion;
    final String subtitle;
@@ -22,6 +23,7 @@ class Events{
     required this.title,
     required this.description,
     required this.location,
+    required this.company,
     required this.venue,
     required this.occasion,
     required this.subtitle,

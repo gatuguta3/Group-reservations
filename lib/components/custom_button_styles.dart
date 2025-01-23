@@ -20,7 +20,7 @@ class CustomButtonStyle {
         borderRadius: BorderRadius.circular(5),        
 
       ), 
-      minimumSize: Size(290, 40),
+      minimumSize: Size(280, 40),
     );
   }
 

@@ -253,7 +253,7 @@ void new_policy_member_dialog () {
             SizedBox(width: 5,),
             ElevatedButton(
               onPressed: () {                
-                if (Name_controller.text.isNotEmpty  && National_id_controller.text.isNotEmpty &&  selected_relationship!= null ) {
+                if (Name_controller.text.isNotEmpty  &&  selected_relationship!= null ) {
                   Navigator.of(context).pop();
                   setState(() {
                     // Add the member to the list
@@ -371,28 +371,39 @@ void payment_options_dialog() {
 
           return AlertDialog(
             title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Make policy payment',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             content: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Choose payment method:',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
                 ),
+                
+              ],
+            ),
+                
                 SizedBox(height: 3),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
+                  padding:  const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.min, 
                     children: [
                       Row(
                         children: [
@@ -587,8 +598,8 @@ void clear_controllers () {
                                      children: [
                                        Text('Subtitle'),
                                        Text(  widget.insurances.subtitle, style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),  ),        ],  ),
-                             Column( crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [ Text('Provider'),
+                             Column( crossAxisAlignment: CrossAxisAlignment.end,
+                                      children: [ Text('Insurance provider'),
                                                  Text( widget.insurances.provider, style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),
                                                       ), ],),
                                                       
@@ -610,14 +621,14 @@ void clear_controllers () {
                              Column(crossAxisAlignment: CrossAxisAlignment.start,
                                      children: [
                                       Text(  widget.insurances.provider, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),  ),
-                                      Text('Providers' , style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),),        ],  ),
+                                      Text('Insurance provider' , style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),),        ],  ),
                                        
                                        
-                              Column(crossAxisAlignment: CrossAxisAlignment.start,
+                              Column(crossAxisAlignment: CrossAxisAlignment.center,
                                      children: [                                       
                                        Text(  '${selectedPlan!['name']}', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),  ),  
                                        Text('${selectedPlan!['name']} - ${selectedPlan!['claims']}' , style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),),      ],  ),
-                             Column( crossAxisAlignment: CrossAxisAlignment.start,
+                             Column( crossAxisAlignment: CrossAxisAlignment.end,
                                       children: [ 
                                                  Text( '${selectedPlan!['status']}', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400), ), 
                                                       Text('Status' , style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),),
@@ -633,13 +644,13 @@ void clear_controllers () {
                                      children: [
                                        Text('${selectedPlan!['cost_to_cover']}' , style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
                                        Text(  'Cover', style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),  ),        ],  ),
-                             Column( crossAxisAlignment: CrossAxisAlignment.start,
+                             Column( crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [ Text('Ksh ${selectedPlan!['price_per_person']}', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
                                                  Text( '${selectedPlan!['name']}', style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),        ), ],),
 
-                              Column( crossAxisAlignment: CrossAxisAlignment.start,
+                              Column( crossAxisAlignment: CrossAxisAlignment.end,
                                       children: [ Text('${selectedPlan!['max_members']}', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
-                                                 Text( 'Max members',   style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),      ), ],),
+                                                  Text( 'Max members',   style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),      ), ],),
                                                                                                       
                                                       ],),
 
@@ -662,17 +673,18 @@ void clear_controllers () {
                             ],),
                          SizedBox(height: 5),
                          SizedBox(
-                    height: 250.0, // Adjust height as needed
+                    height: 300.0, // Adjust height as needed
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal, // Horizontal scrolling
                       itemCount: widget.insurances.plans.length,
                       itemBuilder: (context, index) {
                         final plan = widget.insurances.plans[index];
                         return Container(
-                          width: 250.0, // Width for each card
+                          width: MediaQuery.of(context).size.width * 0.9,
+                            padding: EdgeInsets.all(8),
                           margin: const EdgeInsets.all(8.0),
                           child: Card(
-                            color: Color.fromRGBO(245, 245, 245, 1.0),
+                            elevation: 4,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -685,17 +697,15 @@ void clear_controllers () {
                                   const SizedBox(height: 5), 
                                   Row(
                                   children: [
-                                  Container(
-                                        width: 20.0,
-                                        height: 20.0,
+                                 
+                                  Container(  width: 20.0,    height: 20.0,
                                         decoration: BoxDecoration(shape: BoxShape.circle,),
-                                        child: Image.asset('icons/Vector5.png', fit: BoxFit.cover),
-                                      ),
+                                        child: Image.asset('icons/Vector5.png', fit: BoxFit.cover),),
                                   const SizedBox(width: 3,),
                                   Text('cover up to KES ${plan['cost_to_cover']}',style: TextStyle(fontSize: 13 , fontWeight: FontWeight.w300)),
                                 ],
                                 ), 
-                                SizedBox(height: 2),                                  
+                                SizedBox(height: 5),                                  
                                   Row(
                                   children: [
                                   Container(
@@ -708,7 +718,7 @@ void clear_controllers () {
                                   Text('Pay only KES ${plan['price_per_person']} per person',style: TextStyle(fontSize: 13 , fontWeight: FontWeight.w300)),
                                 ],
                                 ),  
-                                SizedBox(height: 2),
+                                SizedBox(height: 5),
                                  Row(
                                   children: [
                                   Container(
@@ -722,10 +732,16 @@ void clear_controllers () {
                                 ],
                                 ),                                  
                                   
-                                  const SizedBox(height: 2),
+                                  const SizedBox(height: 10),
                                   Text(  'Additional info:', style: TextStyle(fontWeight: FontWeight.w400), ),
-                                  Text(plan['more_info'],style: TextStyle(fontSize: 13 , fontWeight: FontWeight.w300)),
-                                  SizedBox(height: 2,),
+                                  SizedBox(height: 10,),
+                                  Padding(padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                        child:Text(' . ${plan['more_info']}' ,
+                                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
+                                    ),
+                                    ),
+                                  
+                                  SizedBox(height: 12,),
                                   Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -734,7 +750,7 @@ void clear_controllers () {
                                       select_reservation_type_Dialog();
                                       selectPlan(plan);   },
                                     child: Text('Get Plan',style: TextStyle(color: Colors.white),),
-                                    style: CustomButtonStyle.buttonStyle3(),
+                                    style: CustomButtonStyle.buttonStyle2(),
                                   ),                      
                                 
                                 ],)
@@ -865,6 +881,7 @@ void clear_controllers () {
                     ),
                   ),
 
+
                      ],
               )
                         : SizedBox(height: 1,),
@@ -899,14 +916,13 @@ void clear_controllers () {
                                     onTap: (){
                                       
                                     },
-                                    child: Icon(Icons.person_add_alt_1_outlined ),
+                                    child: Icon(Icons.person_add_alt_1_outlined , color : Colors.white),
                                    ),
                                    SizedBox(width: 10,),
                                    GestureDetector(
                                     onTap: (){},
-                                    child: Icon(Icons.edit ),
+                                    child: Icon(Icons.edit , color : Colors.white),
                                    ),
-                                   
                                    
 
                                    ],)),
@@ -987,27 +1003,26 @@ void clear_controllers () {
                       itemBuilder: (context, index) {
                         final payment = widget.insurances.payments[index];
                         return Container(
-                          width: 250.0, // Width for each card
-                          margin: const EdgeInsets.all(8.0),
+                          width: 300.0, // Width for each card
+                          
                           child: Card(
                             shape: RoundedRectangleBorder(
                               
                               borderRadius: BorderRadius.circular(4 ),
 
                             ),
-                            elevation: 0,
-                            color: Colors.white,
+                            elevation: 4,
+                            
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-
-
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           Text('Transaction_Ref', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10, ), ),
                                           Text('  ${payment['Transaction_Ref']}', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, ), ),
@@ -1015,6 +1030,7 @@ void clear_controllers () {
                                         ],
                                       ),
                                       Column(
+                                        mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
                                            Text('Amount', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10, ), ),
                                           Text('Ksh:  ${payment['amount']}', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, ), ),
@@ -1024,13 +1040,14 @@ void clear_controllers () {
                                       )
                                     ],
                                   ),
-                                  SizedBox(height: 3,),
+                                  
                                   Divider(thickness: 1,),
-                                  SizedBox(height: 3,),
+                                  
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                            Text('Date Paid', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10, ), ),
                                           Text('  ${payment['date:paid']}', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, ), ),
@@ -1038,6 +1055,7 @@ void clear_controllers () {
                                         ],
                                       ),
                                       Column(
+                                        mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
                                            Text('status', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10, ), ),
                                           Text('  ${payment['status']}', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, ), ),
@@ -1120,18 +1138,19 @@ void clear_controllers () {
                               borderRadius: BorderRadius.circular(4 ),
 
                             ),
-                            elevation: 0,
-                            color: Colors.white,
+                            elevation: 4,                            
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                
                                 children: [
                                   
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text('Policy owner', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10, ), ),
                                           Text('  ${claim.owner}', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 13, ), ),
@@ -1139,6 +1158,8 @@ void clear_controllers () {
                                         ],
                                       ),
                                       Column(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                            Text('Date', style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10, ), ),
                                           Text('${claim.daterequested}', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 13, ), ),
@@ -1148,9 +1169,9 @@ void clear_controllers () {
                                       )
                                     ],
                                   ),
-                                  SizedBox(height: 3,),
+                                  
                                   Divider(thickness: 1,),
-                                  SizedBox(height: 3,),
+                                 
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [

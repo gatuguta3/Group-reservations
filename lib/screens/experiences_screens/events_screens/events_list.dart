@@ -69,7 +69,7 @@ class EventsList extends StatelessWidget {
                                                       ],
                                                       ),
                                                       Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      crossAxisAlignment: CrossAxisAlignment.end,
                                                       children: [
                                                       Text('Venue'),
                                                       Text(

@@ -70,7 +70,7 @@ style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),
 Column(
 crossAxisAlignment: CrossAxisAlignment.start,
 children: [
-Text('Provider'),
+Text('Insurance provider'),
 Text(
 insurance.provider,
 style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),
