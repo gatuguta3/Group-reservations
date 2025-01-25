@@ -4,6 +4,7 @@ class Reservation {
   final String eventReservationDate;
   final List packages;
   final String status;
+  final int amount;
 
   Reservation({
     required this.eventName,
@@ -11,5 +12,6 @@ class Reservation {
     required this.eventReservationDate,
     required this.packages,
     required this.status,
+    required this.amount,
   });
 }

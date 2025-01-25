@@ -6,8 +6,10 @@ import 'package:group_reservations/components/custom_text_form_field.dart';
 import 'package:group_reservations/components/themes.dart';
 import 'package:group_reservations/constants/colors.dart';
 import 'package:group_reservations/models_demo/goods_model.dart';
+import 'package:group_reservations/models_demo/reservation_model.dart';
 import 'package:group_reservations/screens/Main%20Screeens/payment_screeen.dart';
 import 'package:group_reservations/screens/reservations_screens/reservation_view_screen.dart';
+
 import 'package:intl/intl.dart';
 
 class GoodsDetailsScreen extends StatefulWidget {
@@ -231,8 +233,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> s
               Navigator.of(context).pop();             
 
                Navigator.push( context, MaterialPageRoute( builder: (context) => ReservationViewScreen(
-                                                               //goods : widget.goods,
-                                                               //size : size,
+                                                               
                                                                 
                                                                                                                               
                                                               )

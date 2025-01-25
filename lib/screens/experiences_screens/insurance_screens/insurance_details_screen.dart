@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:group_reservations/components/custom_button_styles.dart';
 import 'package:group_reservations/components/scaffold_messenger.dart';
 import 'package:group_reservations/components/themes.dart';
@@ -212,6 +213,10 @@ void new_policy_member_dialog () {
 
               TextField(
                 controller: National_id_controller,
+                 keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
                 decoration: InputDecoration(
                 hintText: "10235409",
                 hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
@@ -642,7 +647,7 @@ void clear_controllers () {
                            children: [
                              Column(crossAxisAlignment: CrossAxisAlignment.start,
                                      children: [
-                                       Text('${selectedPlan!['cost_to_cover']}' , style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
+                                       Text('Ksh ${selectedPlan!['cost_to_cover']}' , style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
                                        Text(  'Cover', style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),  ),        ],  ),
                              Column( crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [ Text('Ksh ${selectedPlan!['price_per_person']}', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
@@ -793,7 +798,10 @@ void clear_controllers () {
                           OutlinedButton(
                             onPressed: () { 
                               setState(() {
-                                get_policy == false;
+                                get_policy = false;
+                                plans = true;
+                                selected_plan_details = false;
+                                
                               });
                             },
                               child: Text("Cancel Policy" ,style: TextStyle(color: AppColors.primary)),

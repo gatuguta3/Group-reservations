@@ -68,7 +68,7 @@ style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),
 ],
 ),
 Column(
-crossAxisAlignment: CrossAxisAlignment.start,
+crossAxisAlignment: CrossAxisAlignment.end,
 children: [
 Text('Insurance provider'),
 Text(

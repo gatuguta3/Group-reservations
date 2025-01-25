@@ -8,6 +8,7 @@ import 'package:group_reservations/constants/colors.dart';
 import 'package:group_reservations/models_demo/events_model.dart';
 import 'package:group_reservations/models_demo/group_members_model.dart';
 import 'package:group_reservations/models_demo/groups_model.dart';
+import 'package:group_reservations/models_demo/reservation_model.dart';
 import 'package:group_reservations/screens/Main%20Screeens/members_screen.dart';
 import 'package:group_reservations/screens/Main%20Screeens/payment_screeen.dart';
 import 'package:group_reservations/screens/reservations_screens/reservation_view_screen.dart';
@@ -98,6 +99,9 @@ final TextEditingController reservationDateController = TextEditingController();
                         // Format the date to dd/mm/yyyy
                         String formattedDate = "${selectedDate.year}-${selectedDate.month}-${selectedDate.day}";
                         reservationDateController.text = formattedDate;
+                        setState(() {
+                          formattedDate =formattedDate;
+                        });
                       }
                     },
                     suffixIcon: Icon(
@@ -608,12 +612,10 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
               }         
 
                Navigator.push( context, MaterialPageRoute( builder: (context) => ReservationViewScreen(
-                                                              // events : widget.events,
-                                                                //package: package,
-                                                                
+                                                              
+                                                               ),
                                                                                                                               
-                                                              )
-                                                            ),
+               )
                                                           );
 
             }, child: Text('View Reservation' , style: TextStyle( fontSize: 12 , color: Colors.grey , fontWeight: FontWeight.w200 , decoration: TextDecoration.underline),))
