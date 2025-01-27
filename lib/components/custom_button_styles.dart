@@ -24,6 +24,18 @@ class CustomButtonStyle {
     );
   }
 
+   static ButtonStyle buttonStyle_2_1() {
+    return ElevatedButton.styleFrom(
+      foregroundColor: Colors.white, backgroundColor: AppColors.primary, 
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),        
+
+      ), 
+      minimumSize: Size(340, 40),
+    );
+  }
+
+
   static ButtonStyle buttonStyle3() {
     return ElevatedButton.styleFrom(
       foregroundColor: Colors.white, backgroundColor: AppColors.primary, 

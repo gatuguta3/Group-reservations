@@ -43,19 +43,9 @@ final List<Reservations> reservations = get_reservations();// Get demo data
 
           floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.black,
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Homepage(
-                          initialIndex: 1,
-                        )
+          onPressed: () {          
 
-                    // ExploreScreen(
-                    //       initialIndex: 3,
-                    //     )
-
-                    ));
+                    Navigator.pushAndRemoveUntil(   context,  MaterialPageRoute( builder: (context) => Homepage(initialIndex: 1), ), (route) => false,    );
           },
           child: Icon(
             Icons.add,

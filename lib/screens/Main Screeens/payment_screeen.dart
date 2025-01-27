@@ -70,13 +70,13 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
                             ],),
 
               Row(
-                mainAxisAlignment:MainAxisAlignment.spaceEvenly ,
+                mainAxisAlignment:MainAxisAlignment.spaceBetween ,
                 children: [
                        Row(
             children: [
               Radio<String>(
                 value: 'M-Pesa',
-                activeColor: AppColors.primary,
+                activeColor: AppColors.secondary,
                 groupValue: _selectedOption,
                 onChanged: _handleRadioValueChange,
               ),
@@ -87,7 +87,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
             children: [
               Radio<String>(
                 value: 'Wallet',
-                activeColor: AppColors.primary,
+                activeColor: AppColors.secondary,
                 groupValue: _selectedOption,
                 onChanged: _handleRadioValueChange,
               ),
@@ -99,7 +99,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
             children: [
               Radio<String>(
                 value: 'Card',
-                activeColor: AppColors.primary,
+                activeColor: AppColors.secondary,
                 groupValue: _selectedOption,
                 onChanged: _handleRadioValueChange,
               ),
@@ -117,7 +117,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
                 controller: _controller,
                 enabled: false,                      
                 decoration: InputDecoration(
-                  labelText: 'Amount',
+                 
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),                   
 
@@ -144,7 +144,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
                                       'Complete',
                                       style: TextStyle(color: Colors.white),
                                     ),
-                                    SizedBox(width: 8),
+                                    SizedBox(width: 20),
                                     Icon(
                                       Icons.arrow_forward, 
                                       color: Colors.white, 
@@ -152,7 +152,7 @@ class _PaymentScreeenState extends State<PaymentScreeen> {
                                      
                                   ],
                                 ),
-                                style:CustomButtonStyle.buttonStyle2(),
+                                style:CustomButtonStyle.buttonStyle_2_1(),
                               )       
                           
                           ],),

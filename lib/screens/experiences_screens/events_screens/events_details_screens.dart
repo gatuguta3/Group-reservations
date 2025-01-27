@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, non_constant_identifier_names, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, unnecessary_brace_in_string_interps, unused_import, unnecessary_string_interpolations, unused_local_variable, unused_element, unnecessary_null_comparison
+// ignore_for_file: use_key_in_widget_constructors, non_constant_identifier_names, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, unnecessary_brace_in_string_interps, unused_import, unnecessary_string_interpolations, unused_local_variable, unused_element, unnecessary_null_comparison, avoid_function_literals_in_foreach_calls
 
 import 'package:flutter/material.dart';
 import 'package:group_reservations/components/custom_button_styles.dart';
@@ -41,7 +41,7 @@ String currentDate = DateFormat('EEE, MMM d').format(DateTime.now());
 @override
   void initState() {
     super.initState();  
-     
+      
     
   }
 
@@ -49,6 +49,7 @@ String currentDate = DateFormat('EEE, MMM d').format(DateTime.now());
 
 final TextEditingController reservationDateController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
 
 
 //! Select Reservation Date
@@ -144,6 +145,7 @@ final TextEditingController reservationDateController = TextEditingController();
                           if (_formKey.currentState!.validate()) {
                             Navigator.pop(context);
                             openReservationTypeDialog(context, package);
+                            clearAllTextFields();
 
                             
                           }
@@ -449,6 +451,7 @@ void openExperienceDetailsDialog(BuildContext context, Map<String, dynamic> pack
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w200,
+                                    color: Colors.white
                                   ),
                                 ),
                                 SizedBox(width: 5,),
@@ -521,6 +524,7 @@ void openExperienceDetailsDialog(BuildContext context, Map<String, dynamic> pack
                       "Make reservation",
                       style: TextStyle(color: Colors.white),
                     ),
+                    SizedBox(width: 10,),
                     Icon(Icons.arrow_forward, color: Colors.white),
                   ],
                 ),
@@ -561,7 +565,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
               SizedBox(height: 10,),
               Text('Reserved Succesfully',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w400)  ),
               SizedBox(height: 5,),
-               Text('Reservation for ${package['type']} Package has been accepted ',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200)  ),
+               Text('Reservation for ${package['type']} Package has been accepted ',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200) , textAlign: TextAlign.center,   ),
                SizedBox(height: 5,),
                Text('Kindly proceed and Pay',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200)  ),
                SizedBox(height: 10,),
@@ -590,6 +594,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                 Text("Proceed to Pay",style: TextStyle(color: Colors.white),),
+                SizedBox(width: 10,),
                 Icon(Icons.arrow_forward, color: Colors.white)
               ],),
               style: CustomButtonStyle.buttonStyle2()
@@ -634,6 +639,17 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
   
   }
   
+//function to clear controllers
+
+void clearControllers(List<TextEditingController> controllers) => 
+    controllers.forEach((controller) => controller.clear());
+
+void clearAllTextFields() {
+  clearControllers([reservationDateController]);
+}
+
+// logic to convert date format
+
 
   @override
   Widget build(BuildContext context) {
@@ -649,16 +665,16 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: 5),             
+            SizedBox(height: 16),             
 
 
             Row(children: [ 
-                  SizedBox(width: 5,),  
+                  SizedBox(width: 16,),  
                   Text(widget.events.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),               
                   
                  ],),
             Row(children: [ 
-                SizedBox(width: 5,), 
+                SizedBox(width: 16,), 
                 Text(widget.events.subtitle  ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
@@ -666,36 +682,42 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
                   
                  ],),
             Row(children: [ 
-                  SizedBox(width: 5,),                 
+                  SizedBox(width: 16,),                 
                   Text('Venue: ${widget.events.venue}' ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
                 ),
                  ],),
-            Row(children: [ 
-                  SizedBox(width: 5,),                 
-                  Text('Date: ${widget.events.start_date} - ${widget.events.end_date}' ,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
-                ),
-                 ],),
+
+                 
+            Row(
+          children: [
+            SizedBox(width: 16),
+            Text(
+              'Date: ${widget.events.start_date} - ${widget.events.end_date}',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
+            ),
+          ],
+        ),
+
             SizedBox(height: 10),
             Divider(thickness: 1,),
             SizedBox(height: 10),
             Row(children: [ 
-                  SizedBox(width: 5,),                 
+                  SizedBox(width: 16,),                 
                   Text('What to expect :', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400), ),
                  ],),
-            Padding(padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            Padding(padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child:Text(widget.events.description ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
                  ),
             Row(children: [ 
-                  SizedBox(width: 5,),                 
+                  SizedBox(width: 16,),                 
                   Text('Package include:' ,
                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
                 ),
                  ],),
-             Padding(padding: const EdgeInsets.symmetric(horizontal: 4.0),
+             Padding(padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child:Text(widget.events.package_activities ,
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                 ),
@@ -705,7 +727,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
             SizedBox(height: 10),
 
              Row(children: [ 
-                  SizedBox(width: 5,),                 
+                  SizedBox(width: 16,),                 
                   Text('Packages', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400), ),
                  ],),
 
@@ -713,7 +735,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
 
             // updated method of loading my packages
                SizedBox(
-                    height: 200.0, // Adjust height as needed
+                    height: 210.0, // Adjust height as needed
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal, // Horizontal scrolling
                       itemCount: widget.events.packages.length,
@@ -731,7 +753,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start, 
                                 children: [
-                                  Text('${package['type']}',style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w500)),
+                                  Text('${package['type']}',style: TextStyle(fontSize: 24 , fontWeight: FontWeight.w500)),
                                   SizedBox(height: 5,),
                                   Row(
                                     children: [
