@@ -73,7 +73,7 @@ class EventsList extends StatelessWidget {
                                                       children: [
                                                       Text('Venue'),
                                                       Text(
-                                                      event.location,
+                                                      event.venue,
                                                       style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),
                                                       ),
                                                       ],

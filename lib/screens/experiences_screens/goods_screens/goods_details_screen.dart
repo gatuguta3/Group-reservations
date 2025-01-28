@@ -207,7 +207,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> s
               SizedBox(height: 10,),
               Text('Reserved Succesfully',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w400)  ),
               SizedBox(height: 5,),
-               Text('Reservation for ${size['size']} Package has been accepted ',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200)  ),
+               Text('Reservation for ${size['name']} Package has been accepted ',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200)  ),
                SizedBox(height: 5,),
                Text('Kindly proceed and Pay',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200)  ),
                SizedBox(height: 10,),
@@ -216,7 +216,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> s
                 Navigator.of(context).pop();
              
 
-              Navigator.push(context, MaterialPageRoute( builder: (context) => PaymentScreeen( amount: size['price_per_person'] ),), );
+              Navigator.push(context, MaterialPageRoute( builder: (context) => PaymentScreeen( amount: size['price'] ),), );
                                 
               },
               child: Row(
@@ -230,12 +230,25 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> s
             ),
             SizedBox(height: 10,),
             TextButton(onPressed: (){
-              Navigator.of(context).pop();             
+              Navigator.of(context).pop();        
 
-               Navigator.push( context, MaterialPageRoute( builder: (context) => ReservationViewScreen(
-                                                               
-                                                                
-                                                                                                                              
+              Reservation reservation = Reservation(
+                eventName : widget.goods.name,
+                eventDate: widget.goods.start_date,
+                eventDescription: widget.goods.description,
+                eventReservationDate : widget.goods.end_date,
+                package_name : size['name'],
+                package_capacity: size['capacity'],
+                package_price : size['price'],
+                package_status: size['status'],
+                status : 'Not Paid',
+                amount: size['price'],
+                
+
+             
+            );     
+
+               Navigator.push( context, MaterialPageRoute( builder: (context) => ReservationViewScreen( reservation: reservation,                                                                                                                             
                                                               )
                                                             ),
                                                           );
@@ -333,7 +346,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> s
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Size ${size['size']}',style: TextStyle(fontSize: 18 , fontWeight: FontWeight.w500)),
+                                  Text('Size ${size['name']}',style: TextStyle(fontSize: 18 , fontWeight: FontWeight.w500)),
                                   SizedBox(height: 5,),
                                   Row(
                                     children: [
@@ -345,7 +358,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> s
                                   child: Image.asset('icons/Home2.png', fit: BoxFit.cover),
                                 ),
                                 const SizedBox(width: 3,),
-                                Text('KES ${size['price_per_person']}/Person',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
+                                Text('KES ${size['price']}/Person',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
 
                                     ],
                                   ),
@@ -360,7 +373,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> s
                                   child: Image.asset('icons/Home21.png', fit: BoxFit.cover),
                                 ),
                                 const SizedBox(width: 3,),
-                                Text('Up to ${size['max_number']} people',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
+                                Text('Up to ${size['capacity']} people',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
                                           
                                     ],
                                   ),

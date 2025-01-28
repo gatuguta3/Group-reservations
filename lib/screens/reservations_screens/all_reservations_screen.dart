@@ -6,6 +6,7 @@ import 'package:group_reservations/models_demo/reservations_model.dart';
 import 'package:group_reservations/screens/Main%20Screeens/homepage.dart';
 import 'package:group_reservations/screens/reservations_screens/all_reservations_view_screen.dart';
 import 'package:group_reservations/services_demo/reservations_demodata.dart';
+import 'package:intl/intl.dart';
 
 class AllReservationsScreens extends StatefulWidget {
   const AllReservationsScreens({super.key});
@@ -18,6 +19,10 @@ class _AllReservationsScreensState extends State<AllReservationsScreens> {
 
 
 final List<Reservations> reservations = get_reservations();// Get demo data
+
+//critical date formats that am using to convert date 
+ DateFormat inputFormat = DateFormat('dd-MM-yyyy');
+    DateFormat outputFormat = DateFormat('dd MMM yyyy');
 
   @override
   Widget build(BuildContext context) {
@@ -78,12 +83,13 @@ final List<Reservations> reservations = get_reservations();// Get demo data
                           ),
                         ),
                         Text(
-                          reservation.date_created,
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 14,
-                          ),
+                       reservation.date_created,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12,
                         ),
+                      ),
+
                         Divider(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

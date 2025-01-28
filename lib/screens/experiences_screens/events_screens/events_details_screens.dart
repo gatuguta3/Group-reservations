@@ -145,7 +145,7 @@ final TextEditingController reservationDateController = TextEditingController();
                           if (_formKey.currentState!.validate()) {
                             Navigator.pop(context);
                             openReservationTypeDialog(context, package);
-                            clearAllTextFields();
+                            
 
                             
                           }
@@ -311,7 +311,7 @@ void openExperienceDetailsDialog(BuildContext context, Map<String, dynamic> pack
         builder: (context, setState) {
           return AlertDialog(
             title: Text(
-              'Experience Details (${package['type']}) ',
+              'Experience Details (${package['name']}) ',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             content: SingleChildScrollView(
@@ -360,7 +360,7 @@ void openExperienceDetailsDialog(BuildContext context, Map<String, dynamic> pack
                           ),
                           const SizedBox(width: 3),
                           Text(
-                          'Cover up to ${package['max_people']} people',
+                          'Cover up to ${package['capacity']} people',
                           style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -551,7 +551,9 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
             children: [
               Text('Pay', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500), ),
               GestureDetector(
-                onTap: (){},
+                onTap: (){
+                  Navigator.of(context).pop();
+                },
                 child: Icon(Icons.close,size: 30,),
               )
             ],
@@ -565,7 +567,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
               SizedBox(height: 10,),
               Text('Reserved Succesfully',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w400)  ),
               SizedBox(height: 5,),
-               Text('Reservation for ${package['type']} Package has been accepted ',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200) , textAlign: TextAlign.center,   ),
+               Text('Reservation for ${package['name']} Package has been accepted ',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200) , textAlign: TextAlign.center,   ),
                SizedBox(height: 5,),
                Text('Kindly proceed and Pay',style: TextStyle(fontSize: 12 , fontWeight: FontWeight.w200)  ),
                SizedBox(height: 10,),
@@ -587,6 +589,7 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
               }
 
               Navigator.push(context, MaterialPageRoute( builder: (context) => PaymentScreeen( amount: totalamount, ),), );
+              clearAllTextFields();
                                 
               },
               child: Row(
@@ -616,12 +619,24 @@ void openExperienceCompletionDialog(BuildContext context, Map<String, dynamic> p
                 
               }         
 
-               Navigator.push( context, MaterialPageRoute( builder: (context) => ReservationViewScreen(
-                                                              
-                                                               ),
-                                                                                                                              
-               )
-                                                          );
+               Reservation reservation = Reservation(
+                eventName : widget.events.title,
+                eventDate: widget.events.start_date,
+                eventDescription: widget.events.description,
+                eventReservationDate : widget.events.end_date,
+                package_name : package['name'],
+                package_capacity: package['capacity'],
+                package_price : package['price'],
+                package_status: package['status'],
+                status : 'Not Paid',
+                amount: totalamount,
+               
+
+             
+            );
+
+               Navigator.push( context, MaterialPageRoute( builder: (context) => ReservationViewScreen(reservation: reservation  ),) );
+               clearAllTextFields();
 
             }, child: Text('View Reservation' , style: TextStyle( fontSize: 12 , color: Colors.grey , fontWeight: FontWeight.w200 , decoration: TextDecoration.underline),))
 
@@ -728,7 +743,7 @@ void clearAllTextFields() {
 
              Row(children: [ 
                   SizedBox(width: 16,),                 
-                  Text('Packages', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400), ),
+                  Text('Packages :', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400), ),
                  ],),
 
       
@@ -753,7 +768,7 @@ void clearAllTextFields() {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start, 
                                 children: [
-                                  Text('${package['type']}',style: TextStyle(fontSize: 24 , fontWeight: FontWeight.w500)),
+                                  Text('${package['name']}',style: TextStyle(fontSize: 24 , fontWeight: FontWeight.w500)),
                                   SizedBox(height: 5,),
                                   Row(
                                     children: [
@@ -780,7 +795,7 @@ void clearAllTextFields() {
                                   child: Image.asset('icons/Home21.png', fit: BoxFit.cover),
                                 ),
                                 const SizedBox(width: 3,),
-                                Text('Up to ${package['max_people']} people',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
+                                Text('Up to ${package['capacity']} people',style: TextStyle(fontSize: 15 , fontWeight: FontWeight.w400)),
                                           
                                     ],
                                   ),

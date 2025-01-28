@@ -5,7 +5,7 @@ class Events{
    final String image_url;
    final String title;
    final String description;
-   final String location;
+   
    final String company;
    final String venue;
    final String occasion;
@@ -22,7 +22,7 @@ class Events{
     required this.image_url,
     required this.title,
     required this.description,
-    required this.location,
+   
     required this.company,
     required this.venue,
     required this.occasion,

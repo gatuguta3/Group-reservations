@@ -13,8 +13,8 @@ List <Events> get_events () {
         image_url: 'images/beachview.jpeg',
         title: 'Diani Neptune Beach Resort',
         description: 'Treating Mom to the ultimate Soft Life Experience at Diani Neptune Beach resort this  Mothers Day. A day of luxury, relaxation, and endless smiles',
-        location: 'Malibu, California',
-        venue: 'Beach resort',
+        
+        venue: 'Diani beach Resort',
         company: 'Machakos Events',
         occasion: 'Vacation',
         subtitle: 'With you every step of the way',
@@ -23,16 +23,16 @@ List <Events> get_events () {
         end_date:   '21-12-2024',
         packages :[
           {
-            'type':'Standard',
+            'name':'Standard',
             'price': 4500,
-            'max_people': 15,
+            'capacity': 15,
             'status': 'Active'
 
           },
           {
-            'type':'Premium',
+            'name':'Premium',
             'price': 7500,
-            'max_people': 25,
+            'capacity': 25,
             'status': 'Active'
 
           }
@@ -46,7 +46,7 @@ List <Events> get_events () {
         image_url: 'images/beach2.jpeg',
         title: 'Beach Getaway',
         description: 'A relaxing weekend at the beach with sun and sand . Sand basking will from 10-12 am , all activities including jet skiing and snowkerling will be done on order from the main office',
-        location: 'Malibu, California',
+       
         venue: 'Beach resort',
         company: 'Machakos Events',
         occasion: 'Vacation',
@@ -57,16 +57,16 @@ List <Events> get_events () {
 
         packages :[
           {
-            'type':'Standard',
+            'name':'Standard',
             'price': 4500,
-            'max_people': 15,
+            'capacity': 15,
             'status': 'Active'
 
           },
           {
-            'type':'Premium',
+            'name':'Premium',
             'price': 7500,
-            'max_people': 25,
+            'capacity': 25,
             'status': 'Active'
 
           }
@@ -82,8 +82,8 @@ List <Events> get_events () {
         image_url: 'images/beach3.jpeg',
         title: 'Beach Getaway',
         description: 'A relaxing weekend at the beach with sun and sand . Sand basking will from 10-12 am , all activities including jet skiing and snowkerling will be done on order from the main office',
-        location: 'Malibu, California',
-        venue: 'Beach resort',
+        
+        venue: 'Diani Beach Resort',
         company: 'Machakos Events',
         occasion: 'Vacation',
         subtitle: 'with you every step of the way',
@@ -93,16 +93,16 @@ List <Events> get_events () {
 
         packages :[
           {
-            'type':'Standard',
+            'name':'Standard',
             'price': 4500,
-            'max_people': 15,
+            'capacity': 15,
             'status': 'Active'
 
           },
           {
-            'type':'Premium',
+            'name':'Premium',
             'price': 7500,
-            'max_people': 25,
+            'capacity': 25,
             'status': 'Active'
 
           }
@@ -118,8 +118,8 @@ List <Events> get_events () {
         image_url: 'images/beach4.jpeg',
         title: '5 start hotel Experience',
         description: 'A relaxing weekend at the beach with sun and sand . Sand basking will from 10-12 am , all activities including jet skiing and snowkerling will be done on order from the main office',
-        location: 'Malibu, California',
-        venue: 'Beach resort',
+        
+        venue: 'Diani Beach Resort',
         company: 'Machakos Events',
         occasion: 'Vacation',
         subtitle: 'with you every step of the way',
@@ -129,16 +129,16 @@ List <Events> get_events () {
 
         packages :[
           {
-            'type':'Standard',
+            'name':'Standard',
             'price': 4500,
-            'max_people': 15,
+            'capacity': 15,
             'status': 'Active'
 
           },
           {
-            'type':'Premium',
+            'name':'Premium',
             'price': 7500,
-            'max_people': 25,
+            'capacity': 25,
             'status': 'Active'
 
           }
@@ -153,7 +153,7 @@ List <Events> get_events () {
         image_url: 'images/beachview.jpeg',
         title: 'Christmas re - incarnation',
         description: 'A relaxing weekend at the beach with sun and sand . Sand basking will from 10-12 am , all activities including jet skiing and snowkerling will be done on order from the main office',
-        location: 'Malibu, California',
+       
         venue: 'Beach resort',
         company: 'Machakos Events',
         occasion: 'Vacation',
@@ -164,16 +164,16 @@ List <Events> get_events () {
 
         packages :[
           {
-            'type':'Standard',
+            'name':'Standard',
             'price': 4500,
-            'max_people': 15,
+            'capacity': 15,
             'status': 'Active'
 
           },
           {
-            'type':'Premium',
+            'name':'Premium',
             'price': 7500,
-            'max_people': 25,
+            'capacity': 25,
             'status': 'Active'
 
           }

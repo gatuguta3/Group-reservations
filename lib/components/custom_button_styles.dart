@@ -66,9 +66,24 @@ class CustomButtonStyle {
       minimumSize: Size(90, 40),
       side: const BorderSide(color: AppColors.primary), 
       textStyle: const TextStyle(
-        fontSize: 16,         
+        fontSize: 14,         
         color: AppColors.primary, 
       ),
     );
   }
+
+  static ButtonStyle outlinedButtonStyle2() {
+    return OutlinedButton.styleFrom(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5), 
+      ),      
+      minimumSize: Size(90, 40),
+      side: const BorderSide(color: Colors.grey), 
+      textStyle: const TextStyle(
+        fontSize: 14,         
+        color: Colors.black, 
+      ),
+    );
+  }
 }
+

@@ -164,7 +164,7 @@ class _MembersScreenState extends State<MembersScreen> {
           }
         },
         backgroundColor: AppColors.primary,
-        child: Icon(Icons.arrow_right_alt_outlined),
+        child: Image.asset('icons/right_arrow.png'),
         tooltip: 'Confirm Selection',
       ),
     );

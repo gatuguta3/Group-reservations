@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations
 
 import 'package:flutter/material.dart';
 import 'package:group_reservations/constants/colors.dart';
@@ -30,11 +30,11 @@ class _AllReservationsViewScreenState extends State<AllReservationsViewScreen> {
                             children: [
                             
                             Text(widget.reservation.title, style: TextStyle(fontWeight: FontWeight.w400 , fontSize: 18)),
-                            Text(widget.reservation.date_created, style: TextStyle(fontSize: 13 , fontWeight: FontWeight.w200)),
+                            Text(widget.reservation.date_created, style: TextStyle(fontSize: 11 , fontWeight: FontWeight.w200)),
                           ],),
                             ],
                           ),
-                          SizedBox(height: 20,),
+                          SizedBox(height: 10,),
                       Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
                            children: [
                              Column(crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +78,12 @@ class _AllReservationsViewScreenState extends State<AllReservationsViewScreen> {
                         
                         Divider(thickness: 1),
 
-                        Text( widget.reservation.description, style: TextStyle(fontSize: 11),),
+                        Row(mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text('Description' , style: TextStyle(fontSize: 11, color: Color.fromARGB(125, 0, 0, 0)),),
+                        ],
+                        ),
+                        Text( widget.reservation.description, style: TextStyle(fontSize: 12),),
                         const SizedBox(height: 15),
                         const Divider(thickness: 1),
                         const SizedBox(height: 15),

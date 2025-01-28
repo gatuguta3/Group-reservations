@@ -21,27 +21,27 @@ List <Good> get_goods (){
     description: 'The latests Gormahia T shirts for 2024 -25 season are now available at the DS house come grab yours today',
     sizes: [
       {
-        'size':'S',
-        'price_per_person': 2000,
-        'max_number':10,
+        'name':'S',
+        'price': 2000,
+        'capacity':10,
         'status':'Active'
       },
       {
-        'size':'M',
-        'price_per_person':3000,
-        'max_number':20,
+        'name':'M',
+        'price':3000,
+        'capacity':20,
         'status':'Active'
       },
       {
-        'size':'L',
-        'price_per_person':4000,
-        'max_number':20,
+        'name':'L',
+        'price':4000,
+        'capacity':20,
         'status':'Inactive'
       },
       {
-        'size':'XL',
-        'price_per_person':4500,
-        'max_number':15,
+        'name':'XL',
+        'price':4500,
+        'capacity':15,
         'status':'Active'
       }
     ], 
@@ -60,27 +60,27 @@ List <Good> get_goods (){
     description: 'The latests Gormahia T shirts for 2024 -25 season are now available at the DS house come grab yours today',
     sizes: [
       {
-        'size':'S',
-        'price_per_person': 2000,
-        'max_number':10,
+        'name':'S',
+        'price': 2000,
+        'capacity':10,
         'status':'Active'
       },
       {
         'size':'M',
-        'price_per_person':3000,
-        'max_number':20,
+        'price':3000,
+        'capacity':20,
         'status':'Active'
       },
       {
-        'size':'L',
-        'price_per_person':4000,
-        'max_number':20,
+        'name':'L',
+        'price':4000,
+        'capacity':20,
         'status':'Inactive'
       },
       {
-        'size':'XL',
-        'price_per_person':4500,
-        'max_number':15,
+        'name':'XL',
+        'price':4500,
+        'capacity':15,
         'status':'Active'
       }
     ], 
@@ -99,27 +99,27 @@ List <Good> get_goods (){
     description: 'The latests Gormahia T shirts for 2024 -25 season are now available at the DS house come grab yours today',
     sizes: [
       {
-        'size':'S',
-        'price_per_person': 2000,
-        'max_number':10,
+        'name':'S',
+        'price': 2000,
+        'capacity':10,
         'status':'Active'
       },
       {
-        'size':'M',
-        'price_per_person':3000,
-        'max_number':20,
+        'name':'M',
+        'price':3000,
+        'capacity':20,
         'status':'Active'
       },
       {
-        'size':'L',
-        'price_per_person':4000,
-        'max_number':20,
+        'name':'L',
+        'price':4000,
+        'capacity':20,
         'status':'Inactive'
       },
       {
-        'size':'XL',
-        'price_per_person':4500,
-        'max_number':15,
+        'name':'XL',
+        'price':4500,
+        'capacity':15,
         'status':'Active'
       }
     ], 

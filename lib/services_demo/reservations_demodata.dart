@@ -18,8 +18,8 @@ List <Reservations> get_reservations () {
         price: 2000,
         payment_status: "Paid",
         reservation_status: "Active",
-        date_created: "2022-01-01",
-        reservation_date: "2022-01-01",
+        date_created: "15 November, 2024 ",
+        reservation_date: "26 November , 2024",
 
       ),
       Reservations(
@@ -32,8 +32,8 @@ List <Reservations> get_reservations () {
         price: 2000,
         payment_status: "Paid",
         reservation_status: "Active",
-        date_created: "2022-01-01",
-        reservation_date: "2022-01-01",
+        date_created: "17 December 2024",
+        reservation_date: "10 January 2025",
 
       ),
 
@@ -47,8 +47,8 @@ List <Reservations> get_reservations () {
         price: 2000,
         payment_status: "Cancled",
         reservation_status: "Active",
-        date_created: "2022-01-01",
-        reservation_date: "2022-01-01",
+        date_created: "13 June, 2024",
+        reservation_date: "26 November , 2024",
 
       ),
     

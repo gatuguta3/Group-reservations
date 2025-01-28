@@ -8,7 +8,7 @@ import 'package:group_reservations/components/themes.dart';
 import 'package:group_reservations/components/themes.dart';
 import 'package:group_reservations/constants/colors.dart';
 import 'package:group_reservations/models_demo/insurance_model.dart';
-import 'package:group_reservations/models_demo/policy_claims_model.dart';
+import 'package:group_reservations/models_demo/claims_model.dart';
 import 'package:group_reservations/models_demo/policy_members_model.dart';
 
 class InsuranceDetailsScreen extends StatefulWidget {
@@ -108,7 +108,7 @@ bool show_claimed_policy = false;
   String? selected_relationship;
 
   final List<Member> selected_policy_members = [];
-  final List<Policy_Claims> policy_claims = [];
+  final List<Claims> policy_claims = [];
   
 
 
@@ -541,7 +541,7 @@ void make_claim_dialog () {
                 setState(() {
                   show_claimed_policy = true;
                 });
-                policy_claims.add(Policy_Claims(owner: 'Edwin Wafula' , daterequested: DateTime.now() , status : 'Requested'));
+                policy_claims.add(Claims(owner: 'Edwin Wafula' , daterequested: DateTime.now() , status : 'Requested', id: 1, initiator: 'Edwin Wafula'));
                 CustomSnackbar.show( context,
                 'Operation successful !',
                 backgroundColor: AppColors.primary, // Optional: Custom background color
